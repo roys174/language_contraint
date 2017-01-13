@@ -1,0 +1,134 @@
+#!/usr/bin/env perl -w
+
+use strict;
+use MyUtils;
+
+my %CW_TAGS = ("N" => undef, "V" => undef, "J" => undef, "R" => undef);
+
+sub main(@) {
+	my $min_thr = 5;
+	my $max_patt_len = 5;
+	my $if = shift;
+	my $patt_file = shift;
+	my $of = shift or die "Usage: $0 <if> <patt file> <of> <min_thr = $min_thr> <max patt length = $max_patt_len\n";
+	
+	if (@_) {
+		$min_thr = shift;
+		if (@_) {
+			$max_patt_len = shift;
+		}
+	}
+		
+	my %saved;
+
+	if (-e $patt_file) {
+		my $ifh = openRFile($patt_file);
+		
+		while (my $line = $ifh->getline()) {
+			chomp($line);
+			my ($patt, $n) = split("	", $line);
+			$saved{$patt} = $n;
+		}
+		
+		$ifh->close();
+	} else {	
+		my %patts;
+		my $ifh = openRFile($if);
+
+		while (my $line = $ifh->getline()) {
+			chomp($line);
+	
+			my ($label, $text) = split("\t", $line);
+	
+			my @w = split(" ", $text);
+
+			my $patts = get_patts(\@w, $max_patt_len);
+
+			foreach my $patt (keys %$patts) {
+				$patts{$patt} += $patts->{$patt};
+			}
+		}
+		$ifh->close();
+		
+		my $i = 0;
+		my @sk = sort {$patts{$b} <=> $patts{$a}} keys %patts;
+
+		my $ofh = openWFile($patt_file);
+		foreach my $k (@sk) {
+			last if $patts{$k} < $min_thr;
+			$ofh->print("$k\t$i\t$patts{$k}\n");
+			$saved{$k} = $i++;
+		}
+		$ofh->close();
+	}
+
+	my $n_feats = scalar(keys %saved)+1;
+	print $n_feats." found\n";
+
+	
+	my $ifh = openRFile($if);
+	my $ofh = openWFile($of);
+	
+	while (my $line = $ifh->getline()) {
+		chomp($line);
+		
+		my ($label, $text) = split("\t", $line);
+		
+		my @w = split(" ", $text);
+
+		my $patts = get_patts(\@w, $max_patt_len);
+		
+		my %ts;
+		
+		foreach my $patt (keys %$patts) {
+			if (exists $saved{$patt}) {
+				$ts{$saved{$patt}} = $patts->{$patt};	
+			}
+		}
+		
+		$ts{$n_feats-1} = scalar(@w);
+		
+		$ofh->print("$label\t$text\t");		
+		
+		$ofh->print(join(" ", map { $_.":".$ts{$_}} keys %ts));
+		$ofh->print("\n");
+	}
+	
+	$ofh->close();
+	$ifh->close();
+		
+	return 0;
+}
+
+sub get_patts($$) {
+	my $w = shift;
+	unshift(@$w, "START_UNK");
+	my $max_patt_len = shift;
+	
+	my %patts;
+	
+	# print "@w\n";
+	my @w = map { exists($CW_TAGS{substr((split("_", $_))[1],0,1)}) ? (split("_", $_))[1] : (split("_", $_))[0] } @$w;
+	
+#	print "@w\n";
+	# die;
+	
+	foreach my $i (0 .. $max_patt_len) {
+		foreach my $j (0 .. @w-$i-1) {
+			# print "$j ".($j+$i)."\n";
+			my $p = join(" ", @w[$j..$j+$i]);
+			$patts{$p}++;
+		}
+	}
+	
+	my @w2 = map { (split("_",$_))[0]}  @$w;
+	my $l = join(" ", @w2);
+	
+	foreach my $i (0 .. length($l)-4) {
+		$patts{substr($l,$i,4)}++;
+	}
+	
+	return \%patts;
+}
+
+exit(main(@ARGV));
