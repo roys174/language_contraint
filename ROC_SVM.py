@@ -27,7 +27,8 @@ def read_features(ifile, n_feats):
             for f in fs:
                 [f,v] = f.split(":")
             
-                local_fs[int(f)] = int(v)
+                # print f,v
+                local_fs[int(f)] = float(v)
         
 #            local_fs_sparse = csr_matrix(local_fs)
 #            print line,d[0],local_fs,local_fs_sparse.toarray()
