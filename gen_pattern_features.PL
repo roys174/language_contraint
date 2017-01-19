@@ -8,17 +8,23 @@ my %CW_TAGS = ("N" => undef, "V" => undef, "J" => undef, "R" => undef);
 sub main(@) {
 	my $min_thr = 5;
 	my $max_patt_len = 5;
-	my $if = shift;
-	my $patt_file = shift;
-	my $of = shift or die "Usage: $0 <if> <patt file> <of> <min_thr = $min_thr> <max patt length = $max_patt_len\n";
+	my $if;
+	my $patt_file;
+	my $of;
+	my $use_len;
+	my $char_ngrams=5;
 	
-	if (@_) {
-		$min_thr = shift;
-		if (@_) {
-			$max_patt_len = shift;
-		}
-	}
-		
+	MyUtils::usage({
+		"if=s" => \$if,
+		"patt_file=s" 					=> \$patt_file,
+		"of=s"							=> \$of,
+		"max_patt_len=i" 				=> \$max_patt_len,
+		"min_thr=i"						=> \$min_thr,
+		"char_ngrams=i"					=> \$char_ngrams,
+		"len+"							=> \$use_len,
+	}, ["if=s","of=s","patt_file=s"]);
+	
+	$max_patt_len--;
 	my %saved;
 
 	if (-e $patt_file) {
@@ -42,7 +48,7 @@ sub main(@) {
 	
 			my @w = split(" ", $text);
 
-			my $patts = get_patts(\@w, $max_patt_len);
+			my $patts = get_patts(\@w, $max_patt_len, $char_ngrams);
 
 			foreach my $patt (keys %$patts) {
 				$patts{$patt} += $patts->{$patt};
@@ -62,8 +68,12 @@ sub main(@) {
 		$ofh->close();
 	}
 
-	my $n_feats = scalar(keys %saved)+1;
+	my $n_feats = scalar(keys %saved)+defined($use_len);
 	print $n_feats." found\n";
+	
+	unless ($n_feats) {
+		return 1;
+	}
 
 	
 	my $ifh = openRFile($if);
@@ -76,7 +86,7 @@ sub main(@) {
 		
 		my @w = split(" ", $text);
 
-		my $patts = get_patts(\@w, $max_patt_len);
+		my $patts = get_patts(\@w, $max_patt_len, $char_ngrams);
 		
 		my %ts;
 		
@@ -86,7 +96,9 @@ sub main(@) {
 			}
 		}
 		
-		$ts{$n_feats-1} = scalar(@w);
+		if ($use_len) {
+			$ts{$n_feats-1} = scalar(@w);
+		}
 		
 		$ofh->print("$label\t$text\t");		
 		
@@ -100,10 +112,11 @@ sub main(@) {
 	return 0;
 }
 
-sub get_patts($$) {
+sub get_patts($$$) {
 	my $w = shift;
 	unshift(@$w, "START_UNK");
 	my $max_patt_len = shift;
+	my $char_ngrams = shift;
 	
 	my %patts;
 	
@@ -121,11 +134,13 @@ sub get_patts($$) {
 		}
 	}
 	
-	my @w2 = map { (split("_",$_))[0]}  @$w;
-	my $l = join(" ", @w2);
+	if ($char_ngrams) {
+		my @w2 = map { (split("_",$_))[0]}  @$w;
+		my $l = join(" ", @w2);
 	
-	foreach my $i (0 .. length($l)-4) {
-		$patts{substr($l,$i,4)}++;
+		foreach my $i (0 .. length($l)-$char_ngrams) {
+			$patts{substr($l,$i,$char_ngrams)}++;
+		}
 	}
 	
 	return \%patts;

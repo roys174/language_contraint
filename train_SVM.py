@@ -1,36 +1,32 @@
 #!/usr/bin/env python
 
 import sys
-sys.path.insert(0, '/Users/roysch/aristo/entailment/scripts/')
 import ROC_SVM
 from scipy.sparse import *
 from scipy import *
 from sklearn import svm
 import pickle
+from optparse import OptionParser,OptionValueError
 
 def main():
-    C=0.025
-    penalty='l2'
     loss='squared_hinge'
     dual=True
-    do_rank = 0
-    argc=len(sys.argv)
-    if (argc < 4):
-        print "Usage:",sys.argv[0],"<if> <n features> <of> <C="+str(C)+"> <penalty="+penalty+"><do rank>"
-        return -1
-    elif (argc > 4):
-        C=float(sys.argv[4])
-        if (argc > 5):
-            penalty=sys.argv[5]
-            if (argc > 6):
-                do_rank = bool(sys.argv[6])
-            
-    n_feats = int(sys.argv[2])
+
+    options = usage()
+
+    ifile = options.ifile
+    n_feats = options.n_feats
+    C = float(options.C)
+    do_rank = bool(options.do_rank)
+    n_feats = int(options.n_feats)
+    model_of = options.model_of
+    penalty=options.penalty
+    
     if (penalty == 'l1'):
 #        loss='hinge'
         dual=False
 
-    [features, labels] = ROC_SVM.read_features(sys.argv[1], n_feats)
+    [features, labels] = ROC_SVM.read_features(ifile, n_feats)
     
     if (do_rank):
         [features,labels] = ROC_SVM.gen_ranking(features, labels)
@@ -38,8 +34,10 @@ def main():
     print "Done. Now feating"
     
     clf = svm.LinearSVC(C=C,penalty=penalty,loss=loss,dual=dual)
+
     clf.fit(features, labels)
-    pickle.dump(clf, open(sys.argv[3], 'wb'))
+    pickle.dump(clf, open(model_of, 'wb'))
+    # print clf.coef_[0][0]
     
     print "Done. Now testing"
     
@@ -48,6 +46,44 @@ def main():
     n_correct = 0
     
     ROC_SVM.evaluate(test,labels)
+
+
+
+def usage():
+    C=0.025
+    penalty='l2'
+    loss='squared_hinge'
+    dual=True
+    do_rank = 0
+   
+    parser = OptionParser()
+    give_tag=0
+    n_training_samples = -1
+
+    parser.add_option("-i", dest="ifile",
+                    help="Input file", metavar="FILE")
+    parser.add_option("-o", dest="model_of",
+                    help="Model output file", metavar="FILE")
+    parser.add_option("-n", dest="n_feats",
+                    help="Number of features", metavar="INT")
+    parser.add_option("-c", metavar="FLOAT",
+                            dest="C", 
+                            help="Regularization parameter",
+                            default=C)
+    parser.add_option("-p", metavar="STRING",
+                            dest="penalty", 
+                            help="Penalty (l1 or l2)",
+                            default=penalty)
+    parser.add_option("-r", dest="do_rank", default=False, action="store_true",
+                            help="Use ranking")
+                    
+    
+    (options, args) = parser.parse_args()
+
+    if (options.ifile == None or options.model_of == None):
+            raise OptionValueError("input file or model file missing")
+    
+    return options
 
 
     

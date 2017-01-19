@@ -27,6 +27,9 @@
 % in the camera-ready version and ask you to change it back.
 
 \newcommand\BibTeX{B{\sc ib}\TeX}
+\newcommand{\secref}[1]{Section~\ref{ssec:#1}}
+\newcommand{\isection}[2]{\section{#1}\label{ssec:#2}}
+\newcommand{\isectionb}[1]{\section{#1}\label{ssec:#1}}
 
 \title{???}
 
@@ -50,17 +53,94 @@ People's writing style is affected by many factors, including topics, sentiment,
 In this paper we show that writing tasks that impose constraints on the writer result in the author adopting a  different writing style compared to tasks that do not.
 As a case study, we experiment with a recently published machine reading task: the story cloze task \cite{Mostafazadeh:2016}. 
 In this task, annotators were asked to generate two sentences: one which makes sense given a previous paragraph and another which doesn't.
-We show that a linear classifier, which applies only simple style features, such as sentence length and PoS counts, obtains state-of-the-art results on the task,
-substantially higher than sophisticated sequence-to-sequence models.
+We show that a linear classifier, which applies only simple style features, such as sentence length and character n-grams, obtains state-of-the-art results on the task,
+substantially higher than sophisticated deep learning models.
 Importantly, our model doesn't even look at the previous paragraph, just the two candidate sentences, which, out of context, differ only in the constraint put on the authors. 
 Our results indicate that such constraints dramatically affect the way people write. 
 They also suggest that careful attention to the instructions given to the authors needs to taken when designing new NLP tasks.
 
   \end{abstract}
+\section{Introduction}
+Writing style is defined as the choice of words, spelling, grammar and punctuation made by the author.\footnote{\url{https://en.wikipedia.org/wiki/Writing_style}}
+It is often affected by inter-writer factors such as age \cite{Schler:2006}, gender \cite{Argamon:2003}, native language \cite{Koppel:2005}, or mere personality \cite{Stamatatos:2009}, but also by other parameters such as the sentiment of the text \cite{Davidov:2010} and whether it is sarcastic \cite{Tsur:2010}.  
+In this paper we study to what extent is writing style affected by more intricate factors, such as the type of constraints put on the author. 
+
+As a testbed, we experiment with the story cloze task \cite{Mostafazadeh:2016}. 
+This task was created by having authors write five-sentence self-contained stories.
+Following, a subset of the the stories was given to another group of authors, who were shown only the first four sentences of each story, 
+and were asked to write two one-sentence endings for it: a {\it correct} ending, and a {\it wrong} ending.
+The goal of the task is to determine which of the endings is the correct one.
+
+Interestingly, although originally intended to be a machine reading task, the compliation of this task raises several research questions which seem to differ from the original intent of the designers.
+First, do authors use different style when asked to write a {\it correct} sentence, compared to a {\it wrong} sentence?
+Second, do authors use different style when writing the ending as part of a five sentence story, compared to reading four sentences, and then writing a standalone (correct) ending?
+
+We show that the answer to both of these questions is positive. 
+We train a linear classifier, using simple stylistic features, such as sentence length, character n-grams and PoS counts. 
+We show that on a balanced dataset (random guess is 50\%) our classifier can distinguish between {\it correct} and {\it wrong} sentences in 64.5\% of the cases. 
+Importantly, the classifier is trained {\bf only} on the last sentences, and does not consider the four input sentences.
+It is also trained on a set of positive samples and a set of negative ones, rather than pairs of (positive, negative) pairs, as in the original story cloze task.
+Furthermore, when trained to distinguish between original endings and new endings, the classifier obtains 70.9\% accuracy. 
+
+
+In order to estimate the quality of our results, we turn back to the story cloze task.
+We show that using our classifier, we are able to obtain 71.6\% accuracy on the task, a 12\% improvement compared to the published state-of-the-art results \cite{Speer:2016}.\footnote{Recently, a shared task for the story cloze task has been published (\url{https://competitions.codalab.org/competitions/15333}). 
+At the time of submission, the leading results is 71.1\%, which is much closer to our results, although still inferior.
+No details about the methods used to generate this result are available.}
+
+We present an ablation study which shows that the style differences are realized in syntactic features (such as the over/under use of coordination words like ``and'' and ``but'').
+Furthermore, we also show that sentiment plays an important role in the writing style differences.
+For instance, one of the key features for distinguishing between correct and wrong sentences is the over-representation of the word ``hate" by the latter.
+
+Our results suggest that writing style is affected by the state of mind the writer is at.
+Writing a sentence intended to be {\it wrong} turns out quite differently than a sentence intended to be {\it correct}. 
+Similarly, writing a sentence as part of the story is different from reading a story, and then writing the final sentence.
+These differences can be distinguished to a large extent by simple machine learning tools.
+
+The results presented here also provide valuable lessons for designing new NLP tasks.
+Although \cite{Mostafazadeh:2016} seem to have put a lot of effort into designing the task, 
+addressing many potential methodological flaws (see \secref{ROC_Story}), the importance of a few allegedly minor details were underestimated. 
+%We show that these details are actually very significant.
+
+Finally, we show that our stylistic features can benefit from combining with a machine-reading model, for which this task was designed.
+We train an neural language model on the original five sentence training corpus, and then compute the language probability of each of the candidates answers. 
+We add the numbers as features in our linear classifier, and get an additional 4\% improvement (75.6\%).
+
+the reminder of this paper is organized as follows. In \secref{ROC_Story} we introduce the cloze story task.
+We present our model, our experiments and our results at sections \ref{ssec:Model}, \ref{ssec:Experiments} and \ref{ssec:Results}, respectively.
+Sections \ref{ssec:Ablation} and \ref{ssec:Discussion} present an ablation study and a discussion, while \secref{Related}  surveys related work. 
+We conclude at \secref{Conclusion}.
+
+\isection{The Cloze Story Task}{ROC_Story}
+
+\isectionb{Model}
+
+\isectionb{Experiments}
+
+\isectionb{Results}
+
+\isection{Ablation Study}{Ablation}
+
+\isectionb{Discussion}
+
+\isection{Related Work}{Related}
+
+\begin{itemize}
+\item Different style application (as in introduction). Also include deception works (Yejin has 1-2 papers on it). 
+\item Machine reading papers? 
+\end{itemize}
+
+
+\isectionb{Conclusion}
+
+
+
 
 % include your own bib file like this:
 %\bibliographystyle{acl}
 %\bibliography{acl2017}
+
+\newpage
 \bibliography{acl2017}
 \bibliographystyle{acl_natbib}
 
