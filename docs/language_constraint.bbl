@@ -1,0 +1,17 @@
+\begin{thebibliography}{}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Mostafazadeh et~al.(2016)Mostafazadeh, Chambers, He, Parikh, Batra,
+  Vanderwende, Kohli, and Allen}]{Mostafazadeh:2016}
+Nasrin Mostafazadeh, Nathanael Chambers, Xiaodong He, Devi Parikh, Dhruv Batra,
+  Lucy Vanderwende, Pushmeet Kohli, and James Allen. 2016.
+\newblock \href{http://www.aclweb.org/anthology/N16-1098}{A corpus and cloze
+  evaluation for deeper understanding of commonsense stories}.
+\newblock In {\em Proceedings of the 2016 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies\/}. Association for Computational Linguistics, San Diego,
+  California, pages 839--849.
+\newblock
+  \href{http://www.aclweb.org/anthology/N16-1098}{http://www.aclweb.org/anthology/N16-1098}.
+
+\end{thebibliography}
