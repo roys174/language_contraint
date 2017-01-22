@@ -14,7 +14,7 @@
 \usepackage[hyperref]{acl2017}
 \usepackage{times}
 \usepackage{latexsym}
-
+\usepackage{xcolor}
 \usepackage{url}
 
 %\aclfinalcopy % Uncomment this line for the final submission
@@ -30,6 +30,9 @@
 \newcommand{\secref}[1]{Section~\ref{ssec:#1}}
 \newcommand{\isection}[2]{\section{#1}\label{ssec:#2}}
 \newcommand{\isectionb}[1]{\section{#1}\label{ssec:#1}}
+
+\newcommand{\ms}[1]{{\color{cyan}\{\textit{#1}\}$_{ms}$}}
+
 
 \title{???}
 
@@ -59,7 +62,8 @@ Importantly, our model doesn't even look at the previous paragraph, just the two
 Our results indicate that such constraints dramatically affect the way people write. 
 They also suggest that careful attention to the instructions given to the authors needs to taken when designing new NLP tasks.
 
-  \end{abstract}
+\end{abstract}
+
 \section{Introduction}
 Writing style is defined as the choice of words, spelling, grammar and punctuation made by the author.\footnote{\url{https://en.wikipedia.org/wiki/Writing_style}}
 It is often affected by inter-writer factors such as age \cite{Schler:2006}, gender \cite{Argamon:2003}, native language \cite{Koppel:2005}, or mere personality \cite{Stamatatos:2009}, but also by other parameters such as the sentiment of the text \cite{Davidov:2010} and whether it is sarcastic \cite{Tsur:2010}.  
@@ -71,9 +75,9 @@ Following, a subset of the the stories was given to another group of authors, wh
 and were asked to write two one-sentence endings for it: a {\it correct} ending, and a {\it wrong} ending.
 The goal of the task is to determine which of the endings is the correct one.
 
-Interestingly, although originally intended to be a machine reading task, the compliation of this task raises several research questions which seem to differ from the original intent of the designers.
+Interestingly, although originally intended to be a machine reading task, the compilation of this task raises several research questions which seem to differ from the original intent of the designers.
 First, do authors use different style when asked to write a {\it correct} sentence, compared to a {\it wrong} sentence?
-Second, do authors use different style when writing the ending as part of a five sentence story, compared to reading four sentences, and then writing a standalone (correct) ending?
+Second, do authors use different style when writing the ending as part of their own five sentence story, compared to reading four sentences, and then writing a standalone (correct) ending?
 
 We show that the answer to both of these questions is positive. 
 We train a linear classifier, using simple stylistic features, such as sentence length, character n-grams and PoS counts. 
@@ -92,7 +96,7 @@ We present an ablation study which shows that the style differences are realized
 Furthermore, we also show that sentiment plays an important role in the writing style differences.
 For instance, one of the key features for distinguishing between correct and wrong sentences is the over-representation of the word ``hate" by the latter.
 
-Our results suggest that writing style is affected by the state of mind the writer is at.
+Our results suggest that writing style is affected by the the writer's state of mind.
 Writing a sentence intended to be {\it wrong} turns out quite differently than a sentence intended to be {\it correct}. 
 Similarly, writing a sentence as part of the story is different from reading a story, and then writing the final sentence.
 These differences can be distinguished to a large extent by simple machine learning tools.
@@ -112,9 +116,26 @@ Sections \ref{ssec:Ablation} and \ref{ssec:Discussion} present an ablation study
 We conclude at \secref{Conclusion}.
 
 \isection{The Cloze Story Task}{ROC_Story}
+Developed as an effort to simplify the representation and learning of commonsense knowledge, the \textit{Cloze Story Task} \cite{Mostafazadeh:2016} has become the Shared Task for the LSDSem workshop. % this is a terrible sentence.
+The task provides two types of datasets: the \textit{ROC Stories} and the \textit{Story Cloze test sets}.
+
+\paragraph{ROC Stories}
+consist of $98,163$ five-sentence commonsense stories, collected on AMT. Workers were instructed to write a coherent story where something happens, and with a clear beginning and end. To collect a broad spectrum of commonsense knowledge, there was no imposed subject for the stories.
+\paragraph{Story Cloze} test sets were created on AMT, using a subset of ROC Stories. Presented with the first four sentences of a story, workers were asked to write a ``right'' and a ``wrong'' ending. The ending had to complete the story using a character in it, and when read out of context, had to be ``realistic and sensible'' \cite{Mostafazadeh:2016}.
+
+The resulting stories were then individually rated for coherence and meaningfulness by AMT workers. Only stories with a coherent and meaningful ``right'' ending and a neutral ``wrong'' ending were selected for the test, yielding $3,744$ test stories. \ms{Hope the ``neutral'' thing makes sense, I didn't know how else to explain 4.2.2 of the Story cloze paper.}
 
 \isectionb{Model}
 
+\subsection{Neural Language Model}
+\ms{Below is a messy dump of all the hyper parameters... Didn't know how many details were needed}
+
+We trained a simple RNN Language model \cite{mikolov2010recurrent} using a single-layer LSTM \cite{hochreiter1997long} of hidden dimension $h=512$.
+We used the ROC Stories for training, setting aside $10\%$ for validation of the language model. We replaced all words occuring less than 3 times by a special out-of-vocabulary character, yielding a vocabulary size of $|V|=21,582$.
+Only during training, we applied a dropout rate of 60\% while running the LSTM over all 5 sentences of the stories. Using AdamOptimizer \cite{kingma2014adam} and a learning rate of $\eta=.001$, we trained with backpropagation on cross-entropy. % minibatches of $50$ stories.
+% h=512, dropout rate of 60%, V=21582, 10% validation set
+
+To construct features for the Story Cloze task, we scored each of the two endings using our neural language model. We computed the probability of each ending given the first four sentences $p_\theta(ending|story)$, as well as the probability of the endings out of context $p_\theta(ending)$. We also included the likelihood ratio $\frac{p_\theta(ending|story)}{p_\theta(ending)}$ into our classifier.
 \isectionb{Experiments}
 
 \isectionb{Results}
@@ -128,6 +149,7 @@ We conclude at \secref{Conclusion}.
 \begin{itemize}
 \item Different style application (as in introduction). Also include deception works (Yejin has 1-2 papers on it). 
 \item Machine reading papers? 
+\item \ms{Pennebaker's work on function words?}
 \end{itemize}
 
 
