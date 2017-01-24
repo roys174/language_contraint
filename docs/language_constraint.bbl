@@ -50,12 +50,29 @@ Nasrin Mostafazadeh, Nathanael Chambers, Xiaodong He, Devi Parikh, Dhruv Batra,
 \newblock
   \href{http://www.aclweb.org/anthology/N16-1098}{http://www.aclweb.org/anthology/N16-1098}.
 
+\bibitem[{Salle et~al.(2016)Salle, Idiart, and Villavicencio}]{Salle:2016}
+Alexandre Salle, Marco Idiart, and Aline Villavicencio. 2016.
+\newblock Enhancing the lexvec distributed word representation model using
+  positional contexts and external memory.
+\newblock {\em arXiv preprint arXiv:1606.01283\/} .
+
 \bibitem[{Schler et~al.(2006)Schler, Koppel, Argamon, and
   Pennebaker}]{Schler:2006}
 Jonathan Schler, Moshe Koppel, Shlomo Argamon, and James~W Pennebaker. 2006.
 \newblock Effects of age and gender on blogging.
 \newblock In {\em AAAI spring symposium: Computational approaches to analyzing
   weblogs\/}. volume~6, pages 199--205.
+
+\bibitem[{Schwartz et~al.(2013)Schwartz, Tsur, Rappoport, and
+  Koppel}]{Schwartz:2013}
+Roy Schwartz, Oren Tsur, Ari Rappoport, and Moshe Koppel. 2013.
+\newblock \href{http://www.aclweb.org/anthology/D13-1193}{Authorship
+  attribution of micro-messages}.
+\newblock In {\em Proceedings of the 2013 Conference on Empirical Methods in
+  Natural Language Processing\/}. Association for Computational Linguistics,
+  Seattle, Washington, USA, pages 1880--1891.
+\newblock
+  \href{http://www.aclweb.org/anthology/D13-1193}{http://www.aclweb.org/anthology/D13-1193}.
 
 \bibitem[{Speer et~al.(2016)Speer, Chin, and Havasi}]{Speer:2016}
 Robert Speer, Joshua Chin, and Catherine Havasi. 2016.
