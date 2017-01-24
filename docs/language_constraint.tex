@@ -20,6 +20,8 @@
 \usepackage{pgfplots}
 \usepackage{tikz}
 
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+
 % Define bar chart colors
 %
 \definecolor{bblue}{HTML}{4F81BD}
@@ -51,10 +53,11 @@
 \newcommand{\roy}[1]{\footnote{\color{red}{\textbf{Roy: #1}}}}
 \newcommand{\royb}[2]{{\color{red}{\sout{#1}}}{\color{green}{#2}}}
 \newcommand{\royc}[3]{\royb{#1}{#2}\roy{#3}}
-\renewcommand{\ms}[1]{}
-\renewcommand{\roy}[1]{}
-\renewcommand{\royb}[1]{}
-\renewcommand{\royc}[1]{}
+
+%\renewcommand{\ms}[1]{}
+%\renewcommand{\roy}[1]{}
+%\renewcommand{\royb}[1]{}
+%\renewcommand{\royc}[1]{}
 
 
 \title{???}
@@ -100,11 +103,11 @@ The goal of the task is to determine which of the endings is the correct one.
 \tabref{ROC-example} shows an example of an original story, a {\it correct} story and a {\it wrong} story.
 
 \begin{table}[!t]
-\small
-\begin{tabular}{|p{.95cm}|p{6cm}|} \hline
+%\small
+\begin{tabular}{|p{1.3cm}|p{5.6cm}|} \hline
 {\bf Type} & {\bf Example} \\ \hline
 {\it Original} story & My mother loves clocks that chime.	Her house is full of them.	She sets them each a little different so she can hear them chime.	It sounds like a bell tower during a wedding in her house all day.	{\color{blue}{When I visit I stop them or I'd never be able to sleep at night.}} \\ \hline
-{\it Correct} story & Kathy went shopping.	She found a pair of great shoes.	The shoes were \$300.	She bought the shoes.	{\color{green}{She felt buyer's remorse after the purchase.}} \\ \hline
+{\it Correct} story & Kathy went shopping.	She found a pair of great shoes.	The shoes were \$300.	She bought the shoes.	{\color{forestgreen}{She felt buyer's remorse after the purchase.}} \\ \hline
 {\it Wrong} story & Kathy went shopping.	She found a pair of great shoes.	The shoes were \$300.	She bought the shoes.	{\color{red}{Kathy hated buying shoes.}} \\ \hline
 \end{tabular}
 \caption{\label{ROC-example}}
@@ -160,17 +163,26 @@ Sections \ref{ssec:Ablation} and \ref{ssec:Discussion} present an ablation study
 We conclude at \secref{Conclusion}.
 
 \isection{The Cloze Story Task}{ROC_Story}
-Writing tasks are plentiful on Amazon Mechanical Turk (AMT) \ms{cite various examples?}. As a testbed for our analyses, we chose the \textit{Story Cloze Task} \cite{Mostafazadeh:2016}, during which workers were asked to write intuitive and counter-intuitive endings to short stories. This task is particularly interesting in that the two endings were written by the same author, for the same story, allowing for careful comparison.
+\roy{High level on first paragraph: much better, but still not enough connection to our story. You need to be explicit as to why we chose this task. 
+Our work is currently not mentioned at all}
+Writing tasks are plentiful on Amazon Mechanical Turk (AMT) \ms{cite various examples?}\roy{I would not start with AMT, as it is not important to our discussion. Think of the message that a first sentence in a paragraph gives: this is the topic/main focus of this paragraph. AMT is only a technical detail that should be mentioned later}. As a testbed for our analyses, we \royb{chose}{focus on} the \textit{Story Cloze Task} \cite{Mostafazadeh:2016}, during which\roy{not sure ``during which'' is right here. consider rephrasing} workers were asked to write intuitive and counter-intuitive endings to short stories. 
+This task is particularly interesting in that the two endings were written by the same author, for the same story, allowing for careful comparison.\roy{This is indeed particularly interesting {\bf for us}, but currently this is out of context. I would say that this task has a few interesting properties that we exploit.}
 
-Originally, the task was developed as an effort to facilitate representation and learning of commonsense knowledge. For that purpose, the creators crowdsourced the creation of two types of datasets: the \textit{ROC Stories} and the \textit{Story Cloze test sets}.
+Originally, the task was developed as an effort to facilitate representation and learning of commonsense knowledge. For that purpose, the creators crowdsourced the creation\roy{Don't use ``creators \dots creation''. Regardless, {\it creators} is not the right word here} of two types of datasets: the \textit{ROC Stories} and the \textit{Story Cloze test sets}.
 %\roy{Not sure that this sentence is so terrible, but I would not put the focus on the shared task. This is a rather minor detail and has very little relevance to our story. Think about what we want to reader who has very little time or energy to know. Specifically, I would start with few very general details and motivation (as you did), but then directly move to mention the interesting design decisions they took, which actually raise  very different type of research questions, which we tackle in this paper. Then you can move to describe it more formally, as you do below (you can mention the shared task there if you want, not sure it's even necessary).} % this is a terrible sentence.
 
 \paragraph{ROC Stories}
-consist of $98,163$ five-sentence commonsense stories, collected on AMT. Workers were instructed to write a coherent story where something happens, and with a clear beginning and end. To collect a broad spectrum of commonsense knowledge, there was no imposed subject for the stories.
-\paragraph{Story Cloze} test sets were created on AMT, using a subset of ROC Stories. Presented with the first four sentences of a story, workers were asked to write a ``right'' and a ``wrong'' ending. Both endings had to complete the story using a character in it, and when read out of context, had to be ``realistic and sensible'' \cite{Mostafazadeh:2016}.
+consist of $98,163$\roy{Minor, but still: writing the number inside dollar signs adds a white space in the pdf. This is a bit annoying, and also potentially confusing, as in the next case you use it below (3,744 something)}  five-sentence commonsense stories, collected on AMT. Workers were instructed to write a coherent story where something happens, and with\roy{``and with'' doesn't sound right here. rephrase} a clear beginning and end. To collect a broad spectrum of commonsense knowledge, there was no imposed subject for the stories.
+\paragraph{Story Cloze}\roy{say something general first before diving into details} test sets were created on AMT, using a subset of ROC Stories. Presented with the first four sentences of a story, workers were asked to write a ``right'' and a ``wrong'' ending. Both endings had to complete the story using \royb{a character}{one of the characters} in it, and when read out of context, had to be ``realistic and sensible'' \cite{Mostafazadeh:2016}.
 
 The resulting stories, matched with each ending, were then individually rated for coherence and meaningfulness by AMT workers. Only stories rated as simultaneaously coherent with ``right'' ending and neutral with a ``wrong'' ending were selected for the test, yielding $3,744$ test stories. It is worth noting that workers rated the stories as a whole, not the endings; no selection was done on the endings alone.
 %\ms{Hope the ``neutral'' thing makes sense, I didn't know how else to explain 4.2.2 of the Story cloze paper.}\roy{Reading 4.2.2, it seems that they were not targeting badly phrased ``wrong'' sentences, but just the stories as a whole, and validated that all ``right'' stories were valid and all ``wrong'' stories were invalid (unless this is how you read the -1 option in their description, which is not addressed anywhere else in the text). If I am correct, I would write this and explicitly mention that no validation was performed on the ending level.}
+\roy{Other things to talk about (not necessarily in that order): 
+1. no training corpus for the task. That is, the training set (a) does not contain negative example (just positive), and (b) was not generated in the same way as the positive test samples. Here you need to explicitly say that we show that we show that the training and test sets use very different styles.
+2. Maybe talk about the shared task, as well as their RepEval paper, which suggested this task as a vector-space evaluation measure?
+3. Say that the authors did an extensive work in order to  assure that the positive and negative samples are not easily distinguishable: for each pair, both endings were written by the same author (you addressed this earlier, but this seems like a better location), they tried an extensive set of baselines, showing all don't surpass a random baseline by much. Maybe now you can briefly mention the benchmarks, saying that several baselines were presented in the papers. All benchmarks attempted to learn the connection between the previous paragraph and the ending, and all performed near chance level.. However, no baseline looked at the endings independently. 
+Then you can add the benchmark text below, and conclude that this indicates that this task is well designed and hard and the one hand, but might also point to potential disagreements between the train and the test data, which we highlight in this paper.}
+
 
 \paragraph{Benchmarks}
 ~\ms{Like you said, maybe this belongs in related work, but for now I'll put it here}
@@ -291,7 +303,7 @@ As to the time of submission, our results are still state-of-the-art (though by 
 
 \begin{table}[!t]
 \begin{center}
-\small
+%\small
 \begin{tabular}{|c|c|} \hline
 {\bf Model} & {\bf Results} \\ \hline
 {DSSM} \cite{Mostafazadeh:2016} & 0.585 \\ \hline
@@ -299,8 +311,8 @@ As to the time of submission, our results are still state-of-the-art (though by 
 {RNN}		& 0.681 \\ \hline
 {\bf Our Model} & {\bf 0.715} \\ \hline
 {\bf Combined (Our model, RNN)} & {\bf 0.751} \\ \hline\hline
-{ tbmihaylov (shared task)} & 0.711\\ \hline
 { Niko (shared task)}	& 0.7\\ \hline\hline
+{ tbmihaylov (shared task)} & 0.711\\ \hline\hline
 Human judgment & 1 \\ \hline
 \end{tabular}
 \end{center}
@@ -315,6 +327,8 @@ Bottom part are taken from the cloze task shared task webpage.
 
 \isection{Ablation Study}{Ablation}
 
+
+
 \paragraph{Most Discriminative Feature Types.}
 A natural question that follows this study is which features are most helpful in making predictions about writing style. 
 To answer this question, we re-ran Experiment 1 with different sub-groups of features. 
@@ -324,12 +338,12 @@ These findings are in line with previous works that used character n-grams along
 
 \begin{table}[!t]
 \begin{center}
-\small
+%\small
 \begin{tabular}{|c|c|} \hline
 {\bf Feature Type} & {\bf Result}\\ \hline
 Word n-grams & 0.646 \\ \hline
 Char n-grams & 0.699 \\ \hline
-Word n-grams, length, char n-grams (Full Model) & 0.715 \\ \hline
+Full Model & 0.715 \\ \hline
 
 \end{tabular}
 \end{center}
@@ -355,7 +369,7 @@ Indeed, the performance of both these baselines was roughly chance-level.
 
 \begin{table}[!t]
 \begin{center}
-\small
+%\small
 \begin{tabular}{|c|c|} \hline
 {\bf Positive} & {\bf Negative}\\ \hline
 ` time' & `ed of'\\ \hline
@@ -369,26 +383,27 @@ Indeed, the performance of both these baselines was roughly chance-level.
 \caption{\label{features}}
 The top 5 most discriminative features for predicting {\it correct} (Positive)  and {\it wrong} (Negative) endings.\end{table}
 
-
+\[add\ control\ experiments\]
 
 \paragraph{Neural Language Model.}
 ~\ms{This needs to be placed somewhere else LOL}
 ~\ms{Below is a messy dump of all the hyper parameters... Didn't know how many details were needed}
-\roy{The level of description seems fine (we might remove some of them if space is an issue, but for now it's good. What I'm missing here are (a) an introductory 1-2  sentences to what are we doing here (I realize that it is not 100\% clear from the intro what is the role of these experiments other than showing that we have STOA results, so this can come later\\
-(b) A one-sentence description of your model. Currently, there is no clear separation between the model (RNN using LSTM) and the technical details. 
-Some general description of the model, and specifically the motivation behind (nothing fancy, just saying that we applied state-of-the-art LM tools, 
-which resemble the tools the authors had in mind when they designed the task).}
+%\roy{The level of description seems fine (we might remove some of them if space is an issue, but for now it's good. What I'm missing here are (a) an introductory 1-2  sentences to what are we doing here (I realize that it is not 100\% clear from the intro what is the role of these experiments other than showing that we have STOA results, so this can come later\\
+%(b) A one-sentence description of your model. Currently, there is no clear separation between the model (RNN using LSTM) and the technical details. 
+%Some general description of the model, and specifically the motivation behind (nothing fancy, just saying that we applied state-of-the-art LM tools, 
+%which resemble the tools the authors had in mind when they designed the task).}
 
-To leverage the genre of these short stories, we train a recurrent language model (RLM) \cite{mikolov2010recurrent}, which are used to achieve state-of-the-art performance on various tasks (e.g. machine translation). Training this RLM on the ROC stories, we harness the unsupervised, single-ended stories, which boosts performance on the Story Cloze task.
+To leverage the genre of these short stories,\roy{Not sure this is the best introductory sentence, but you can leave it to me if you can't find anything better} we train a recurrent language model (RLM) \cite{mikolov2010recurrent},\roy{don't start with the details, but with the high level. We wanted wether our model can be combined with state-of-the-art text comprehension models, for which this task was designed. {\bf Specifically}, we train an RLM \dots}  which are used to achieve state-of-the-art performance on various tasks (e.g. machine translation)\roy{citation required}. 
+Training this RLM on the ROC stories, we harness the unsupervised, single-ended stories\roy{I would frame it differently. Unlike the model suggested in this paper, which only considers the endings, this model harnesses the training set as intended by the authors, which is composed of unsupervised, single-ended stories}, which boosts performance on the Story Cloze task.\roy{In what sense does it boost performance? we get STOA results without it...}
 
 We trained an RLM using a single-layer LSTM \cite{hochreiter1997long} of hidden dimension $h=512$.
-We used the ROC Stories for training, setting aside $10\%$ for validation of the language model. We replaced all words occuring less than 3 times by a special out-of-vocabulary character, yielding a vocabulary size of $|V|=21,582$.
+We used the ROC Stories for training, setting aside $10\%$ for validation of the language model. We replaced all words occurring less than 3 times by a special out-of-vocabulary character, yielding a vocabulary size of $|V|=21,582$.
 Only during training, we applied a dropout rate of 60\% while running the LSTM over all 5 sentences of the stories. Using AdamOptimizer \cite{kingma2014adam} and a learning rate of $\eta=.001$, we trained with backpropagation on cross-entropy. % minibatches of $50$ stories.
 % h=512, dropout rate of 60%, V=21582, 10% validation set
 
 
 % Eval
-On its own, our neural language model performs moderately on the Story Cloze test. As hinted at by the creators of this task, simple language models aren't enough to do well. In fact, using our neural LM and selecting endings based on $p_\theta(ending|story)$, we obtain only $55\%$ accuracy. When using the likelihood ratio $\frac{p_\theta(ending|story)}{p_\theta(ending)}$ to select endings, we obtain $68\%$. This doesn't beat reported SOTA, which is why we included these features into our stylistic driven model.
+On its own, our neural language model performs moderately on the Story Cloze test. As hinted at by the creators of this task, simple language models aren't enough to do well. In fact, using our neural LM and selecting endings based on $p_\theta(ending|story)$, we obtain only $55\%$ accuracy. When using the likelihood ratio $\frac{p_\theta(ending|story)}{p_\theta(ending)}$ to select endings, we obtain $68\%$.\roy{(see \tabref{cloze_results}). also, its 68.1, isn't it? (just to be consistent with the table)} This doesn't beat reported SOTA\roy{SOTA is not a standard abbreviation. Use state-of-the-art}, which is why we included these features into our stylistic driven model.\roy{no, this is not why we include these as features (at least not in this paper:). It's because we want to see whether the different approaches are complementary.}\roy{Now you need to discuss our results and what they mean. You can point to \tabref{cloze_results}}
 
 % To construct features for the Story Cloze task, we scored each of the two endings using our neural language model. We computed the probability of each ending given the first four sentences $p_\theta(ending|story)$, as well as the probability of the endings out of context $p_\theta(ending)$. We also included the likelihood ratio $\frac{p_\theta(ending|story)}{p_\theta(ending)}$ into our classifier.
 %\roy{This will probably change once we have the rest of the paper, but generally a few things that are missing:(a) performance of the model as a standalone (both how we evaluated it and how much it got). (b) modifying this paragraph to indicate that in order to combine between the style features presented in this paper and this model, we did the above.(c) results of the combination (75.1\%).\\These numbers might best fit in a small table.}
