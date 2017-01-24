@@ -121,14 +121,16 @@ Sections \ref{ssec:Ablation} and \ref{ssec:Discussion} present an ablation study
 We conclude at \secref{Conclusion}.
 
 \isection{The Cloze Story Task}{ROC_Story}\roy{We should start with a general paragraph reminding the reader of the problem and why we are using this corpus.}
-Developed as an effort to simplify\roy{``simplify'' is not the right term here. {\it Facilitate} maybe? }  the representation and learning of commonsense knowledge, the \textit{Cloze Story Task} \cite{Mostafazadeh:2016} has become the Shared Task for the LSDSem workshop.\roy{Not sure that this sentence is so terrible, but I would not put the focus on the shared task. This is a rather minor detail and has very little relevance to our story. Think about what we want to reader who has very little time or energy to know. 
+Writing tasks are plentiful on Amazon Mechanical Turk (AMT) \ms{cite various examples?}. As a testbed for our analyses, we chose the \textit{Story Cloze Task} \cite{Mostafazadeh:2016}, during which workers were asked to write intuitive and counter-intuitive endings to short stories. This task is particularly interesting in that the two endings were written by the same author, for the same story, allowing for careful comparison.
+
+The Story Cloze task was developed as an effort to facilitate representation and learning of commonsense knowledge.\roy{Not sure that this sentence is so terrible, but I would not put the focus on the shared task. This is a rather minor detail and has very little relevance to our story. Think about what we want to reader who has very little time or energy to know. 
 Specifically, I would start with few very general details and motivation (as you did), but then directly move to mention the interesting design decisions they took, 
 which actually raise  very different type of research questions, which we tackle in this paper. Then you can move to describe it more formally, as you do below (you can mention the shared task there if you want, not sure it's even necessary).} % this is a terrible sentence.
 The task provides two types of datasets: the \textit{ROC Stories} and the \textit{Story Cloze test sets}.
 
 \paragraph{ROC Stories}
 consist of $98,163$ five-sentence commonsense stories, collected on AMT\roy{I would use ``Amazon Mechanical Turk (AMT)'' here, and AMT from now on}. Workers were instructed to write a coherent story where something happens, and with a clear beginning and end. To collect a broad spectrum of commonsense knowledge, there was no imposed subject for the stories.
-\paragraph{Story Cloze} test sets were created on AMT, using a subset of ROC Stories. Presented with the first four sentences of a story, workers were asked to write a ``right'' and a ``wrong'' ending. \royb{The ending}{Both endings} had to complete the story using a character in it, and when read out of context, had to be ``realistic and sensible'' \cite{Mostafazadeh:2016}.
+\paragraph{Story Cloze} test sets were created on AMT, using a subset of ROC Stories. Presented with the first four sentences of a story, workers were asked to write a ``right'' and a ``wrong'' ending. Both endings had to complete the story using a character in it, and when read out of context, had to be ``realistic and sensible'' \cite{Mostafazadeh:2016}.
 
 The resulting stories were then individually rated for coherence and meaningfulness by AMT workers. Only stories with a coherent and meaningful ``right'' ending and a neutral ``wrong'' ending were selected for the test, yielding $3,744$ test stories. \ms{Hope the ``neutral'' thing makes sense, I didn't know how else to explain 4.2.2 of the Story cloze paper.}\roy{Reading 4.2.2, it seems that they were not targeting badly phrased ``wrong'' sentences, but just the stories as a whole, and validated that all ``right'' stories were valid and all ``wrong'' stories were invalid (unless this is how you read the -1 option in their description, which is not addressed anywhere else in the text). If I am correct, I would write this and explicitly mention that no validation was performed on the ending level.}
 
@@ -151,11 +153,11 @@ We used the ROC Stories for training, setting aside $10\%$ for validation of the
 Only during training, we applied a dropout rate of 60\% while running the LSTM over all 5 sentences of the stories. Using AdamOptimizer \cite{kingma2014adam} and a learning rate of $\eta=.001$, we trained with backpropagation on cross-entropy. % minibatches of $50$ stories.
 % h=512, dropout rate of 60%, V=21582, 10% validation set
 
-To construct features for the Story Cloze task, we scored each of the two endings using our neural language model. We computed the probability of each ending given the first four sentences $p_\theta(ending|story)$, as well as the probability of the endings out of context $p_\theta(ending)$. We also included the likelihood ratio $\frac{p_\theta(ending|story)}{p_\theta(ending)}$ into our classifier.\roy{This will probably change once we have the rest of the paper, but generally a few things that are missing:
-(a) performance of the model as a standalone (both how we evaluated it and how much it got).
-(b) modifying this paragraph to indicate that in order to combine between the style features presented in this paper and this model, we did the above.
-(c) results of the combination (75.1\%).\\
-These numbers might best fit in a small table.}
+% Eval
+On its own, our neural language model performs moderately on the Story Cloze test. As hinted at by the creators of this task, simple language models aren't enough to do well. In fact, using our neural LM and selecting endings based on $p_\theta(ending|story)$, we obtain only $55\%$ accuracy. When using the likelihood ratio $\frac{p_\theta(ending|story)}{p_\theta(ending)}$ to select endings, we obtain $68\%$. This doesn't beat reported SOTA, which is why we included these features into our stylistic driven model.
+
+% To construct features for the Story Cloze task, we scored each of the two endings using our neural language model. We computed the probability of each ending given the first four sentences $p_\theta(ending|story)$, as well as the probability of the endings out of context $p_\theta(ending)$. We also included the likelihood ratio $\frac{p_\theta(ending|story)}{p_\theta(ending)}$ into our classifier.
+%\roy{This will probably change once we have the rest of the paper, but generally a few things that are missing:(a) performance of the model as a standalone (both how we evaluated it and how much it got). (b) modifying this paragraph to indicate that in order to combine between the style features presented in this paper and this model, we did the above.(c) results of the combination (75.1\%).\\These numbers might best fit in a small table.}
 \isectionb{Experiments}
 
 \isectionb{Results}
