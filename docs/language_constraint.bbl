@@ -14,11 +14,28 @@ Dmitry Davidov, Oren Tsur, and Ari Rappoport. 2010.
   computational linguistics: posters\/}. Association for Computational
   Linguistics, pages 241--249.
 
+\bibitem[{Hochreiter and Schmidhuber(1997)}]{hochreiter1997long}
+Sepp Hochreiter and J{\"u}rgen Schmidhuber. 1997.
+\newblock Long short-term memory.
+\newblock {\em Neural computation\/} 9(8):1735--1780.
+
+\bibitem[{Kingma and Ba(2014)}]{kingma2014adam}
+Diederik Kingma and Jimmy Ba. 2014.
+\newblock Adam: A method for stochastic optimization.
+\newblock {\em arXiv preprint arXiv:1412.6980\/} .
+
 \bibitem[{Koppel et~al.(2005)Koppel, Schler, and Zigdon}]{Koppel:2005}
 Moshe Koppel, Jonathan Schler, and Kfir Zigdon. 2005.
 \newblock Determining an author's native language by mining a text for errors.
 \newblock In {\em Proceedings of the eleventh ACM SIGKDD international
   conference on Knowledge discovery in data mining\/}. ACM, pages 624--628.
+
+\bibitem[{Mikolov et~al.(2010)Mikolov, Karafi{\'a}t, Burget, Cernock{\`y}, and
+  Khudanpur}]{mikolov2010recurrent}
+Tomas Mikolov, Martin Karafi{\'a}t, Lukas Burget, Jan Cernock{\`y}, and Sanjeev
+  Khudanpur. 2010.
+\newblock Recurrent neural network based language model.
+\newblock In {\em Interspeech\/}. volume~2, page~3.
 
 \bibitem[{Mostafazadeh et~al.(2016)Mostafazadeh, Chambers, He, Parikh, Batra,
   Vanderwende, Kohli, and Allen}]{Mostafazadeh:2016}
