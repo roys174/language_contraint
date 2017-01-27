@@ -4,7 +4,7 @@ import sys
 import ROC_SVM
 from scipy.sparse import *
 from scipy import *
-from sklearn import svm
+from sklearn import svm,linear_model
 import pickle
 from optparse import OptionParser,OptionValueError
 
@@ -18,13 +18,14 @@ def main():
     n_feats = options.n_feats
     C = float(options.C)
     do_rank = bool(options.do_rank)
+    do_logistic_regression = bool(options.do_logistic_regression)
     n_feats = int(options.n_feats)
     model_of = options.model_of
     penalty=options.penalty
     
     if (penalty == 'l1'):
-#        loss='hinge'
         dual=False
+        loss='hinge'
 
     [features, labels] = ROC_SVM.read_features(ifile, n_feats)
     
@@ -33,7 +34,11 @@ def main():
     
     print "Done. Now feating"
     
-    clf = svm.LinearSVC(C=C,penalty=penalty,loss=loss,dual=dual)
+    if (do_logistic_regression):
+        dual=False
+        clf = linear_model.LogisticRegression(C=C,penalty=penalty,dual=dual)
+    else:
+        clf = svm.LinearSVC(C=C,penalty=penalty,loss=loss,dual=dual)
 
     clf.fit(features, labels)
     pickle.dump(clf, open(model_of, 'wb'))
@@ -55,6 +60,7 @@ def usage():
     loss='squared_hinge'
     dual=True
     do_rank = 0
+    do_logistic_regression = 0
    
     parser = OptionParser()
     give_tag=0
@@ -76,6 +82,8 @@ def usage():
                             default=penalty)
     parser.add_option("-r", dest="do_rank", default=False, action="store_true",
                             help="Use ranking")
+    parser.add_option("-l", dest="do_logistic_regression", default=False, action="store_true",
+                            help="Use logistic regression and not SVM")
                     
     
     (options, args) = parser.parse_args()

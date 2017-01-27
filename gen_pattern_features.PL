@@ -12,7 +12,7 @@ sub main(@) {
 	my $patt_file;
 	my $of;
 	my $use_len;
-	my $char_ngrams=5;
+	my $char_ngrams=4;
 	
 	MyUtils::usage({
 		"if=s" => \$if,
@@ -27,13 +27,17 @@ sub main(@) {
 	$max_patt_len--;
 	my %saved;
 
+	my $max_len = 0;
+	
 	if (-e $patt_file) {
 		my $ifh = openRFile($patt_file);
 		
+		$max_len = $ifh->getline();
+		chomp($max_len);
 		while (my $line = $ifh->getline()) {
 			chomp($line);
-			my ($patt, $n) = split("	", $line);
-			$saved{$patt} = $n;
+			my ($patt, $n, $sum, $max) = split("	", $line);
+			$saved{$patt} = [$n, $max];
 		}
 		
 		$ifh->close();
@@ -41,29 +45,44 @@ sub main(@) {
 		my %patts;
 		my $ifh = openRFile($if);
 
+		my $is_first = 1;
 		while (my $line = $ifh->getline()) {
 			chomp($line);
 	
 			my ($label, $text) = split("\t", $line);
 	
 			my @w = split(" ", $text);
+			
+			if (defined $use_len and @w > $max_len) {
+				$max_len = @w;
+			}
 
 			my $patts = get_patts(\@w, $max_patt_len, $char_ngrams);
 
 			foreach my $patt (keys %$patts) {
-				$patts{$patt} += $patts->{$patt};
+				unless (exists $patts{$patt}) {
+					$patts{$patt} = [$patts->{$patt}, $patts->{$patt}];
+				} else {
+					$patts{$patt}->[0] += $patts->{$patt};
+					if ($patts{$patt}->[1] < $patts->{$patt}) {
+						$patts{$patt}->[1] = $patts->{$patt}
+					}
+				}
 			}
+			$is_first = 0;
 		}
 		$ifh->close();
 		
 		my $i = 0;
-		my @sk = sort {$patts{$b} <=> $patts{$a}} keys %patts;
+		my @sk = sort {$patts{$b}->[0] <=> $patts{$a}->[0]} keys %patts;
 
 		my $ofh = openWFile($patt_file);
+		
+		$ofh->print($max_len."\n");
 		foreach my $k (@sk) {
-			last if $patts{$k} < $min_thr;
-			$ofh->print("$k\t$i\t$patts{$k}\n");
-			$saved{$k} = $i++;
+			last if $patts{$k}->[0] < $min_thr;
+			$ofh->print("$k\t$i\t$patts{$k}->[0]\t$patts{$k}->[1]\n");
+			$saved{$k} = [$i++, $patts{$k}->[1]];
 		}
 		$ofh->close();
 	}
@@ -92,17 +111,17 @@ sub main(@) {
 		
 		foreach my $patt (keys %$patts) {
 			if (exists $saved{$patt}) {
-				$ts{$saved{$patt}} = $patts->{$patt};	
+				$ts{$saved{$patt}->[0]} = ($patts->{$patt})/($saved{$patt}->[1]);	
 			}
 		}
 		
 		if ($use_len) {
-			$ts{$n_feats-1} = scalar(@w);
+			$ts{$n_feats-1} = scalar(@w)/$max_len;
 		}
 		
 		$ofh->print("$label\t$text\t");		
 		
-		$ofh->print(join(" ", map { $_.":".$ts{$_}} keys %ts));
+		$ofh->print(join(" ", map { $_.":".sprintf("%.3g",$ts{$_})} keys %ts));
 		$ofh->print("\n");
 	}
 	
