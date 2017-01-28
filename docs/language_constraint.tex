@@ -82,13 +82,21 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-People's writing style is affected by many factors, including topics, sentiment, and individual personality. 
-In this paper we show that engaging authors in different  writing tasks results in them adopting different writing styles.
-As a case study, we experiment with a recently published machine reading task: the {\it Story Cloze task} \cite{Mostafazadeh:2016}. 
-In this task, annotators were asked to generate two sentences: one which makes sense given a previous paragraph and another which doesn't.
-We show that a linear classifier, which applies only simple style features, such as sentence length and character n-grams, obtains state-of-the-art results on the task,
-substantially higher than sophisticated deep learning models.
-Importantly, our model doesn't even look at the previous paragraph, just the two candidate sentences, which, out of context, differ only in the writing task presented to the authors. 
+People's writing style %is affected by many factors, including topics, sentiment, and individual personality. 
+depends on both personal factors such as demographic background and situational factors such as the purpose of writing.
+%In this paper we show that engaging authors in different  writing tasks results in them adopting different writing styles.
+In this paper, we show that authors adopt different writing style even when engaged with similar tasks if their purpose differs.
+%As a case study, we experiment with a recently published machine reading task: 
+We present a case study based on 
+the {\it story cloze task} \cite{Mostafazadeh:2016}, %.
+%In this task, annotators were asked to generate two sentences: one which makes sense given a previous paragraph and another which doesn't.
+where people were asked to write two contrastive sentences as story ending: one plausible and one implausible for a given story context. 
+%We show that a linear classifier, which applies only simple style features, such as sentence length and character n-grams, 
+We show that a simple linear classifier with stylistic features obtains 
+state-of-the-art results on the task,
+substantially higher than sophisticated deep learning models,
+even without looking at the story context. 
+%Importantly, our model doesn't even look at the previous paragraph, just the two candidate sentences, which, out of context, differ only in the writing task presented to the authors. 
 Our results indicate that different tasks dramatically affect the way people write. 
 They also provide important lessons for designing new NLP tasks.
 
