@@ -38,14 +38,33 @@ Taking part in the LSDSem `17 shared task, we describe our system.
 \end{abstract}
 
 \section{Intro}
+% Describe the overall landscape of the problem
+% Mention the specific purpose of the shared task (i.e. from the website)
+% Last paragraph should be a quick description of our system.
+In this paper, we describe the system submission from the University of Washington NLP group (UW NLP).
+We implement a simple classifier that uses surface features as well as language model features. Using the Shared Task test set, we achieve $75.1\%$ accuracy.
 
 \section{System Overview}
+%% Explain that we have two sets of features, style and language.
+%% Maybe mention here that we're doing training on validation set ?
 
 \section{Features}
+\subsection{Stylistic Features}
+%% take stuff from the paper
 
-\section{Results}
+\subsection{Language Model Features}
+%% take the RLM paragraph from the paper
 
-\section{Discussion \& Conclusion}
+\section{Results \& Discussion}
+% Show results
+
+% ablation study? Table 2 from the paper sort of?
+
+\section{Conclusion}
+
+% Our system makes use of knowledge brought to us by the constrained writing literature (?)
+% talk about how we use state-of-the-art language modelling tools.
+% We achieve $75.1\%$ which is ranked XXth in the ongoing codalab competition.
 
 \bibliography{acl2017}
 \bibliographystyle{eacl2017}
