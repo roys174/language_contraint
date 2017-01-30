@@ -1,2 +1,6 @@
 *.bbl
 *.pdf
+docs/*.aux
+docs/*.blg
+docs/*.synctex.gz
+docs/*.log
