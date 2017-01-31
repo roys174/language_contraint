@@ -7,6 +7,23 @@ Shlomo Argamon, Moshe Koppel, Jonathan Fine, and Anat~Rachel Shimoni. 2003.
 \newblock Gender, genre, and writing style in formal written texts.
 \newblock {\em TEXT-THE HAGUE THEN AMSTERDAM THEN BERLIN-\/} 23(3):321--346.
 
+\bibitem[{Bamman et~al.(2014)Bamman, Eisenstein, and
+  Schnoebelen}]{bamman2014gender}
+David Bamman, Jacob Eisenstein, and Tyler Schnoebelen. 2014.
+\newblock Gender identity and lexical variation in social media.
+\newblock {\em Journal of Sociolinguistics\/} 18(2):135--160.
+
+\bibitem[{Bergsma et~al.(2012)Bergsma, Post, and Yarowsky}]{Bergsma:2012}
+Shane Bergsma, Matt Post, and David Yarowsky. 2012.
+\newblock \href{http://www.aclweb.org/anthology/N12-1033}{Stylometric analysis
+  of scientific articles}.
+\newblock In {\em Proceedings of the 2012 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies\/}. Association for Computational Linguistics, Montr\'{e}al,
+  Canada, pages 327--337.
+\newblock
+  \href{http://www.aclweb.org/anthology/N12-1033}{http://www.aclweb.org/anthology/N12-1033}.
+
 \bibitem[{Bowman et~al.(2015)Bowman, Angeli, Potts, and
   Manning}]{bowman2015large}
 Samuel~R Bowman, Gabor Angeli, Christopher Potts, and Christopher~D Manning.
@@ -98,6 +115,13 @@ Stephen~J Lepore and Joshua~M Smyth. 2002.
   emotional well-being.\/}.
 \newblock American Psychological Association.
 
+\bibitem[{Levesque et~al.(2011)Levesque, Davis, and
+  Morgenstern}]{Levesque:2011}
+Hector~J Levesque, Ernest Davis, and Leora Morgenstern. 2011.
+\newblock The winograd schema challenge.
+\newblock In {\em AAAI Spring Symposium: Logical Formalizations of Commonsense
+  Reasoning\/}. volume~46, page~47.
+
 \bibitem[{Mikolov et~al.(2010)Mikolov, Karafi{\'a}t, Burget, Cernock{\`y}, and
   Khudanpur}]{mikolov2010recurrent}
 Tomas Mikolov, Martin Karafi{\'a}t, Lukas Burget, Jan Cernock{\`y}, and Sanjeev
@@ -126,12 +150,26 @@ Nasrin Mostafazadeh, Lucy Vanderwende, Wen-tau Yih, Pushmeet Kohli, and James
   predicting what happens next.
 \newblock {\em ACL 2016\/} page~24.
 
+\bibitem[{Mosteller and Wallace(1963)}]{mosteller1963inference}
+Frederick Mosteller and David~L. Wallace. 1963.
+\newblock Inference in an authorship problem: A comparative study of
+  discrimination methods applied to the authorship of the disputed {Federalist
+  Papers}.
+\newblock {\em Journal of the American Statistical Association\/}
+  58(302):275--309.
+
 \bibitem[{Newman et~al.(2003)Newman, Pennebaker, Berry, and
   Richards}]{Newman:2003}
 Matthew~L. Newman, James~W. Pennebaker, Diane~S. Berry, and Jane~M. Richards.
   2003.
 \newblock Lying words: Predicting deception from linguistic styles.
 \newblock {\em Personality and social psychology bulletin\/} 29(5):665--675.
+
+\bibitem[{Nguyen et~al.(2011)Nguyen, Smith, and Ros\'{e}}]{nguyen:2011:latech}
+Dong Nguyen, Noah~A. Smith, and Carolyn~P. Ros\'{e}. 2011.
+\newblock Author age prediction from text using linear regression.
+\newblock In {\em Proceedings of the ACL Workshop on Language Technology for
+  Cultural Heritage, Social Sciences, and Humanities\/}.
 
 \bibitem[{Ott et~al.(2011)Ott, Choi, Cardie, and Hancock}]{ott2011finding}
 Myle Ott, Yejin Choi, Claire Cardie, and Jeffrey~T Hancock. 2011.
@@ -212,9 +250,9 @@ Jonathan Schler, Moshe Koppel, Shlomo Argamon, and James~W Pennebaker. 2006.
 \bibitem[{Schwartz et~al.(2013{\natexlab{a}})Schwartz, Eichstaedt, Kern,
   Dziurzynski, Ramones, Agrawal, Shah, Kosinski, Stillwell, Seligman
   et~al.}]{schwartz2013personality}
-H~Andrew Schwartz, Johannes~C Eichstaedt, Margaret~L Kern, Lukasz Dziurzynski,
-  Stephanie~M Ramones, Megha Agrawal, Achal Shah, Michal Kosinski, David
-  Stillwell, Martin~EP Seligman, et~al. 2013{\natexlab{a}}.
+Andrew~H. Schwartz, Johannes~C. Eichstaedt, Margaret~L. Kern, Lukasz
+  Dziurzynski, Stephanie~M. Ramones, Megha Agrawal, Achal Shah, Michal
+  Kosinski, David Stillwell, Martin~EP Seligman, et~al. 2013{\natexlab{a}}.
 \newblock Personality, gender, and age in the language of social media: The
   open-vocabulary approach.
 \newblock {\em PloS one\/} 8(9):e73791.
@@ -246,6 +284,17 @@ Oren Tsur, Dmitry Davidov, and Ari Rappoport. 2010.
 \newblock Icwsm-a great catchy name: Semi-supervised recognition of sarcastic
   sentences in online product reviews.
 \newblock In {\em ICWSM\/}. pages 162--169.
+
+\bibitem[{Tsur and Rappoport(2007)}]{Tsur:2007}
+Oren Tsur and Ari Rappoport. 2007.
+\newblock \href{http://www.aclweb.org/anthology/W/W07/W07-0602}{Using
+  classifier features for studying the effect of native language on the choice
+  of written second language words}.
+\newblock In {\em Proceedings of the Workshop on Cognitive Aspects of
+  Computational Language Acquisition\/}. Association for Computational
+  Linguistics, Prague, Czech Republic, pages 9--16.
+\newblock
+  \href{http://www.aclweb.org/anthology/W/W07/W07-0602}{http://www.aclweb.org/anthology/W/W07/W07-0602}.
 
 \bibitem[{Weston et~al.(2015)Weston, Bordes, Chopra, Rush, van Merri{\"e}nboer,
   Joulin, and Mikolov}]{Weston:2015}
