@@ -1,0 +1,307 @@
+\begin{thebibliography}{}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Argamon et~al.(2003)Argamon, Koppel, Fine, and
+  Shimoni}]{Argamon:2003}
+Shlomo Argamon, Moshe Koppel, Jonathan Fine, and Anat~Rachel Shimoni. 2003.
+\newblock Gender, genre, and writing style in formal written texts.
+\newblock {\em TEXT-THE HAGUE THEN AMSTERDAM THEN BERLIN-\/} 23(3):321--346.
+
+\bibitem[{Bamman et~al.(2014)Bamman, Eisenstein, and
+  Schnoebelen}]{bamman2014gender}
+David Bamman, Jacob Eisenstein, and Tyler Schnoebelen. 2014.
+\newblock Gender identity and lexical variation in social media.
+\newblock {\em Journal of Sociolinguistics\/} 18(2):135--160.
+
+\bibitem[{Bergsma et~al.(2012)Bergsma, Post, and Yarowsky}]{Bergsma:2012}
+Shane Bergsma, Matt Post, and David Yarowsky. 2012.
+\newblock \href{http://www.aclweb.org/anthology/N12-1033}{Stylometric analysis
+  of scientific articles}.
+\newblock In {\em Proceedings of the 2012 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies\/}. Association for Computational Linguistics, Montr\'{e}al,
+  Canada, pages 327--337.
+\newblock
+  \href{http://www.aclweb.org/anthology/N12-1033}{http://www.aclweb.org/anthology/N12-1033}.
+
+\bibitem[{Bowman et~al.(2015)Bowman, Angeli, Potts, and
+  Manning}]{bowman2015large}
+Samuel~R Bowman, Gabor Angeli, Christopher Potts, and Christopher~D Manning.
+  2015.
+\newblock A large annotated corpus for learning natural language inference.
+\newblock {\em arXiv preprint arXiv:1508.05326\/} .
+
+\bibitem[{Campbell and Pennebaker(2003)}]{Campbell:2003}
+R~Sherlock Campbell and James~W Pennebaker. 2003.
+\newblock The secret life of pronouns flexibility in writing style and physical
+  health.
+\newblock {\em Psychological science\/} 14(1):60--65.
+
+\bibitem[{Chen et~al.(2016)Chen, Bolton, and Manning}]{Chen:2016}
+Danqi Chen, Jason Bolton, and Christopher~D. Manning. 2016.
+\newblock \href{http://www.aclweb.org/anthology/P16-1223}{A thorough
+  examination of the cnn/daily mail reading comprehension task}.
+\newblock In {\em Proceedings of the 54th Annual Meeting of the Association for
+  Computational Linguistics (Volume 1: Long Papers)\/}. Association for
+  Computational Linguistics, Berlin, Germany, pages 2358--2367.
+\newblock
+  \href{http://www.aclweb.org/anthology/P16-1223}{http://www.aclweb.org/anthology/P16-1223}.
+
+\bibitem[{Davidov et~al.(2010)Davidov, Tsur, and Rappoport}]{Davidov:2010}
+Dmitry Davidov, Oren Tsur, and Ari Rappoport. 2010.
+\newblock Enhanced sentiment learning using twitter hashtags and smileys.
+\newblock In {\em Proceedings of the 23rd international conference on
+  computational linguistics: posters\/}. Association for Computational
+  Linguistics, pages 241--249.
+
+\bibitem[{Feng et~al.(2012)Feng, Banerjee, and Choi}]{Feng:2012}
+Song Feng, Ritwik Banerjee, and Yejin Choi. 2012.
+\newblock Syntactic stylometry for deception detection.
+\newblock In {\em Proceedings of the 50th Annual Meeting of the Association for
+  Computational Linguistics: Short Papers-Volume 2\/}. Association for
+  Computational Linguistics, pages 171--175.
+
+\bibitem[{Frattaroli(2006)}]{Frattaroli:2006}
+Joanne Frattaroli. 2006.
+\newblock Experimental disclosure and its moderators: a meta-analysis.
+\newblock {\em Psychological bulletin\/} 132(6):823.
+
+\bibitem[{Hancock et~al.(2007)Hancock, Curry, Goorha, and
+  Woodworth}]{hancock2007lying}
+Jeffrey~T Hancock, Lauren~E Curry, Saurabh Goorha, and Michael Woodworth. 2007.
+\newblock On lying and being lied to: A linguistic analysis of deception in
+  computer-mediated communication.
+\newblock {\em Discourse Processes\/} 45(1):1--23.
+
+\bibitem[{Hermann et~al.(2015)Hermann, Kocisky, Grefenstette, Espeholt, Kay,
+  Suleyman, and Blunsom}]{hermann2015teaching}
+Karl~Moritz Hermann, Tomas Kocisky, Edward Grefenstette, Lasse Espeholt, Will
+  Kay, Mustafa Suleyman, and Phil Blunsom. 2015.
+\newblock Teaching machines to read and comprehend.
+\newblock In {\em Advances in Neural Information Processing Systems\/}. pages
+  1693--1701.
+
+\bibitem[{Hochreiter and Schmidhuber(1997)}]{hochreiter1997long}
+Sepp Hochreiter and J{\"u}rgen Schmidhuber. 1997.
+\newblock Long short-term memory.
+\newblock {\em Neural computation\/} 9(8):1735--1780.
+
+\bibitem[{Ireland and Pennebaker(2010)}]{Ireland:2010}
+Molly~E Ireland and James~W Pennebaker. 2010.
+\newblock Language style matching in writing: synchrony in essays,
+  correspondence, and poetry.
+\newblock {\em Journal of personality and social psychology\/} 99(3):549.
+
+\bibitem[{Kingma and Ba(2014)}]{kingma2014adam}
+Diederik Kingma and Jimmy Ba. 2014.
+\newblock Adam: A method for stochastic optimization.
+\newblock {\em arXiv preprint arXiv:1412.6980\/} .
+
+\bibitem[{Koppel et~al.(2009)Koppel, Schler, and Argamon}]{Koppel:2009}
+Moshe Koppel, Jonathan Schler, and Shlomo Argamon. 2009.
+\newblock Computational methods in authorship attribution.
+\newblock {\em Journal of the American Society for information Science and
+  Technology\/} 60(1):9--26.
+
+\bibitem[{Koppel et~al.(2005)Koppel, Schler, and Zigdon}]{Koppel:2005}
+Moshe Koppel, Jonathan Schler, and Kfir Zigdon. 2005.
+\newblock Determining an author's native language by mining a text for errors.
+\newblock In {\em Proceedings of the eleventh ACM SIGKDD international
+  conference on Knowledge discovery in data mining\/}. ACM, pages 624--628.
+
+\bibitem[{Lepore and Smyth(2002)}]{Lepore:2002}
+Stephen~J Lepore and Joshua~M Smyth. 2002.
+\newblock {\em The writing cure: How expressive writing promotes health and
+  emotional well-being.\/}.
+\newblock American Psychological Association.
+
+\bibitem[{Levesque et~al.(2011)Levesque, Davis, and
+  Morgenstern}]{Levesque:2011}
+Hector~J Levesque, Ernest Davis, and Leora Morgenstern. 2011.
+\newblock The winograd schema challenge.
+\newblock In {\em AAAI Spring Symposium: Logical Formalizations of Commonsense
+  Reasoning\/}. volume~46, page~47.
+
+\bibitem[{Mikolov et~al.(2010)Mikolov, Karafi{\'a}t, Burget, Cernock{\`y}, and
+  Khudanpur}]{mikolov2010recurrent}
+Tomas Mikolov, Martin Karafi{\'a}t, Lukas Burget, Jan Cernock{\`y}, and Sanjeev
+  Khudanpur. 2010.
+\newblock Recurrent neural network based language model.
+\newblock In {\em Interspeech\/}. volume~2, page~3.
+
+\bibitem[{Mostafazadeh et~al.(2016{\natexlab{a}})Mostafazadeh, Chambers, He,
+  Parikh, Batra, Vanderwende, Kohli, and Allen}]{Mostafazadeh:2016}
+Nasrin Mostafazadeh, Nathanael Chambers, Xiaodong He, Devi Parikh, Dhruv Batra,
+  Lucy Vanderwende, Pushmeet Kohli, and James Allen. 2016{\natexlab{a}}.
+\newblock \href{http://www.aclweb.org/anthology/N16-1098}{A corpus and cloze
+  evaluation for deeper understanding of commonsense stories}.
+\newblock In {\em Proceedings of the 2016 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies\/}. Association for Computational Linguistics, San Diego,
+  California, pages 839--849.
+\newblock
+  \href{http://www.aclweb.org/anthology/N16-1098}{http://www.aclweb.org/anthology/N16-1098}.
+
+\bibitem[{Mostafazadeh et~al.(2016{\natexlab{b}})Mostafazadeh, Vanderwende,
+  Yih, Kohli, and Allen}]{mostafazadeh2016story}
+Nasrin Mostafazadeh, Lucy Vanderwende, Wen-tau Yih, Pushmeet Kohli, and James
+  Allen. 2016{\natexlab{b}}.
+\newblock Story cloze evaluator: Vector space representation evaluation by
+  predicting what happens next.
+\newblock {\em ACL 2016\/} page~24.
+
+\bibitem[{Mosteller and Wallace(1963)}]{mosteller1963inference}
+Frederick Mosteller and David~L. Wallace. 1963.
+\newblock Inference in an authorship problem: A comparative study of
+  discrimination methods applied to the authorship of the disputed {Federalist
+  Papers}.
+\newblock {\em Journal of the American Statistical Association\/}
+  58(302):275--309.
+
+\bibitem[{Newman et~al.(2003)Newman, Pennebaker, Berry, and
+  Richards}]{Newman:2003}
+Matthew~L. Newman, James~W. Pennebaker, Diane~S. Berry, and Jane~M. Richards.
+  2003.
+\newblock Lying words: Predicting deception from linguistic styles.
+\newblock {\em Personality and social psychology bulletin\/} 29(5):665--675.
+
+\bibitem[{Nguyen et~al.(2011)Nguyen, Smith, and Ros\'{e}}]{nguyen:2011:latech}
+Dong Nguyen, Noah~A. Smith, and Carolyn~P. Ros\'{e}. 2011.
+\newblock Author age prediction from text using linear regression.
+\newblock In {\em Proceedings of the ACL Workshop on Language Technology for
+  Cultural Heritage, Social Sciences, and Humanities\/}.
+
+\bibitem[{Ott et~al.(2011)Ott, Choi, Cardie, and Hancock}]{ott2011finding}
+Myle Ott, Yejin Choi, Claire Cardie, and Jeffrey~T Hancock. 2011.
+\newblock Finding deceptive opinion spam by any stretch of the imagination.
+\newblock In {\em Proceedings of the 49th Annual Meeting of the Association for
+  Computational Linguistics: Human Language Technologies-Volume 1\/}.
+  Association for Computational Linguistics, pages 309--319.
+
+\bibitem[{Paperno et~al.(2016)Paperno, Kruszewski, Lazaridou, Pham, Bernardi,
+  Pezzelle, Baroni, Boleda, and Fernandez}]{Paperno:2016}
+Denis Paperno, Germ\'{a}n Kruszewski, Angeliki Lazaridou, Ngoc~Quan Pham,
+  Raffaella Bernardi, Sandro Pezzelle, Marco Baroni, Gemma Boleda, and Raquel
+  Fernandez. 2016.
+\newblock \href{http://www.aclweb.org/anthology/P16-1144}{The lambada dataset:
+  Word prediction requiring a broad discourse context}.
+\newblock In {\em Proceedings of the 54th Annual Meeting of the Association for
+  Computational Linguistics (Volume 1: Long Papers)\/}. Association for
+  Computational Linguistics, Berlin, Germany, pages 1525--1534.
+\newblock
+  \href{http://www.aclweb.org/anthology/P16-1144}{http://www.aclweb.org/anthology/P16-1144}.
+
+\bibitem[{Pennebaker and King(1999)}]{pennebaker1999linguistic}
+James~W Pennebaker and Laura~A King. 1999.
+\newblock Linguistic styles: language use as an individual difference.
+\newblock {\em Journal of personality and social psychology\/} 77(6):1296.
+
+\bibitem[{Pennebaker and Stone(2003)}]{Pennebaker:2003}
+James~W Pennebaker and Lori~D Stone. 2003.
+\newblock Words of wisdom: language use over the life span.
+\newblock {\em Journal of personality and social psychology\/} 85(2):291.
+
+\bibitem[{P\'{e}rez-Rosas and Mihalcea(2014)}]{Perez:2014b}
+Ver\'{o}nica P\'{e}rez-Rosas and Rada Mihalcea. 2014.
+\newblock \href{http://www.aclweb.org/anthology/P14-2072}{Cross-cultural
+  deception detection}.
+\newblock In {\em Proceedings of the 52nd Annual Meeting of the Association for
+  Computational Linguistics (Volume 2: Short Papers)\/}. Association for
+  Computational Linguistics, Baltimore, Maryland, pages 440--445.
+\newblock
+  \href{http://www.aclweb.org/anthology/P14-2072}{http://www.aclweb.org/anthology/P14-2072}.
+
+\bibitem[{P{\'e}rez-Rosas and Mihalcea(2014)}]{Perez:2014a}
+Ver{\'o}nica P{\'e}rez-Rosas and Rada Mihalcea. 2014.
+\newblock Gender differences in deceivers writing style.
+\newblock In {\em Mexican International Conference on Artificial
+  Intelligence\/}. Springer, pages 163--174.
+
+\bibitem[{Rajpurkar et~al.(2016)Rajpurkar, Zhang, Lopyrev, and
+  Liang}]{rajpurkar2016squad}
+Pranav Rajpurkar, Jian Zhang, Konstantin Lopyrev, and Percy Liang. 2016.
+\newblock Squad: 100,000+ questions for machine comprehension of text.
+\newblock {\em arXiv preprint arXiv:1606.05250\/} .
+
+\bibitem[{Rosenthal and McKeown(2011)}]{Rosenthal:2011}
+Sara Rosenthal and Kathleen McKeown. 2011.
+\newblock \href{http://www.aclweb.org/anthology/P11-1077}{Age prediction in
+  blogs: A study of style, content, and online behavior in pre- and post-social
+  media generations}.
+\newblock In {\em Proceedings of the 49th Annual Meeting of the Association for
+  Computational Linguistics: Human Language Technologies\/}. Association for
+  Computational Linguistics, Portland, Oregon, USA, pages 763--772.
+\newblock
+  \href{http://www.aclweb.org/anthology/P11-1077}{http://www.aclweb.org/anthology/P11-1077}.
+
+\bibitem[{Salle et~al.(2016)Salle, Idiart, and Villavicencio}]{Salle:2016}
+Alexandre Salle, Marco Idiart, and Aline Villavicencio. 2016.
+\newblock Enhancing the lexvec distributed word representation model using
+  positional contexts and external memory.
+\newblock {\em arXiv preprint arXiv:1606.01283\/} .
+
+\bibitem[{Schler et~al.(2006)Schler, Koppel, Argamon, and
+  Pennebaker}]{Schler:2006}
+Jonathan Schler, Moshe Koppel, Shlomo Argamon, and James~W Pennebaker. 2006.
+\newblock Effects of age and gender on blogging.
+\newblock In {\em AAAI spring symposium: Computational approaches to analyzing
+  weblogs\/}. volume~6, pages 199--205.
+
+\bibitem[{Schwartz et~al.(2013{\natexlab{a}})Schwartz, Eichstaedt, Kern,
+  Dziurzynski, Ramones, Agrawal, Shah, Kosinski, Stillwell, Seligman
+  et~al.}]{schwartz2013personality}
+Andrew~H. Schwartz, Johannes~C. Eichstaedt, Margaret~L. Kern, Lukasz
+  Dziurzynski, Stephanie~M. Ramones, Megha Agrawal, Achal Shah, Michal
+  Kosinski, David Stillwell, Martin~EP Seligman, et~al. 2013{\natexlab{a}}.
+\newblock Personality, gender, and age in the language of social media: The
+  open-vocabulary approach.
+\newblock {\em PloS one\/} 8(9):e73791.
+
+\bibitem[{Schwartz et~al.(2013{\natexlab{b}})Schwartz, Tsur, Rappoport, and
+  Koppel}]{Schwartz:2013}
+Roy Schwartz, Oren Tsur, Ari Rappoport, and Moshe Koppel. 2013{\natexlab{b}}.
+\newblock \href{http://www.aclweb.org/anthology/D13-1193}{Authorship
+  attribution of micro-messages}.
+\newblock In {\em Proceedings of the 2013 Conference on Empirical Methods in
+  Natural Language Processing\/}. Association for Computational Linguistics,
+  Seattle, Washington, USA, pages 1880--1891.
+\newblock
+  \href{http://www.aclweb.org/anthology/D13-1193}{http://www.aclweb.org/anthology/D13-1193}.
+
+\bibitem[{Speer et~al.(2016)Speer, Chin, and Havasi}]{Speer:2016}
+Robert Speer, Joshua Chin, and Catherine Havasi. 2016.
+\newblock Conceptnet 5.5: An open multilingual graph of general knowledge.
+\newblock {\em arXiv preprint arXiv:1612.03975\/} .
+
+\bibitem[{Stamatatos(2009)}]{Stamatatos:2009}
+Efstathios Stamatatos. 2009.
+\newblock A survey of modern authorship attribution methods.
+\newblock {\em Journal of the American Society for information Science and
+  Technology\/} 60(3):538--556.
+
+\bibitem[{Tsur et~al.(2010)Tsur, Davidov, and Rappoport}]{Tsur:2010}
+Oren Tsur, Dmitry Davidov, and Ari Rappoport. 2010.
+\newblock Icwsm-a great catchy name: Semi-supervised recognition of sarcastic
+  sentences in online product reviews.
+\newblock In {\em ICWSM\/}. pages 162--169.
+
+\bibitem[{Tsur and Rappoport(2007)}]{Tsur:2007}
+Oren Tsur and Ari Rappoport. 2007.
+\newblock \href{http://www.aclweb.org/anthology/W/W07/W07-0602}{Using
+  classifier features for studying the effect of native language on the choice
+  of written second language words}.
+\newblock In {\em Proceedings of the Workshop on Cognitive Aspects of
+  Computational Language Acquisition\/}. Association for Computational
+  Linguistics, Prague, Czech Republic, pages 9--16.
+\newblock
+  \href{http://www.aclweb.org/anthology/W/W07/W07-0602}{http://www.aclweb.org/anthology/W/W07/W07-0602}.
+
+\bibitem[{Weston et~al.(2015)Weston, Bordes, Chopra, Rush, van Merri{\"e}nboer,
+  Joulin, and Mikolov}]{Weston:2015}
+Jason Weston, Antoine Bordes, Sumit Chopra, Alexander~M Rush, Bart van
+  Merri{\"e}nboer, Armand Joulin, and Tomas Mikolov. 2015.
+\newblock Towards ai-complete question answering: A set of prerequisite toy
+  tasks.
+\newblock {\em arXiv preprint arXiv:1502.05698\/} .
+
+\end{thebibliography}
