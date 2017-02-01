@@ -13,9 +13,11 @@ sub main(@) {
 	my $of;
 	my $use_len;
 	my $char_ngrams=4;
+	my $dont_normalize;
 	
 	MyUtils::usage({
 		"if=s" => \$if,
+		"dont_normalize+"				=> \$dont_normalize,
 		"patt_file=s" 					=> \$patt_file,
 		"of=s"							=> \$of,
 		"max_patt_len=i" 				=> \$max_patt_len,
@@ -57,7 +59,7 @@ sub main(@) {
 				$max_len = @w;
 			}
 
-			my $patts = get_patts(\@w, $max_patt_len, $char_ngrams);
+			my $patts = get_patts(\@w, $max_patt_len, $char_ngrams,$dont_normalize);
 
 			foreach my $patt (keys %$patts) {
 				unless (exists $patts{$patt}) {
@@ -111,12 +113,19 @@ sub main(@) {
 		
 		foreach my $patt (keys %$patts) {
 			if (exists $saved{$patt}) {
-				$ts{$saved{$patt}->[0]} = ($patts->{$patt})/($saved{$patt}->[1]);	
+				$ts{$saved{$patt}->[0]} = $patts->{$patt};
+				unless (defined $dont_normalize) {
+					$ts{$saved{$patt}->[0]} /= ($saved{$patt}->[1]);
+				}	
 			}
 		}
 		
 		if ($use_len) {
-			$ts{$n_feats-1} = scalar(@w)/$max_len;
+			$ts{$n_feats-1} = scalar(@w);
+			
+			unless (defined $dont_normalize) {
+				$ts{$n_feats-1} /= $max_len;
+			}
 		}
 		
 		$ofh->print("$label\t$text\t");		
@@ -131,11 +140,12 @@ sub main(@) {
 	return 0;
 }
 
-sub get_patts($$$) {
+sub get_patts($$$$) {
 	my $w = shift;
 	unshift(@$w, "START_UNK");
 	my $max_patt_len = shift;
 	my $char_ngrams = shift;
+	my $dont_normalize = shift;
 	
 	my %patts;
 	
