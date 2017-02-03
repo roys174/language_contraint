@@ -62,7 +62,7 @@
 \newcommand{\clinic}[1]{{\color{magenta}\textsc{[#1 --CLINIC]}}}
 
 %\renewcommand{\ms}[1]{}
-\renewcommand{\roy}[1]{}
+%\renewcommand{\roy}[1]{}
 %\renewcommand{\nascomment}[1]{}
 %\renewcommand{\yc}[1]{}
 %\renewcommand{\royb}[1]{}
@@ -98,16 +98,12 @@ intent and mental state.
 In this paper, we show how writing tasks involving different mental processes can lead to measurable differences in writing style. % of the same authors.  
 %As a case study, we experiment with a recently published machine reading task: 
 We present a case study based on 
-the  {\it story cloze task} \cite{Mostafazadeh:2016}, %.
-%In this task, annotators were asked to generate two sentences: one which makes sense given a previous paragraph and another which doesn't.
-where annotators were assigned similar writing tasks with different constraints: 
-(1) writing an entire story on their own (2) adding only a story ending for a given story context, and (3) writing an incoherent ending to a story.\resolved{\clinic{Many felt these 2 contraints looks like 3 constraints. clarify}}
+the  {\it story cloze task} \cite{Mostafazadeh:2016},
+where annotators were assigned similar writing tasks with different constraints: (1) writing an entire story, (2) adding a story ending for a given story context, and (3) adding an incoherent ending to a story.\resolved{\clinic{Many felt these 2 contraints looks like 3 constraints. clarify}}
 %We show that a linear classifier, which applies only simple style features, such as sentence length and character n-grams, 
 We show that a simple linear classifier informed with stylistic features is able to successfully distinguish between the three cases.
+In addition, our style-based classifier obtains state-of-the-art results on the story cloze challange, substantially higher than  deep learning models, without even looking at the story context. 
 Our results demonstrate that different task framings can dramatically affect the way people write.\resolved{\clinic{Similarly to previous comment: which results does this comment address?}}
-In addition, our style-based classifier obtains state-of-the-art results on the story cloze challange, substantially higher than  deep learning models,
-even without looking at the story context. 
-%Importantly, our model doesn't even look at the previous paragraph, just the two candidate sentences, which, out of context, differ only in the writing task presented to the authors. 
 
 \resolved{They also provide important lessons for designing new NLP
 tasks. \nascomment{drop this sentence if we only have a paragraph
@@ -119,7 +115,7 @@ tasks. \nascomment{drop this sentence if we only have a paragraph
 Writing style is expressed through a range of linguistic elements such as words, sentence structure, and rhetorical devices.
 It is influenced by both personal factors such as age \cite{Schler:2006} and gender \cite{Argamon:2003}, 
 by personality traits such as agreeableness and openness  \cite{Ireland:2014b},
-as well as mental states\resolved{\clinic{Avoid using ``cognitive"?}} such as sentiment \cite{Davidov:2010}, sarcasm \cite{Tsur:2010}, and deception \cite{Feng:2012}.  
+as well as by mental states\resolved{\clinic{Avoid using ``cognitive"?}} such as sentiment \cite{Davidov:2010}, sarcasm \cite{Tsur:2010}, and deception \cite{Feng:2012}.  
 In this paper, we study the extent to which writing style is affected by the nature of the writing task the writer was asked to perform, since
 different tasks likely engage different cognitive processes \cite{Campbell:2003,Banerjee:2014}.
 
@@ -190,8 +186,8 @@ writing only the final sentence for a given story context written by someone els
 %last sentence of each of the stories, and does not consider the first four sentences.
 %final sentence without the story context. 
 
-While originally designed to be a story understanding challenge, 
- the annotation process introduced three variants of the same writing task: {\it original}, {\it right} and {\it wrong} endings. 
+While the story cloze task was originally designed to be a story understanding challenge, 
+its annotation process introduced three variants of the same writing task---the {\it original}, {\it right} and {\it wrong} endings. 
 We show that a linear classifier informed with stylistic features can distinguish between the different endings to a large degree, even without looking at the story context (64.5\%--75.6\% binary classification results).
 Our results allow us to make a few key observations.
 First, people adopt a different writing style when asked to write coherent vs.~incoherent story endings.
@@ -200,7 +196,7 @@ writing only the final sentence for a given story context written by someone els
 
 
 In order to further estimate the quality of our results, we also directly tackle the story cloze challenge. 
- Adapting our classifier to the task, we obtain 72.4\% accuracy, a 12.5\% increase over the previously reported state of the art  \cite{Salle:2016}.
+ Adapting our classifier to the task, we obtain 72.4\% accuracy, a 12.5\% increase over the previously reported state-of-the-art  \cite{Salle:2016}.
 We also show that the style differences captured by our model can be combined with neural language models to make a better use of the story context. 
 Our final model that combines context with stylistic features achieves
 75.2\%---an additional 2.8\% gain, 15.3\% better than the best
@@ -242,7 +238,7 @@ We describe the task below.
 
 \paragraph{ROC stories.}
 
-The ROC Story Corpus consists of 49,255 five-sentence commonsense stories, collected on Amazon Mechanical Turk (AMT).\footnote{Recently, an additional 53K stories were released, which results in roughly 100K stories.}
+The ROC story corpus consists of 49,255 five-sentence commonsense stories, collected on Amazon Mechanical Turk (AMT).\footnote{Recently, an additional 53K stories were released, which results in roughly 100K stories.}
 Workers were instructed to write a coherent self-contained story, which has a clear beginning and end. 
 To collect a broad spectrum of commonsense knowledge, there was no imposed subject for the stories,
 which resulted in a wide range of different topics.
@@ -262,19 +258,17 @@ It is worth noting that workers rated the stories as a whole, not only the endin
 Based on the new stories, \citet{Mostafazadeh:2016} proposed the {\it story cloze task}. 
 The task is simple:  given a pair of stories that differ only in their endings, the system decides which ending is {\it right} and which is {\it wrong}. 
 %The authors published the ROC story corpus as the training data, and the task composed of development and test sets for which both {\it right} and {\it wrong} endings are found. 
-The official training data contains only the original stories (without alternative endings), while development and test data consist of the revised stories with alternative endings (for a different set of original stories that are included in the training set). 
+The official training data contains only the original stories (without alternative endings), while development and test data consist of the revised stories with alternative endings (for a different set of original stories that are not included in the training set).\roy{added {\it not} here} 
 The task was suggested as an extensive evaluation framework:
 %as a machine reading task, 
 as a commonsense story understanding task, 
 as the shared task for the  Linking Models of Lexical, Sentential and Discourse-level Semantics workshop (LSDSem 2017), and as a testbed for vector-space evaluation \cite{mostafazadeh2016story}.
 
-\resolved{\paragraph{A Hard Task.}}\roy{Was a paragraph titled  ``State-of-the-art results". Luke mentioned that this puts the focus on our results rather than on the nature of the task, as we intended, so I merged it into the previous paragraph}
 Interestingly, at the time of this submission, 10 months after the
 task was first introduced, the published benchmark on this task is
 still below 60\% \cite{Salle:2016}.\footnote{The LSDSem 2017 shared
-  task website (\url{https://competitions.codalab.org/competitions/15333}) does report higher results (71.1\%), which are still
-  unpublished along with the underlying methodology.}
-This comes in contrast to other recent similar machine reading tasks such as CNN/DailyMail \cite{hermann2015teaching}, SNLI \cite{bowman2015large}, LAMBADA \cite{Paperno:2016} and SQuAD \cite{rajpurkar2016squad} for which results improved dramatically over a similar or shorter period of time.
+  task website (\url{https://competitions.codalab.org/competitions/15333}) does report higher results (71.1\%)\roy{Tricky. Which number should we report here? leave empty?}, which are still unpublished along with the underlying methodology.}
+This comes in contrast to other recent similar machine reading tasks such as CNN/DailyMail \cite{hermann2015teaching}, SNLI \cite{bowman2015large}, LAMBADA \cite{Paperno:2016} and SQuAD \cite{rajpurkar2016squad}, for which results improved dramatically over a similar or shorter period of time.
 This suggests that this task is challenging and that high performance is hard to achieve.
  \resolved{\yc{SQuAD was officially published in Nov 2016. by the time the official EMNLP talk was presented, the leaderboard performance (still unpublished) was  30\% beyond the best results in the paper. Given that, the statement of this paragraph seems a bit of overkill...?} \nascomment{it sounds like Yejin is saying that on squad, there was an even faster acceleration?  or that we should change ``similar period of time'' to ``similar or shorter period of time''?}}
 
@@ -314,22 +308,28 @@ impose different writing styles on authors. \nascomment{this bit feels
   a little heavy and reptititive.}}
 
 \isection{Surface Analysis of the Story Cloze Task}{Surface}
-We computed several characteristics of the three types of endings: {\it original} endings (from the ROC Story Corpus training set), {\it right} endings and {\it wrong} endings (both from the story cloze task development set).
+We computed several characteristics of the three types of endings: {\it original} endings (from the ROC story corpus training set), {\it right} endings and {\it wrong} endings (both from the story cloze task development set).
 Our analysis  reveals several style differences between different groups. 
 First, {\it original} endings are on average longer (11 words per
 sentence) than {\it right} endings (8.75 words), which are in turn
 slightly longer than {\it wrong} ones (8.47 words). 
-\yc{Is there psycholinguistic literature that we can cite that may have shown that cognitive burden causes writers to write shorter sentences...?}
+Previous work have shown that sentence length is also indicative of whether a text was deceptive \cite{yancheva2013automatic,qin2004exploratory}. 
+Although writing {\it wrong} sentences is not the same as lying, it is not entirely surprising to observe similar trends in both tasks.
+%Furthermore, \citet{Buller:1996} suggests lying increases one's cognitive load, which in turn could affect sentence length.
+%\yc{Is there psycholinguistic literature that we can cite that may have shown that cognitive burden causes writers to write shorter sentences...?}
+
 Second, \figref{roc_pos_distribution} shows the distribution of five frequent POS tags in all three groups. 
-The figure shows that both {\it original} and {\it right} endings use pronouns more frequently than {\it wrong} endings,
-which in turn prefer proper nouns, especially compared to {\it original} endings.
+The figure shows that both {\it original} and {\it right} endings use pronouns more frequently than {\it wrong} endings.
+Once again, deceptive text is also characterized by fewer pronouns compared to truthful text \cite{Newman:2003}.
+In contrast, {\it wrong} and {\it right} endings favor proper nouns compared to {\it original} endings. 
 \yc{Is there literature that may have shown that (1) pronouns correlate with coherent text, and/or (2) referencing characters by proper nouns shows a way of cognitive distancing...?}
+\ms{The proper noun thing is prolly related to the task design, which stated that people had to use at least one of the characters; research shows people usually use more other references when lying, but it's not clear whether there's a pronoun/proper noun distinction.}\roy{Good point! This is tricky. On the one hand, it hurts our story by saying that the difference is not really the general task by itself, but also the constraints put by  Nasrin et al. It also forces us to bash them some more. Or we can just ignore it...} 
 
 Finally, \figref{roc_word_distribution} presents the distribution of five frequent words across the different groups. 
-The figure shows that {\it original} endings use coordinations (``and'') more than  {\it right} endings, and substantially more than {\it wrong} ones.
-Furthermore, {\it original} and {\it right} endings seem to prefer enthusiastic language (e.g., ``!''), while {\it wrong} endings prefer negative ones (``hates''). 
-\yc{Again, any cogsci literature on this?} \nascomment{feels
-  Pennebaker-ish, that might be a good place to look.}
+The figure shows that {\it original} endings use coordinations (``and'') more than  {\it right} endings, and substantially more than {\it wrong} ones. %\ms{\cite{Newman:2003} found that liars use less ``contrast'' coordination, did we find that in our experiments?}.
+Furthermore, {\it original} and {\it right} endings seem to prefer enthusiastic language (e.g., ``!''), while {\it wrong} endings tend to use more negative language (``hates''), as is deceptive text \cite{Newman:2003}.
+%\yc{Again, any cogsci literature on this?} \nascomment{feels
+%  Pennebaker-ish, that might be a good place to look.}
 Next we show that these style differences are not anecdotal, but can be used to distinguish between the different groups of text.
 
 \com{\begin{table*}[!t]
@@ -338,7 +338,7 @@ Next we show that these style differences are not anecdotal, but can be used to 
 \begin{tabular}{|p{2.5cm}|p{4cm}|p{4cm}|p{4cm}|} \hline
  & {\bf Original}& {\bf Right} & {\bf Wrong}\\ \hline
 Sentence Length (\#words) & 11.02 & 8.75 & 8.47\\ \hline
-Most Frequent POS tags (\%)  & NN:15.3\%, VBD:13.4\%, PRP:10.1, DT:9.1\%, IN:8.7\% & VBD:15.8\%, NN:15.7\%, DT:9.7\%, PRP:8.8\%, NNP:8.3\%  & NN:16.3\%, VBD:15.1\%,  NNP:9.5\%, DT:9.4, IN:7.9\%\\ \hline
+Most Frequent POS tags (\%)  & NN:15.3\%, VBD:13.4\%, PRP:10.1, CC:3.3\%, IN:8.7\% & VBD:15.8\%, NN:15.7\%, CC:2\%, PRP:8.8\%, NNP:8.3\%  & NN:16.3\%, VBD:15.1\%,  NNP:9.5\%, DT:1.4, IN:7.9\%\\ \hline
 Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% & the:4.8\%, to:3.9\%, was:3.5\%, a:2.5\%, and:2.1\%   & the:5\%, to:4\%, was:3\%, a:2\%, I:1.6\%\\ \hline
 \end{tabular}
 \end{center}
@@ -499,7 +499,7 @@ and focus on the difference between the styles accompanied with {\it right} and 
 \resolved{we
 are able make a more general claim about the style used when writing
 each of the tasks \nascomment{I'm not sure I follow this sentence; can
-we be more clear?}.}\roy{Better now?}
+we be more clear?}.}
 
 \paragraph{Experiment 2: original/new endings.}
 
@@ -529,7 +529,7 @@ tune a single hyperparameter---the regularization parameter.   \resolved{\nascom
 
 
 \isectionb{Results}
-\figref{results} shows our results.
+\tabref{results} shows our results.
 In Experiment 1, our model obtains 64.5\%
 classification accuracy, well above a (50\%-accurate) random baseline.\clinic{How good is this?}
 For Experiment 2, our model is even stronger, at 68.5\%.
@@ -542,7 +542,7 @@ We further measured whether these style effects are additive, by
 classifying \emph{original} vs.~\emph{wrong} endings.  The setup is
 exactly as in Experiment 2, but using \emph{wrong} endings instead of
 \emph{right} ones.  The result is that the effects are somewhat
-additive:  this third classifier achieves 75.2\%.
+additive:  this third classifier achieves 75.6\%.
 % That is, whether the style differences between {\it right} endings and {\it wrong} ones are different from the differences between {\it right} and {\it original} endings.
 % We repeated Experiment 2, this time comparing between {\it original} and {\it wrong} sentences. 
 % Our hypothesis is that differences would be even clearer. 
@@ -694,10 +694,10 @@ the model)
 given the four preceding sentences of the story (the numerator), controlling for the
 inherent surprisingness of the words in that ending (the denominator).
 
-\resolved{\nascomment{please check the paragraph above.  we need to say how we
+\nascomment{please check the paragraph above.  we need to say how we
   use the LM before we evaluate it!  also, has anyone tried an approach like this
   before?  even if we aren't exactly replicating another paper, if
-  someone else used RNNs for this task, we should credit them.}}
+  someone else used RNNs for this task, we should credit them.}
   \roy{Ours is the first work to publish LSTM results on this dataset.}
 
 % Eval
@@ -715,8 +715,7 @@ We combine our linear model with the RNNLM by adding three features to
 our classifier: the numerator, denominator, and ratio in
 Equation~\ref{eq:ratio}. % $p_\theta(ending|story),p_\theta(ending)$ and $\frac{p_\theta(ending|story)}{p_\theta(ending)}$.
 We retrain our linear  model with the new feature set, and gain 2.8\%
-absolute, reaching 75.2\% (15.3\% better than the published state of
-the art\com{ and 4.1\% better than the best unpublished} result).\roy{As now the codalab shared task table contains our numbers, I removed the references to these works, and left only the footnote earlier which says that there are higher, unpublished numbers.}
+absolute, reaching 75.2\% (15.3\% better than the published state-of-the-art\com{ and 4.1\% better than the best unpublished} result).\roy{As now the codalab shared task table contains our numbers, I removed the references to these works, and left only the footnote earlier which says that there are higher, unpublished numbers.}
 These results indicate that context-ignorant style features can be used to obtain high
 accuracy on the task, adding value even when context and a large
 training dataset are used.  \resolved{\nascomment{check reframing here}}
@@ -733,7 +732,7 @@ A natural question that follows this study is which style features are most
 helpful in detecting the underlying task an author was asked
 to perform. 
 To answer this question, we re-ran Experiment 1 with different sub-groups of features. 
-\tabref{subgroups} shows our results. Results show that  character $n$-grams are the most effective style predictors, reaching within  0.6\% of the full model, but that word $n$-grams also capture much of the signal, yielding 61.2\%, which is 3.3\% worse than the full model. 
+\tabref{subgroups} shows our results. Results show that  character $n$-grams are the most effective style predictors, reaching within  0.6\% of the full model, but that word $n$-grams also capture much of the signal, yielding 61.2\%, which is only 3.3\% worse than the full model. 
 These findings are in line with previous work that used character $n$-grams along with other types of features to predict writing  style \cite{Schwartz:2013}.
 
 
@@ -761,18 +760,16 @@ In order to answer this question, we consider the highest absolute positive and 
 We consider only features appearing in at least 5\% of the endings in our training set. 
 
 \paragraph{Experiment 1.}
-\tabref{exp1_features} shows the five features with the highest positive and negative coefficients in the logistic regression classifier for Experiment 1,
+\tabref{exp1_features} shows the most salient features for {\it right} (coherent) and {\it wrong} (incoherent) endings in Experiment 1,
 along with their corpus frequency. 
-These correspond to the 5 most salient features for {\it right}
-(coherent) and {\it wrong} (incoherent) endings,
-respectively.
-
 The table shows a few interesting trends. 
 First, authors tend to structure their sentences differently when writing {coherent}  vs.~{incoherent} endings.
 For instance, {incoherent} endings are more likely to start with a proper noun and end with a common noun, 
 while coherent endings have a greater tendency to end with a past tense verb.
+
 Second, {\it right} endings will make wider use of coordination structures, as well as adjectives.
-The latter might indicate that writing coherent stories imposes the authors to write more descriptive text compared to incoherent ones.
+The latter might indicate that writing coherent stories imposes the authors to write more descriptive text compared to incoherent ones, 
+as is the case in truthful vs.~deceptive text \cite{ott2011finding}.
 Finally, we notice a few syntactic differences: {\it right} endings will more often use infinite verb structure, while {\it wrong} endings will prefer gerunds (VBG). 
 \nascomment{note to self to come back
   to this after we agree on methodology.}
@@ -847,7 +844,7 @@ The top 5 most discriminative features for predicting {\it original} vs.~{\it ne
 
 \isectionb{Discussion}
 
-\paragraph{Writing tasks as stimulating mental states.}
+\paragraph{The effect of writing tasks on mental states.}
 In this paper we have shown that giving a writer different writing tasks affects writing style in easily detected ways.
 Our results indicate that when authors are asked to write the last
 sentence of a five sentence story, they will use different style to
@@ -859,12 +856,12 @@ are often implicit, but can be observed using extremely simple automatic tools.
 
 Previous work have shown that  writing task could affect mental states.
 For instance, several works demonstrated that writing deceptive text leads to a significant cognitive burden \cite{Newman:2003,Banerjee:2014}.
-These works have also shown that this cognitive burden is accompanied by different writing style compared to truthful text.
+These works have also shown that this burden is accompanied by different writing style compared to truthful text.
 Other studies have shown that writing tasks can even have a long term effect,
-by showing that writing emotional texts can benefit both physical and mental health \cite{Lepore:2002,Campbell:2003,Frattaroli:2006}. 
+by showing that writing emotional texts can benefit both physical and mental health \cite{Lepore:2002,Frattaroli:2006}. 
 \citet{Campbell:2003} also showed that the health benefits of writing emotional text are accompanied by changes in writing style, mostly in the use of pronouns.
 
-Another line of works has shown that different mental states affect writing.
+Another line of works has shown that writing style is affected by the mental state.
 First, the author's personality traits (e.g., depression, neuroticism, narcissism) affect her writing style \cite{schwartz2013personality,Ireland:2014b}.
 Second, temporary changes, such as a romantic relationship \cite{Ireland:2011,Bowen:2016}, work collaboration \cite{Tausczik:2009,Gonzales:2009} or negotiation \cite{Ireland:2014} may also affect writing style.
 Finally, writing style can also change from one sentence to another, for instance between positive and negative text \cite{Davidov:2010} or when writing sarcastic text \cite{Tsur:2010}. 
@@ -875,7 +872,7 @@ Nonetheless, further investigation is required in order to further validate this
 
 
 \paragraph{The story cloze task.}
-This paper also provides several insights for the future design of NLP tasks. 
+This paper also provides important insights for the future design of NLP tasks. 
 The story cloze task was very carefully designed. Many factors, such as the topic diversity, as well as  temporal and causal relation diversity,  were controlled for \cite{Mostafazadeh:2016}. 
 The authors also made sure each pair of endings was written by the same author, partly in order to avoid author specific style effects.
  Nonetheless, this paper shows that despite these efforts, several significant style differences are found between the training and the test set, as well as between the positive and negative labels. 
@@ -884,7 +881,7 @@ The findings in this paper suggest that careful attention must be paid to instru
 One way to avoid such problems is by using shorter text spans, such as the ones used in the Winograd schema \cite{Levesque:2011}.
 A different approach is to use naturally occurring text, as used in recent machine reading tasks (see \secref{Related}). 
 %However,  these approaches have their shortcomings, and do not capture the same signal as intended by the author of the story cloze task.
-A way to avoid the inherent biases people have when writing is to rather than ask them to write text, have them rate sentences for naturally occurring text by parameters of coherence (or very differently -- the level of surprise).
+A way to avoid the inherent biases people have when writing is to rather than ask them to write text, have them rate sentences for naturally occurring text by parameters such as coherence (or very differently -- the level of surprise).
 
 \com{
 Another lesson from this paper relates to baseline methods. 
@@ -934,7 +931,7 @@ The line of work that most resembles our work is the detection of deceptive text
 Several researchers have used stylometric features to  predict deception 
 \cite{Newman:2003,hancock2007lying,ott2011finding,Feng:2012}.
 Some works even showed that writing style applied when lying is different across genders \cite{Perez:2014a,Perez:2014b}.
-In this work, we have shown that an even more subtle writing task---writing {coherent} and {coherent} story endings---imposes different styles on the author.
+In this work, we have shown that an even more subtle writing task---writing {coherent} and {incoherent} story endings---imposes different styles on the author.
 
 
 \paragraph{Machine reading.}
@@ -943,7 +940,7 @@ These include datasets like bAbI \cite{Weston:2015}, SNLI \cite{bowman2015large}
 
 While these works have presented valuable resources for researchers, 
 it is often the case that these datasets suffer from methodological
-problems caused by applying noisy automatic tools to generate the data\resolved{ \nascomment{this is not clear to me, what does it mean?} when generating the datasets} \roy{better?}\cite{Chen:2016}. 
+problems caused by applying noisy automatic tools to generate them\nascomment{this is not clear to me, what does it mean?} \roy{better?}\cite{Chen:2016}. 
 In this paper we have pointed to another methodological challenge in
 designing machine reading tasks, namely that different writing tasks
 used to generated the data affect the writing style of the positive
@@ -966,7 +963,7 @@ model to achieve state-of-the-art results on the story cloze task.
 
 The findings presented in this paper have  cognitive implications, as
 they motivate further research on the exact effect that a writing
-prompt has on an author's mental state, and also her response.
+prompt has on an author's mental state, and also her concrete response.
 They also provide valuable lessons for designing new NLP datasets.
  \resolved{\nascomment{drop the last sentence, it makes this paper seem less
   complete} Future work will include testing whether other similar writing tasks, such as fake news, also impose their own unique and identifiable style on their authors.}

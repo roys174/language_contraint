@@ -13,8 +13,9 @@ David Bamman, Jacob Eisenstein, and Tyler Schnoebelen. 2014.
 \newblock Gender identity and lexical variation in social media.
 \newblock {\em Journal of Sociolinguistics\/} 18(2):135--160.
 
-\bibitem[{Banerjee et~al.(2014)Banerjee, Feng, Kang, and Choi}]{Banerjee:2014}
-Ritwik Banerjee, Song Feng, Jun~Seok Kang, and Yejin Choi. 2014.
+\bibitem[{Banerjee et~al.(2014{\natexlab{a}})Banerjee, Feng, Kang, and
+  Choi}]{Banerjee:2014}
+Ritwik Banerjee, Song Feng, Jun~Seok Kang, and Yejin Choi. 2014{\natexlab{a}}.
 \newblock \href{http://www.aclweb.org/anthology/D14-1155}{Keystroke patterns as
   prosody in digital writings: A case study with deceptive reviews and essays}.
 \newblock In {\em Proceedings of the 2014 Conference on Empirical Methods in
@@ -22,6 +23,13 @@ Ritwik Banerjee, Song Feng, Jun~Seok Kang, and Yejin Choi. 2014.
   Linguistics, Doha, Qatar, pages 1469--1473.
 \newblock
   \href{http://www.aclweb.org/anthology/D14-1155}{http://www.aclweb.org/anthology/D14-1155}.
+
+\bibitem[{Banerjee et~al.(2014{\natexlab{b}})Banerjee, Feng, Kang, and
+  Choi}]{Banerjee2014KeystrokePA}
+Ritwik Banerjee, Song Feng, Jun~Seok Kang, and Yejin Choi. 2014{\natexlab{b}}.
+\newblock Keystroke patterns as prosody in digital writings: A case study with
+  deceptive reviews and essays.
+\newblock In {\em EMNLP\/}.
 
 \bibitem[{Bergsma et~al.(2012)Bergsma, Post, and Yarowsky}]{Bergsma:2012}
 Shane Bergsma, Matt Post, and David Yarowsky. 2012.
@@ -56,6 +64,11 @@ Michael Brooks, Katie Kuksenok, Megan~K Torkildson, Daniel Perry, John~J
 \newblock Statistical affect detection in collaborative chat.
 \newblock In {\em Proceedings of the 2013 conference on Computer supported
   cooperative work\/}. ACM, pages 317--328.
+
+\bibitem[{Buller and Burgoon(1996)}]{Buller:1996}
+David~B Buller and Judee~K Burgoon. 1996.
+\newblock Interpersonal deception theory.
+\newblock {\em Communication theory\/} 6(3):203--242.
 
 \bibitem[{Burke et~al.(2013)Burke, Adamic, and Marciniak}]{Burke:2013}
 Moira Burke, Lada~A Adamic, and Karyn Marciniak. 2013.
@@ -274,6 +287,13 @@ Ver{\'o}nica P{\'e}rez-Rosas and Rada Mihalcea. 2014.
 \newblock In {\em Mexican International Conference on Artificial
   Intelligence\/}. Springer, pages 163--174.
 
+\bibitem[{Qin et~al.(2004)Qin, Burgoon, and Nunamaker}]{qin2004exploratory}
+Tiantian Qin, Judee Burgoon, and Jay~F Nunamaker. 2004.
+\newblock An exploratory study on promising cues in deception detection and
+  application of decision tree.
+\newblock In {\em System Sciences, 2004. Proceedings of the 37th Annual Hawaii
+  International Conference on\/}. IEEE, pages 23--32.
+
 \bibitem[{Rajpurkar et~al.(2016)Rajpurkar, Zhang, Lopyrev, and
   Liang}]{rajpurkar2016squad}
 Pranav Rajpurkar, Jian Zhang, Konstantin Lopyrev, and Percy Liang. 2016.
@@ -364,6 +384,12 @@ Jason Weston, Antoine Bordes, Sumit Chopra, Alexander~M Rush, Bart van
 \newblock Towards ai-complete question answering: A set of prerequisite toy
   tasks.
 \newblock {\em arXiv preprint arXiv:1502.05698\/} .
+
+\bibitem[{Yancheva and Rudzicz(2013)}]{yancheva2013automatic}
+Maria Yancheva and Frank Rudzicz. 2013.
+\newblock Automatic detection of deception in child-produced speech using
+  syntactic complexity features.
+\newblock In {\em Association for Computational Linguistics\/}.
 
 \bibitem[{Yano et~al.(2012)Yano, Smith, and Wilkerson}]{Yano:2012}
 Tae Yano, Noah~A Smith, and John~D Wilkerson. 2012.
