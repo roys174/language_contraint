@@ -100,9 +100,10 @@ the  {\it story cloze task} \cite{Mostafazadeh:2016},
 where annotators were assigned similar writing tasks with different constraints: (1) writing an entire story, (2) adding a story ending for a given story context, and (3) adding an incoherent ending to a story.\resolved{\clinic{Many felt these 2 constraints looks like 3 constraints. clarify}}
 %We show that a linear classifier, which applies only simple style features, such as sentence length and character n-grams, 
 We show that a simple linear classifier informed with stylistic features is able to successfully distinguish between the three cases, without even looking at the story context.
-In addition, our style-based classifier obtains state-of-the-art results on the story cloze challenge, substantially higher than  deep learning models. 
+In addition, our style-based classifier establishes a new state-of-the-art result on the story cloze challenge, substantially higher than previous results based on deep learning models. 
 %Furthermore, combining our model with an LSTM-based language model, which does look at the context, leads to additional gains.
 Our results demonstrate that different task framings can dramatically affect the way people write.\resolved{\clinic{Similarly to previous comment: which results does this comment address?}}
+
 
 \resolved{They also provide important lessons for designing new NLP
 tasks. \nascomment{drop this sentence if we only have a paragraph
@@ -127,10 +128,10 @@ different tasks likely engage different cognitive processes \cite{Campbell:2003,
 {\color{red}{Incoherent}} story & Kathy went shopping.	She found a pair of great shoes.	The shoes were \$300.	She bought the shoes.	{\color{red}{Kathy hated buying shoes.}} \\ \hline
 \end{tabular}
 \caption{\label{ROC-example}
-Examples of stories from the story cloze task \cite{Mostafazadeh:2016}. The first row shows an {\color{blue}{Original}} story written by one author. 
+Examples of stories from the story cloze task \cite{Mostafazadeh:2016}. The first row shows an {\color{blue}{original}} story written by one author. 
 The second and third rows show revised stories with two contrastive endings:
  %of the same story: 
- a {\color{forestgreen}{Coherent}} ending and a {\color{red}{Incoherent}} one.\resolved{ \clinic{They said it would be great to have three endings to the same story. Unfortunately Nasrin et al.  didn't publish the original endings for the dev/test data. We could ask her, but not sure if this is worth it}}
+ a {\color{forestgreen}{coherent}} ending and a {\color{red}{incoherent}} one.\resolved{ \clinic{They said it would be great to have three endings to the same story. Unfortunately Nasrin et al.  didn't publish the original endings for the dev/test data. We could ask her, but not sure if this is worth it}}
  \resolved{\nascomment{I like the colors a lot.  Instead of all the italicizing,
 let's consider just color-coding these three terms.  It's less distracting.}}
 }
@@ -312,13 +313,15 @@ Although writing {\it wrong} sentences is not the same as lying, it is not entir
 Second, \figref{roc_pos_distribution} shows the distribution of five frequent POS tags in all three groups. 
 The figure shows that both {\it original} and {\it right} endings use pronouns more frequently than {\it wrong} endings.
 Once again, deceptive text is also characterized by fewer pronouns compared to truthful text \cite{Newman:2003}.
-In contrast, {\it wrong} and {\it right} endings favor proper nouns compared to {\it original} endings. 
-\yc{Is there literature that may have shown that (1) pronouns correlate with coherent text, and/or (2) referencing characters by proper nouns shows a way of cognitive distancing...?}
-\ms{The proper noun thing is prolly related to the task design, which stated that people had to use at least one of the characters; research shows people usually use more other references when lying, but it's not clear whether there's a pronoun/proper noun distinction.}\roy{Good point! This is tricky. On the one hand, it hurts our story by saying that the difference is not really the general task by itself, but also the constraints put by  Nasrin et al. It also forces us to bash them some more. Or we can just ignore it...} 
+%In contrast, {\it wrong} and {\it right} endings favor proper nouns compared to {\it original} endings. 
+ \resolved{\yc{Is there literature that may have shown that (1) pronouns correlate with coherent text, and/or (2) referencing characters by proper nouns shows a way of cognitive distancing...?}}
+ \resolved{\ms{The proper noun thing is prolly related to the task design, which stated that people had to use at least one of the characters; research shows people usually use more other references when lying, but it's not clear whether there's a pronoun/proper noun distinction.}}
+  \resolved{\roy{Good point! This is tricky. On the one hand, it hurts our story by saying that the difference is not really the general task by itself, but also the constraints put by  Nasrin et al. It also forces us to bash them some more. Or we can just ignore it...} }
+  \resolved{\yc{Ok! I resolved all comments above and also commented out the comment on how wrong/right endings use more proper nouns compared to the original endings. I think it's the best not to talk about this.}}
 
 Finally, \figref{roc_word_distribution} presents the distribution of five frequent words across the different groups. 
 The figure shows that {\it original} endings use coordinations (``and'') more than  {\it right} endings, and substantially more than {\it wrong} ones. %\ms{\cite{Newman:2003} found that liars use less ``contrast'' coordination, did we find that in our experiments?}.
-Furthermore, {\it original} and {\it right} endings seem to prefer enthusiastic language (e.g., ``!''), while {\it wrong} endings tend to use more negative language (``hates''), as is deceptive text \cite{Newman:2003}.
+Furthermore, {\it original} and {\it right} endings seem to prefer enthusiastic language (e.g., ``!''), while {\it wrong} endings tend to use more negative language (``hates''), similarly as deceptive text \cite{Newman:2003}.
 %\yc{Again, any cogsci literature on this?} \nascomment{feels
 %  Pennebaker-ish, that might be a good place to look.}
 Next we show that these style differences are not anecdotal, but can be used to distinguish between the different groups of text.
@@ -339,7 +342,7 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
 
 
 \begin{figure*}[t!]
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.5\textwidth}\center
 \begin{tikzpicture}
 \small
     \begin{axis}[
@@ -384,7 +387,7 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
 \end{tikzpicture}
 \caption{\label{roc_pos_distribution}POS tags}
 \end{subfigure}
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.5\textwidth}\center
 \begin{tikzpicture}
 \small
     \begin{axis}[
@@ -446,7 +449,7 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
 
 \isectionb{Model}
 
-Our goal of this paper is to determine the extent to which 
+The goal of this paper is to determine the extent to which 
 %does constraining authors in their writing assignments lead to them adopting different writing styles. 
 different writing constraints lead the authors to adopt different writing styles. 
 In order to answer these questions, we use simple methods that have been shown to be very effective for recognizing style (see \secref{Related}).
@@ -522,7 +525,9 @@ tune a single hyperparameter---the regularization parameter.   \resolved{\nascom
 \isectionb{Results}
 \tabref{results} shows our results.
 In Experiment 1, our model obtains 64.5\%
-classification accuracy, well above a (50\%-accurate) random baseline.\clinic{How good is this?}
+classification accuracy, well above a (50\%-accurate) random baseline.
+\clinic{How good is this?}
+\yc{how about addressing above comment from the clinic by adding a commentary such as following: This result is surprising given that our model makes the prediction based only on the last sentence without looking at the story context, thus does not have sufficient information to judge the story coherency.}
 For Experiment 2, our model is even stronger, at 68.5\%.
 These results indicate that an author's style is affected in an
 easily-detected way when she is prompted to write (1) a \emph{wrong} story ending vs.~a
@@ -589,13 +594,13 @@ endings. \nascomment{this is overkill.  I suggest replacing it with a
 %\small
 \begin{tabular}{|c|c|} \hline
 {\bf Experiment} & {\bf Accuracy} \\ \hline
-{\it Right/Wrong} & 64.5\% \\ \hline
-{\it Original/Right} & 68.5\% \\ \hline
-{\it Original/Wrong} & 75.6\% \\ \hline
+{\sl right vs. wrong} & 64.5\% \\ \hline
+{\sl original vs. right} & 68.5\% \\ \hline
+{\sl original vs. wrong} & 75.6\% \\ \hline
 \end{tabular}
 \end{center}
-\caption{\label{results} Results of  experiments 1 ({\it Right/Wrong}) and 2 ({\it Original/Right}). 
-Bottom row shows an additional experiment which classifies {\it  original} endings vs \textit{\textbf{wrong}} endings.
+\caption{\label{results} Results of  experiments 1 ({\it right vs. wrong}) and 2 ({\it original vs. right}). 
+Bottom row shows an additional experiment which classifies {\it  original} endings vs \textit{{wrong}} endings.
 In all cases, our setup implies a 50\% random baseline.}
 \end{table}
 
@@ -625,7 +630,7 @@ These numbers further support the claim that the styles of {\it right} and {\it 
 \begin{center}
 %\small
 \begin{tabular}{|l|r|} \hline
-{\bf Model} & {\bf Accuracy} \\ \hline
+{\bf Model} & {\bf Accu} \\ \hline
 $\dagger${DSSM} \cite{Mostafazadeh:2016} & 0.585 \\ 
 $\dagger${LexVec} \cite{Salle:2016} & 0.599 \\ \hline\hline
 %{Niko (shared task)}	& 0.700\\ 
@@ -637,6 +642,7 @@ $\dagger$Human judgment & 1.000 \\ \hline
 \end{tabular}
 \end{center}
 \caption{\label{cloze_results}
+\yc{we should change accuracy to be in 0-100\% scale to be consistent with Table 2}
 Results on the test set of the  story cloze task. 
 The first block are published results, 
 the second block is our results.
@@ -794,9 +800,12 @@ to VB & 20.1\%& VBG & 10.1\%\\ \hline
 
 \end{tabular}
 \end{center}
-\caption{\label{exp1_features}}
+\caption{\label{exp1_features}
 The top 5 most discriminative features for predicting {\it right} vs.~{\it wrong} endings,
-along with their frequency in our story cloze training set.\end{table}
+along with their frequency in our story cloze training set.
+}
+\end{table}
+
 
 
 \paragraph{Experiment 2.}
@@ -829,8 +838,10 @@ RB & {\color{white}{0}}44.7\%& NN . & 42.3\% \\ \hline
 
 \end{tabular}
 \end{center}
-\caption{\label{exp2_features}}
-The top 5 most discriminative features for predicting {\it original} vs.~{\it new} ({\it right}) endings.\end{table}
+\caption{\label{exp2_features}
+The top 5 most discriminative features for predicting {\it original} vs.~{\it new} ({\it right}) endings.
+}
+\end{table}
 
 
 \isectionb{Discussion}
