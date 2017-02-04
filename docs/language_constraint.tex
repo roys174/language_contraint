@@ -92,17 +92,16 @@
 % People's writing style depends not just on the authors' personal
 % traits but also on the intent and the cognitive states of the
 % authors. 
-A writer's style depends not just on personal traits but also on her
-intent and mental state.
+A writer's style depends not just on personal traits but also on her intent and mental state.
 %In this paper we show that engaging authors in different  writing tasks results in them adopting different writing styles.
-In this paper, we show how writing tasks involving different mental processes can lead to measurable differences in writing style. % of the same authors.  
-%As a case study, we experiment with a recently published machine reading task: 
+In this paper, we show how variants of the same writing task can lead to measurable differences in writing style. % of the same authors.  
 We present a case study based on 
 the  {\it story cloze task} \cite{Mostafazadeh:2016},
-where annotators were assigned similar writing tasks with different constraints: (1) writing an entire story, (2) adding a story ending for a given story context, and (3) adding an incoherent ending to a story.\resolved{\clinic{Many felt these 2 contraints looks like 3 constraints. clarify}}
+where annotators were assigned similar writing tasks with different constraints: (1) writing an entire story, (2) adding a story ending for a given story context, and (3) adding an incoherent ending to a story.\resolved{\clinic{Many felt these 2 constraints looks like 3 constraints. clarify}}
 %We show that a linear classifier, which applies only simple style features, such as sentence length and character n-grams, 
-We show that a simple linear classifier informed with stylistic features is able to successfully distinguish between the three cases.
-In addition, our style-based classifier obtains state-of-the-art results on the story cloze challange, substantially higher than  deep learning models, without even looking at the story context. 
+We show that a simple linear classifier informed with stylistic features is able to successfully distinguish between the three cases, without even looking at the story context.
+In addition, our style-based classifier obtains state-of-the-art results on the story cloze challenge, substantially higher than  deep learning models. 
+%Furthermore, combining our model with an LSTM-based language model, which does look at the context, leads to additional gains.
 Our results demonstrate that different task framings can dramatically affect the way people write.\resolved{\clinic{Similarly to previous comment: which results does this comment address?}}
 
 \resolved{They also provide important lessons for designing new NLP
@@ -138,11 +137,9 @@ let's consider just color-coding these three terms.  It's less distracting.}}
 %\end{center}
 \end{table}
 
-We show that different framings of similar writing tasks can lead to measurable differences in people's writing style.
-We explore three  writing tasks, showing that they are distinguishable from one another using a linear classifier informed with stylistic features only. 
-Our results hint that different writing tasks impose different cognitive constraints on the writer, which lead to the substantial style differences.
-
-%As a testbed, we experiment with
+We show that similar writing tasks with different constraints on the author can lead to measurable differences in people's writing style.
+%We explore three  writing tasks, showing that they are distinguishable from one another using a linear classifier informed with stylistic features only. 
+%Our results hint that different writing tasks impose different cognitive load on the writer, which lead to the substantial style differences.
 As a case study, we present experiments   based on 
 the recently introduced ROC story cloze task \cite{Mostafazadeh:2016}. 
 In this task, \com{crowdsourced }authors were asked to write five-sentence self-contained stories, henceforth {\it original} stories.
@@ -187,8 +184,9 @@ writing only the final sentence for a given story context written by someone els
 %final sentence without the story context. 
 
 While the story cloze task was originally designed to be a story understanding challenge, 
-its annotation process introduced three variants of the same writing task---the {\it original}, {\it right} and {\it wrong} endings. 
-We show that a linear classifier informed with stylistic features can distinguish between the different endings to a large degree, even without looking at the story context (64.5\%--75.6\% binary classification results).
+its annotation process introduced three variants of the same writing task: writing an {\it original}, {\it right} or {\it wrong} ending to a short story.
+In this paper, we show that a linear classifier informed with stylistic features can distinguish between the different endings to a large degree, even without looking at the story context (64.5\%--75.6\% binary classification results).
+
 Our results allow us to make a few key observations.
 First, people adopt a different writing style when asked to write coherent vs.~incoherent story endings.
 Second,  people change their writing style when writing the entire story on their own compared to 
@@ -206,19 +204,12 @@ published result.
 Writing a sentence intended to be {\it wrong} turns out quite differently than a sentence intended to be {\it right}. 
 Similarly, writing a sentence as part of the story is different from reading a story, and then writing the final sentence.}
 
-%Our results may have a wide impact on a range of fields. 
-The contributions of our study are twofold. 
+The contributions of our study are threefold. 
 First, findings from our study can potentially shed light on 
-%cognitive processes that take place in the brain during writing.
 how different kinds of cognitive load influence the style of written language. 
-%Second, our results might have a more practical value in an era when fake news are becoming prominent,
-%as they suggest that these might have different style compared to real news.
-%Second, our results provide valuable insights for designing new NLP tasks,\clinic{unclear}
+Second, our results indicate that when designing new NLP tasks, special attention needs to be payed to the instructions given to authors.
 %both in terms of the potential impact of even the smallest details, and the need to carefully run baseline models.
-%Although \cite{Mostafazadeh:2016} seem to have put a lot of effort into designing the task, 
-%addressing many potential methodological flaws (see \secref{ROC_Story}), the importance of a few allegedly minor details were underestimated. 
-%We show that these details are actually very significant. 
-Second, we establish a new state-of-the-art result on the commonsense story cloze challenge. 
+Third, we establish a new state-of-the-art result on the commonsense story cloze challenge. 
 
 \com{
 The remainder of this paper is organized as follows. In \secref{ROC_Story} we describe the story cloze task.
@@ -652,7 +643,7 @@ the second block is our results.
 LexVec results are taken from \cite{Speer:2016}.
 %RNN is our implementation. 
 Human judgement scores are taken from \cite{Mostafazadeh:2016}.
-Methods marked with ($\dagger$) use the story context in order to make a predicition. 
+Methods marked with ($\dagger$) use the story context in order to make a prediction. 
  \resolved{\nascomment{I added 0s to ``Niko'' result
   and ``human''
   so sig. digits would line up.  if we don't have sig digits for some
