@@ -196,8 +196,8 @@ writing only the final sentence for a given story context written by someone els
 
 
 In order to further validate our method, we also directly tackle the
-story cloze challenge \nascomment{cite the challenge?  a reader may
-  not realize that there is a shared task on this}. 
+story cloze task \nascomment{cite the challenge?  a reader may
+  not realize that there is a shared task on this}\roy{Maybe ``challenge'' was not the right term here. We basically mean the story cloze task. The shared task was the original task w/o any modification, so I am not referring to it specifically here}. 
  Adapting our classifier to the task, we obtain 72.4\% accuracy, a
  12.5\% increase over the previously reported state of the art  \cite{Salle:2016}.
 We also show that the style differences captured by our model can be combined with neural language models to make a better use of the story context. 
@@ -257,7 +257,7 @@ It is worth noting that workers rated the stories as a whole, not only the endin
 Based on the new stories, \citet{Mostafazadeh:2016} proposed the {\it story cloze task}. 
 The task is simple:  given a pair of stories that differ only in their endings, the system decides which ending is {\it right} and which is {\it wrong}. 
 %The authors published the ROC story corpus as the training data, and the task composed of development and test sets for which both {\it right} and {\it wrong} endings are found. 
-The official training data contains only the original stories (without alternative endings), while development and test data consist of the revised stories with alternative endings (for a different set of original stories that are not included in the training set).\roy{added {\it not} here} 
+The official training data contains only the original stories (without alternative endings), while development and test data consist of the revised stories with alternative endings (for a different set of original stories that are not included in the training set).\resolved{\roy{added {\it not} here}}
 The task was suggested as an extensive evaluation framework:
 %as a machine reading task, 
 as a commonsense story understanding task, 
@@ -269,8 +269,8 @@ still below 60\% \cite{Salle:2016}.\footnote{The LSDSem 2017 shared
   task website
   (\url{https://competitions.codalab.org/competitions/15333}) does
   report higher results% (71.1\%)
-\roy{Tricky. Which number should we report here? leave empty?}
-\nascomment{leave empty for now}, which
+\resolved{\roy{Tricky. Which number should we report here? leave empty?}
+\nascomment{leave empty for now}}, which
 are still unpublished along with the underlying methodology.} 
 This comes in contrast to other recent similar machine reading tasks such as CNN/DailyMail \cite{hermann2015teaching}, SNLI \cite{bowman2015large}, LAMBADA \cite{Paperno:2016} and SQuAD \cite{rajpurkar2016squad}, for which results improved dramatically over a similar or shorter period of time.
 This suggests that this task is challenging and that high performance is hard to achieve.
@@ -551,8 +551,8 @@ were given to perform.  We further applied the model to a third task,
 differences were apparent to the model, allowing over 75\% accuracy.
 
 
-\nascomment{I rewrote this section.  old version commented out in
-  latex source}
+\resolved{\nascomment{I rewrote this section.  old version commented out in
+  latex source}}
 % In Experiment 1, our model obtains 64.5\%
 % classification accuracy, well above a (50\%-accurate) random baseline.
 % \clinic{How good is this?}
@@ -676,8 +676,7 @@ $\dagger${\bf Combined (ours + RNN)} & {\bf 0.752} \\ \hline\hline
 $\dagger$Human judgment & 1.000 \\ \hline
 \end{tabular}
 \end{center}
-\caption{\label{cloze_results}
-\yc{we should change accuracy to be in 0-100\% scale to be consistent with Table 2}
+\caption{\label{cloze_results}\resolved{\yc{we should change accuracy to be in 0-100\% scale to be consistent with Table 2}}
 Results on the test set of the  story cloze task. 
 The first block are published results, 
 the second block is our results.
@@ -742,13 +741,13 @@ in Equation~\ref{eq:ratio} achieves 67.7\%  (see
 \tabref{cloze_results}).\footnote{Note that taking the logarithm of
   the expression in Equation~\ref{eq:ratio} gives the pointwise mutual
 information between the story and the ending, under the language
-model. \nascomment{added this to replace the hedging that was here before}}
+model.\nascomment{added this to replace the hedging that was here before}\roy{We actually also use the RNNLM features in log space. Add that in the next paragraph.}}
 
 We combine our linear model with the RNNLM by adding three features to
 our classifier: the numerator, denominator, and ratio in
-Equation~\ref{eq:ratio}. % $p_\theta(ending|story),p_\theta(ending)$ and $\frac{p_\theta(ending|story)}{p_\theta(ending)}$.
+Equation~\ref{eq:ratio}, all in log space. % $p_\theta(ending|story),p_\theta(ending)$ and $\frac{p_\theta(ending|story)}{p_\theta(ending)}$.
 We retrain our linear  model with the new feature set, and gain 2.8\%
-absolute, reaching 75.2\% (15.3\% better than the published state-of-the-art\com{ and 4.1\% better than the best unpublished} result).\roy{As now the codalab shared task table contains our numbers, I removed the references to these works, and left only the footnote earlier which says that there are higher, unpublished numbers.}
+absolute, reaching 75.2\% (15.3\% better than the published state-of-the-art\com{ and 4.1\% better than the best unpublished} result).\resolved{\roy{As now the codalab shared task table contains our numbers, I removed the references to these works, and left only the footnote earlier which says that there are higher, unpublished numbers.}}
 These results indicate that context-ignorant style features can be used to obtain high
 accuracy on the task, adding value even when context and a large
 training dataset are used.  \resolved{\nascomment{check reframing here}}
@@ -960,9 +959,9 @@ task. \resolved{\nascomment{I like ending on this happier note, but let's not
   not the ML methods, which are probably not the heart of the difference}}
   \roy{Modified this to be more concrete. Did end up hinting that they should have done a better job at analyzing their data before publishing. Feel free to tone down.}
 }
-\roy{Commented out the lessons about the importance of running
+\resolved{\roy{Commented out the lessons about the importance of running
   baselines.} 
-\nascomment{that seems like the right choice}
+\nascomment{that seems like the right choice}}
 
 \isection{Related Work}{Related}
 
