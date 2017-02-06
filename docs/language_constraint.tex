@@ -23,7 +23,6 @@
 \usepackage{tikz}
 
 \definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
-
 % Define bar chart colors
 %
 \definecolor{bblue}{HTML}{4F81BD}
@@ -61,40 +60,30 @@
 \newcommand{\nascomment}[1]{{\color{blue}\textsc{[#1 --nas]}}}
 \newcommand{\clinic}[1]{{\color{magenta}\textsc{[#1 --CLINIC]}}}
 
-%\renewcommand{\ms}[1]{}
-%\renewcommand{\roy}[1]{}
-%\renewcommand{\nascomment}[1]{}
-%\renewcommand{\yc}[1]{}
+\renewcommand{\ms}[1]{}
+\renewcommand{\roy}[1]{}
+\renewcommand{\nascomment}[1]{}
+\renewcommand{\yc}[1]{}
 %\renewcommand{\royb}[1]{}
 %\renewcommand{\royc}[1]{}
 
 
 \title{The Effect of Different Writing Tasks on Linguistic Style:\\ A Case Study of the ROC Story Cloze Task}
 
-\author{First Author \\
-  Affiliation / Address line 1 \\
-  Affiliation / Address line 2 \\
-  Affiliation / Address line 3 \\
-  {\tt email@domain} \\\And
-  Second Author \\
-  Affiliation / Address line 1 \\
-  Affiliation / Address line 2 \\
-  Affiliation / Address line 3 \\
-  {\tt email@domain} \\
+\author{\hspace{2cm}Roy Schwartz$^{1,2}$ \And \hspace{2.5cm}Maarten Sap$^1$ \And \hspace{3cm}Ioannis Konstas$^1$ \And \\
+  $^1$Computer Science \& Engineering, University of Washington, WA 98195, USA \\
+  $^2$Allen Institute for Artificial Intelligence, WA 98103, USA \\
+    {\tt \{roysch,msap,ikonstas,lzilles,yejin,nasmith\}@cs.washington.edu}  \\
+    \And \hspace{-2cm}Leila Zilles$^1$ \And \hspace{-2.5cm}Yejin Choi$^1$ \And \hspace{-2.5cm}Noah A. Smith$^1$ \\
   }
-
+  
 \date{}
 
 \begin{document}
 \maketitle
 \begin{abstract}
-%People's writing style is affected by many factors, including topics, sentiment, and individual personality. 
-% People's writing style depends not just on the authors' personal
-% traits but also on the intent and the cognitive states of the
-% authors. 
 A writer's style depends not just on personal traits but also on her intent and mental state.
-%In this paper we show that engaging authors in different  writing tasks results in them adopting different writing styles.
-In this paper, we show how variants of the same writing task can lead to measurable differences in writing style. % of the same authors.  
+In this paper, we show how variants of the same writing task can lead to measurable differences in writing style.
 We present a case study based on 
 the  {\it story cloze task} \cite{Mostafazadeh:2016},
 where annotators were assigned similar writing tasks with different constraints: (1) writing an entire story, (2) adding a story ending for a given story context, and (3) adding an incoherent ending to a story.\resolved{\clinic{Many felt these 2 constraints looks like 3 constraints. clarify}}
@@ -120,7 +109,6 @@ In this paper, we study the extent to which writing style is affected by the nat
 different tasks likely engage different cognitive processes \cite{Campbell:2003,Banerjee:2014}.
 
 \begin{table}[!t]
-%\small
 \begin{tabular}{|p{1.6cm}|p{5.3cm}|} \hline
 {\bf Type} & {\bf Example} \\ \hline
 {\color{blue}{Original}} story & My mother loves clocks that chime.	Her house is full of them.	She sets them each a little different so she can hear them chime.	It sounds like a bell tower during a wedding in her house all day.	{\color{blue}{When I visit I stop them or I'd never be able to sleep at night.}} \\ \hline
@@ -344,7 +332,6 @@ be used to distinguish between the different types of story endings.
 
 \com{\begin{table*}[!t]
 \begin{center}
-%\small
 \begin{tabular}{|p{2.5cm}|p{4cm}|p{4cm}|p{4cm}|} \hline
  & {\bf Original}& {\bf Right} & {\bf Wrong}\\ \hline
 Sentence Length (\#words) & 11.02 & 8.75 & 8.47\\ \hline
@@ -358,9 +345,9 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
 
 
 \begin{figure*}[t!]
+\begin{small}
 \begin{subfigure}{.5\textwidth}\center
 \begin{tikzpicture}
-\small
     \begin{axis}[
         width  = 0.4*\textwidth,
         height = 4cm,
@@ -405,7 +392,6 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}\center
 \begin{tikzpicture}
-\small
     \begin{axis}[
         width  = 0.4*\textwidth,
         height = 4cm,
@@ -448,6 +434,7 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
 \end{tikzpicture}
 \caption{\label{roc_word_distribution}Words}
 \end{subfigure}
+\end{small}
 \caption{The distribution of five frequent POS tags
   (\ref{roc_pos_distribution}) and words (\ref{roc_word_distribution})
   across \emph{original} endings (story cloze training set), and
@@ -533,7 +520,7 @@ of each sentence.\footnote{Virtually all sentences end with a period
 For computing our features, we keep $n$-gram (character or word) features that occur at least five times in the training set.
 All feature values are normalized to $[0, 1]$.
 For the POS features, we tag all endings with the Spacy POS tagger.\footnote{\url{http://spacy.io/}}
-We use  Python's sklearn logistic regression implementation with $L_2$
+We use  Python's sklearn logistic regression implementation \cite{scikit-learn} with $L_2$
 regularization, performing grid search on the development set to
 tune a single hyperparameter---the regularization parameter.   \resolved{\nascomment{any other hyperparameters?  if
   not, say this is the only one.  else explain what they are.}}
@@ -624,7 +611,6 @@ endings. \nascomment{this is overkill.  I suggest replacing it with a
 
 \begin{table}[!t]
 \begin{center}
-%\small
 \begin{tabular}{|l|r|} \hline
 {\bf Experiment} & {\bf Accuracy} \\ \hline
 {\sl right vs. wrong} & 0.645 \\ \hline
@@ -663,7 +649,6 @@ These numbers further support the claim that the styles of {\it right} and {\it 
 
 \begin{table}[!t]
 \begin{center}
-%\small
 \begin{tabular}{|l|r|} \hline
 {\bf Model} & {\bf Acc.} \\ \hline
 $\dagger${DSSM} \cite{Mostafazadeh:2016} & 0.585 \\ 
@@ -769,7 +754,6 @@ These findings are in line with previous work that used character $n$-grams alon
 
 \begin{table}[!t]
 \begin{center}
-%\small
 \begin{tabular}{|c|c|} \hline
 {\bf Feature Type} & {\bf Accuracy}\\ \hline
 Word $n$-grams & 0.612 \\ \hline
@@ -822,7 +806,6 @@ The performance of both these baselines was roughly chance-level, which seems to
 
 \begin{table}[!t]
 \begin{center}
-%\small
 \begin{tabular}{|c|c||c|c|} \hline
 \textit{\textbf{Right}} & Freq. & \textit{\textbf{Wrong}}& Freq. \\ \hline
 `ed .' & {\color{white}{0}}6.5\%& \textsc{start} NNP & 54.8\%\\ \hline
@@ -866,7 +849,6 @@ This partially explains why distinguishing between {\it original} and {\it wrong
 \setlength\tabcolsep{.15cm}
 \begin{table}[!t]
 \begin{center}
-%\small
 \begin{tabular}{|p{1.25cm}|c||p{2.9cm}|c|} \hline
 \textit{\textbf{Original}} & Freq. & \textit{\textbf{New}}& Freq. \\ \hline
 {\it length} & {\color{white}{.}}100.0\% & `.' & 93.0\%\\ \hline
