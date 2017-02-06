@@ -472,7 +472,7 @@ In order to answer these questions, we use simple methods that have been shown t
 We describe our model below.
 
 We train a logistic regression classifier to categorize an ending,
-either as right vs.~wrong or as original vs.~new.
+either as {\it right} vs.~{\it wrong} or as {\it original} vs.~new ({\it right}).
 Each feature vector is computed using the words in one ending, without considering earlier parts of the story. 
 We use the following style features.
 
@@ -610,7 +610,7 @@ differences were apparent to the model, allowing over 75\% accuracy.
         \legend{Random Baseline, Our Model}
     \end{axis}
 \end{tikzpicture}
-\caption{\label{results} Results of  experiments 1 and 2 (left two charts). 
+\caption{\label{results}Results of  experiments 1 and 2 (left two charts). 
 Rightmost graph shows a control experiment which classifies {\it
   original} endings vs \textit{\textbf{wrong}}
 endings. \nascomment{this is overkill.  I suggest replacing it with a
@@ -632,7 +632,7 @@ endings. \nascomment{this is overkill.  I suggest replacing it with a
 {\sl original vs. wrong} & 0.756 \\ \hline
 \end{tabular}
 \end{center}
-\caption{\label{results} Results of  experiments 1 ({\it right
+\caption{\label{results}Results of  experiments 1 ({\it right
     vs.~wrong}) and 2 ({\it original vs.~right (new)}). 
 The bottom row shows an additional experiment which classifies {\it
   original vs.~wrong (new)} endings.
@@ -676,8 +676,7 @@ $\dagger${\bf Combined (ours + RNN)} & {\bf 0.752} \\ \hline\hline
 $\dagger$Human judgment & 1.000 \\ \hline
 \end{tabular}
 \end{center}
-\caption{\label{cloze_results}\resolved{\yc{we should change accuracy to be in 0-100\% scale to be consistent with Table 2}}
-Results on the test set of the  story cloze task. 
+\caption{\label{cloze_results}\resolved{\yc{we should change accuracy to be in 0-100\% scale to be consistent with Table 2}}Results on the test set of the  story cloze task. 
 The first block are published results, 
 the second block is our results.
 LexVec results are taken from \cite{Speer:2016}.
@@ -858,7 +857,7 @@ indication for an  {\it original} ending.
 This suggests that authors are more likely to show or evoke enthusiasm when writing their own text compared to ending an existing task.
 
 Finally, when comparing the two groups of salient features from both experiments, we find an interesting trend.
-Several features, such as ``\textsc{start} NNP'' and  ``NN .'', which indicate {\it wrong} sentences in Experiment 1, are used to predict {\it new} (i.e., {\it correct}) endings in Experiment 2. 
+Several features, such as ``\textsc{start} NNP'' and  ``NN .'', which indicate {\it wrong} sentences in Experiment 1, are used to predict new (i.e., {\it right}) endings in Experiment 2. 
 This indicates that, for instance, incoherent endings have a stronger tendency to begin with a proper noun compared to coherent endings, 
 which in turn are more likely to do so than original endings. 
 This partially explains why distinguishing between {\it original} and {\it wrong} endings is an easier task compared to the other pairs (\secref{Results}).
@@ -879,7 +878,8 @@ RB & {\color{white}{0}}44.7\%& NN . & 42.3\% \\ \hline
 \end{tabular}
 \end{center}
 \caption{\label{exp2_features}
-The top 5 most heavily weighted features for predicting {\it original} vs.~{\it new} ({\it right}) endings.
+The top 5 most heavily weighted features for predicting {\it original} vs.~new ({\it right}) endings.
+{\it length} is the sentence length feature (see \secref{Model}).
 }
 \end{table}
 
@@ -887,7 +887,7 @@ The top 5 most heavily weighted features for predicting {\it original} vs.~{\it 
 \isectionb{Discussion}
 
 \paragraph{The effect of writing tasks on mental states.}
-In this paper we have shown that giving a writer different writing tasks affects writing style in easily detected ways.
+In this paper we have shown that giving a writer different writing tasks affects her writing style in easily detected ways.
 Our results indicate that when authors are asked to write the last
 sentence of a five-sentence story, they will use different style to
 write a {\it right} ending compared to a {\it wrong} ending. We have
@@ -916,7 +916,7 @@ involves differences in mental state.
 Further investigation is required in order to further validate this hypothesis.
 
 
-\paragraph{The story cloze task.}
+\paragraph{Design of NLP tasks.}
 Our study also provides important insights for the future design of NLP tasks. 
 The story cloze task was very carefully designed. Many factors, such
 as topic diversity and temporal and causal relation diversity,  were controlled for \cite{Mostafazadeh:2016}. 
@@ -991,7 +991,7 @@ In this work, we have shown that an even more subtle writing task---writing {coh
 
 \paragraph{Machine reading.}
 The  story cloze task, which is the focus of this paper, is part of a wide set of machine reading/comprehension challenges published in the last few years.
-These include datasets like bAbI \cite{Weston:2015}, SNLI \cite{bowman2015large}, CNN/DailyMail \cite{hermann2015teaching}, SQuAD \cite{rajpurkar2016squad}, and LAMBADA \cite{Paperno:2016}. 
+These include datasets like bAbI \cite{Weston:2015}, SNLI \cite{bowman2015large}, CNN/DailyMail \cite{hermann2015teaching}, LAMBADA \cite{Paperno:2016} and SQuAD \cite{rajpurkar2016squad}. 
 While these works have presented resources for researchers, 
 it is often the case that these datasets suffer from methodological
 problems caused by applying noisy automatic tools to generate them \cite{Chen:2016}. 
