@@ -88,7 +88,7 @@ We present a case study based on
 the  {\it story cloze task} \cite{Mostafazadeh:2016},
 where annotators were assigned similar writing tasks with different constraints: (1) writing an entire story, (2) adding a story ending for a given story context, and (3) adding an incoherent ending to a story.\resolved{\clinic{Many felt these 2 constraints looks like 3 constraints. clarify}}
 %We show that a linear classifier, which applies only simple style features, such as sentence length and character n-grams, 
-We show that a simple linear classifier informed with stylistic features is able to successfully distinguish between the three cases, without even looking at the story context.
+We show that a simple linear classifier informed with stylistic features is able to successfully distinguish among the three cases, without even looking at the story context.
 In addition, our style-based classifier establishes a new state-of-the-art result on the story cloze challenge, substantially higher than previous results based on deep learning models. 
 %Furthermore, combining our model with an LSTM-based language model, which does look at the context, leads to additional gains.
 Our results demonstrate that different task framings can dramatically affect the way people write.\resolved{\clinic{Similarly to previous comment: which results does this comment address?}}
@@ -102,7 +102,7 @@ tasks. \nascomment{drop this sentence if we only have a paragraph
 
 \section{Introduction}
 Writing style is expressed through a range of linguistic elements such as words, sentence structure, and rhetorical devices.
-It is influenced by personal factors such as age \cite{Schler:2006} and gender \cite{Argamon:2003}, 
+It is influenced by personal factors such as age and gender \cite{Schler:2006}, 
 by personality traits such as agreeableness and openness  \cite{Ireland:2014b},
 as well as by mental states\resolved{\clinic{Avoid using ``cognitive"?}} such as sentiment \cite{Davidov:2010}, sarcasm \cite{Tsur:2010}, and deception \cite{Feng:2012}.  
 In this paper, we study the extent to which writing style is affected by the nature of the writing task the writer was asked to perform, since
@@ -175,7 +175,7 @@ writing only the final sentence for a given story context written by someone els
 
 While the story cloze task was originally designed to be a story understanding challenge, 
 its annotation process introduced three variants of the same writing task: writing an {\it original}, {\it right}, or {\it wrong} ending to a short story.
-In this paper, we show that a linear classifier informed by stylistic features can distinguish between the different endings to a large degree, even without looking at the story context (64.5--75.6\% binary classification results).
+In this paper, we show that a linear classifier informed by stylistic features can distinguish among the different endings to a large degree, even without looking at the story context (64.5--75.6\% binary classification results).
 
 Our results allow us to make a few key observations.
 First, people adopt a different writing style when asked to write coherent vs.~incoherent story endings.
@@ -184,10 +184,10 @@ writing only the final sentence for a given story context written by someone els
 
 
 In order to further validate our method, we also directly tackle the
-story cloze task \nascomment{cite the challenge?  a reader may
+story cloze task\nascomment{cite the challenge?  a reader may
   not realize that there is a shared task on this}\roy{Maybe ``challenge'' was not the right term here. We basically mean the story cloze task. The shared task was the original task w/o any modification, so I am not referring to it specifically here}. 
  Adapting our classifier to the task, we obtain 72.4\% accuracy, a
- 12.5\% increase over the previously reported state of the art  \cite{Salle:2016}.
+ 12.5\% increase over the previously reported state-of-the-art  \cite{Salle:2016}.
 We also show that the style differences captured by our model can be combined with neural language models to make a better use of the story context. 
 Our final model that combines context with stylistic features achieves
 75.2\%---an additional 2.8\% gain, 15.3\% better than the best
@@ -237,8 +237,7 @@ Workers were asked to write a pair of new story endings for each story context: 
 Both endings are required to complete the story using one of the characters in the story context. 
 Additionally,  the ending is required to be ``realistic and sensible'' \cite{Mostafazadeh:2016} when read out of context.
 
-The resulting stories, both {\it right} and {\it wrong}, were then individually rated for coherence and meaningfulness by additional AMT workers. \resolved{\nascomment{by
--  additional AMT workers? or someone else?}} 
+The resulting stories, both {\it right} and {\it wrong}, were then individually rated for coherence and meaningfulness by additional AMT workers.
 Only stories rated as simultaneously coherent with a {\it right} ending and neutral with a {\it wrong} ending were selected for the task. 
 It is worth noting that workers rated the stories as a whole, not only the endings.
 
@@ -303,7 +302,7 @@ impose different writing styles on authors. \nascomment{this bit feels
   a little heavy and reptititive.}}
 
 \isection{Surface Analysis of the Story Cloze Task}{Surface}
-We computed several characteristics of the three types of endings: {\it original} endings (from the ROC story corpus training set), {\it right} endings and {\it wrong} endings (both from the story cloze task development set).
+We begin by computing several characteristics of the three types of endings: {\it original} endings (from the ROC story corpus training set), {\it right} endings and {\it wrong} endings (both from the story cloze task development set).
 Our analysis  reveals several style differences between different groups. 
 First, {\it original} endings are on average longer (11 words per
 sentence) than {\it right} endings (8.75 words), which are in turn
@@ -328,7 +327,7 @@ Furthermore, {\it original} and {\it right} endings seem to prefer enthusiastic 
 %\yc{Again, any cogsci literature on this?} \nascomment{feels
 %  Pennebaker-ish, that might be a good place to look.}
 Next we show that these style differences are not anecdotal, but can
-be used to distinguish between the different types of story endings.
+be used to distinguish among the different types of story endings.
 
 \com{\begin{table*}[!t]
 \begin{center}
@@ -633,7 +632,7 @@ endings are given and the question is which is \emph{right} and which is
 \emph{wrong}.
 We apply the classifier from Experiment 1 as follows:
 if it assigns different labels to the two given endings, we keep
-them.  If not, the label whose posterior probability is lower is reversed.
+them.  Otherwise, the label whose posterior probability is lower is reversed.
 
 \tabref{cloze_results} shows our results on the story cloze test
 set. Our classifier obtains 72.4\% accuracy, 12.5\% (absolute) higher than the
@@ -662,8 +661,8 @@ $\dagger$Human judgment & 1.000 \\ \hline
 \end{tabular}
 \end{center}
 \caption{\label{cloze_results}\resolved{\yc{we should change accuracy to be in 0-100\% scale to be consistent with Table 2}}Results on the test set of the  story cloze task. 
-The first block are published results, 
-the second block is our results.
+The upper block shows published results, 
+the middle block are our results.
 LexVec results are taken from \cite{Speer:2016}.
 %RNN is our implementation. 
 Human judgement scores are taken from \cite{Mostafazadeh:2016}.
@@ -834,7 +833,7 @@ along with their frequency in our story cloze training set.
 %This came at a minor cost of less than 2\% in performance compared to our L2 results (0.697 compared to 0.724).  
 \tabref{exp2_features} shows the same analysis for Experiment 2.
 As noted in \secref{ROC_Story}, {\it original} endings tend to be much longer, which is indeed the most salient feature for them.
-This is in line with similar findings in the deception detection literature \cite{qin2004exploratory}.
+%This is in line with similar findings in the deception detection literature \cite{qin2004exploratory}.
 An interesting observation is that exclamation marks are a strong
 indication for an  {\it original} ending. 
 This suggests that authors are more likely to show or evoke enthusiasm when writing their own text compared to ending an existing task.
@@ -954,7 +953,7 @@ Previous work has shown that different authors can be grouped by their
 writing style, according to factors such as age
 \cite{Pennebaker:2003,Argamon:2003,Schler:2006,Rosenthal:2011,nguyen:2011:latech},
 gender \cite{Argamon:2003,Schler:2006,bamman2014gender}, and native language
-\cite{Koppel:2005,Tsur:2007,Bergsma:2012}.   \resolved{\nascomment{cite generously here, it costs us nothing}}
+\cite{Koppel:2005,Tsur:2007,Bergsma:2012}.
 At the extreme case, each individual author adopts a unique writing
 style \cite{mosteller1963inference,pennebaker1999linguistic,Schwartz:2013}. 
 \com{Interestingly, previous work has shown that individual style can be affected from coarse-grained factors such as those just described, but also from other less apparent factors such as mental state, or even living in a high-elevation location \cite{schwartz2013personality}.
@@ -967,7 +966,7 @@ text \cite{Davidov:2010} or when writing sarcastic text \cite{Tsur:2010}. In thi
 The line of work that most resembles our work is the detection of deceptive text. 
 Several researchers have used stylometric features to  predict deception 
 \cite{Newman:2003,hancock2007lying,ott2011finding,Feng:2012}.
-Some works even showed that gender affects a person's  writing style when lying \cite{Perez:2014a,Perez:2014b}.
+Some works even showed that gender affects a person's  writing style when lying \cite{Perez:2014b,Perez:2014a}.
 In this work, we have shown that an even more subtle writing task---writing {coherent} and {incoherent} story endings---imposes different styles on the author.
 
 

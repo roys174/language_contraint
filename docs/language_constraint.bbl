@@ -242,16 +242,16 @@ James~W. Pennebaker and Lori~D. Stone. 2003.
 \newblock Words of wisdom: language use over the life span.
 \newblock {\em Journal of Personality and Social Psychology\/} 85(2):291--301.
 
-\bibitem[{P\'{e}rez-Rosas and Mihalcea(2014)}]{Perez:2014b}
-Ver\'{o}nica P\'{e}rez-Rosas and Rada Mihalcea. 2014.
+\bibitem[{P{\'e}rez-Rosas and Mihalcea(2014{\natexlab{a}})}]{Perez:2014b}
+Ver{\'o}nica P{\'e}rez-Rosas and Rada Mihalcea. 2014{\natexlab{a}}.
 \newblock \href{http://www.aclweb.org/anthology/P14-2072}{Cross-cultural
   deception detection}.
 \newblock In {\em Proc. of ACL\/}.
 \newblock
   \href{http://www.aclweb.org/anthology/P14-2072}{http://www.aclweb.org/anthology/P14-2072}.
 
-\bibitem[{P{\'e}rez-Rosas and Mihalcea(2014)}]{Perez:2014a}
-Ver{\'o}nica P{\'e}rez-Rosas and Rada Mihalcea. 2014.
+\bibitem[{P{\'e}rez-Rosas and Mihalcea(2014{\natexlab{b}})}]{Perez:2014a}
+Ver{\'o}nica P{\'e}rez-Rosas and Rada Mihalcea. 2014{\natexlab{b}}.
 \newblock Gender differences in deceivers writing style.
 \newblock {\em Lecture Notes in Computer Science\/} 8856:163--174.
 
