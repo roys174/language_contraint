@@ -1,9 +1,10 @@
 \documentclass[11pt]{article}
-\usepackage{eacl2017}
+\usepackage{authblk}
 \usepackage{times}
 \usepackage{url}
 \usepackage{latexsym,xcolor}
 \usepackage{multirow}
+\usepackage{eacl2017}
 
 \eaclfinalcopy % Uncomment this line for the final submission
 %\def\eaclpaperid{***} %  Enter the acl Paper ID here
@@ -26,12 +27,13 @@
 \newcommand{\nascomment}[1]{\textcolor{blue}{[\textsc{#1 --nas}]}}
 \newcommand{\tabref}[1]{Table~\ref{#1}}
 \newcommand{\com}[1]{}
+\newcommand{\resolved}[1]{}
 \definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
 
 
 \title{Story Cloze Task: UW NLP System}
 
-
+\com{
 \author{\hspace{2cm}Roy Schwartz$^{1,2}$ \And \hspace{2.5cm}Maarten Sap$^1$ \And \hspace{3cm}Ioannis Konstas$^1$ \And \\
   $^1$Computer Science \& Engineering, University of Washington,
   Seattle, WA 98195, USA \\
@@ -39,7 +41,17 @@
     {\tt \{roysch,msap,ikonstas,lzilles,yejin,nasmith\}@cs.washington.edu}  \\
     \And \hspace{-2cm}Leila Zilles$^1$ \And \hspace{-2.5cm}Yejin Choi$^1$ \And \hspace{-2.5cm}Noah A.~Smith$^1$ \\
   }
+  }
   
+\author[1,2]{\bf Roy Schwartz}
+\author[1]{\bf Maarten Sap}
+\author[1]{\bf Ioannis Konstas}
+\author[1]{\bf Leila Zilles}
+\author[1]{\bf Yejin Choi}
+\author[1]{\bf Noah A.~Smith}
+\affil[1]{Computer Science \& Engineering, University of Washington, Seattle, WA 98195, USA}
+\affil[2]{Allen Institute for Artificial Intelligence, Seattle, WA 98103, USA}
+\affil[  ]{\tt \{roysch,msap,ikonstas,lzilles,yejin,nasmith\}@cs.washington.edu}
 \date{}
 
 \begin{document}
@@ -177,7 +189,7 @@ We adopt features that have been shown useful in the past in tasks such as detec
 \cite{Koppel:2005,Tsur:2007,Bergsma:2012}.
 
 We add the following classification features to capture style differences between the two endings. 
-These features are computed on the story endings alone ({\it right} or {\it wrong}), and do not consider, either at train nor at test time, the first four (shared) sentences of each story.
+These features are computed on the story endings alone ({\it right} or {\it wrong}), and do not consider, either at train or at test time, the first four (shared) sentences of each story.
 \begin{itemize}
 \item\textit{\textbf{Length}.} The number of words in the sentence.
 \item\textit{\textbf{Word $n$-grams.}} We use sequences of 1--5
@@ -209,8 +221,8 @@ We add a \textsc{start} symbol at the beginning
 of each sentence.\footnote{Virtually all sentences end with a period
   or an exclamation mark, so we do not add a \textsc{stop} symbol.} 
  We keep $n$-gram (character or word) features that occur at least five times in the training set.
-All stylistic feature values are normalized to [0, 1] \nascomment{the
-  range [0, 1] or the two values \{0, 1\}?}
+All stylistic feature values are normalized to the range [0, 1] \resolved{\nascomment{the
+  range [0, 1] or the two values \{0, 1\}?}}
 For the part-of-speech features, we tag all endings with the Spacy POS tagger.\footnote{\url{spacy.io/}}
 The total number of features used by our system is 7,651.
 
@@ -264,7 +276,7 @@ for feedback.  \nascomment{anyone else} This research was supported in
 part by the Allen Institute for Artificial Intelligence and in part by
 DARPA under the Communicating with Computers program.
 
-\bibliography{acl2017}
+\bibliography{eacl2017}
 \bibliographystyle{eacl2017}
 
 
