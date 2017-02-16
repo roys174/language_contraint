@@ -197,7 +197,10 @@ Only during training, we apply a dropout rate of 60\% while running the LSTM ove
 Using Adam optimizer \cite{kingma2014adam} and a learning rate of
 $\eta=.001$, we train to minimize cross-entropy.
 
-For computing the style features, we add a \textsc{start} symbol at the beginning
+For computing the style features, the story cloze task doesn't have a training corpus for the {\it right} and {\it wrong} endings.
+Therefore, we use the development set as our training set, holding out 10\% for development
+(3,366 training endings, 374 for development). We keep the story cloze test set as is (3,742 endings).
+We add a \textsc{start} symbol at the beginning
 of each sentence.\footnote{Virtually all sentences end with a period
   or an exclamation mark, so we do not add a \textsc{stop} symbol.} 
  We keep n-gram (character or word) features that occur at least five times in the training set.
