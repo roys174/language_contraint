@@ -1,13 +1,10 @@
-\documentclass[11pt]{article}
+\documentclass[a4paper,11pt]{article}
 \usepackage{authblk}
 \usepackage{times}
 \usepackage{url}
 \usepackage{latexsym,xcolor}
 \usepackage{multirow}
-\usepackage{eacl2017}
 
-\eaclfinalcopy % Uncomment this line for the final submission
-%\def\eaclpaperid{***} %  Enter the acl Paper ID here
 
 %\setlength\titlebox{5cm}
 % You can expand the titlebox if you need extra space
@@ -16,6 +13,7 @@
 % in the camera-ready version and ask you to change it back.
 
 \newcommand\BibTeX{B{\sc ib}\TeX}
+\renewcommand{\Authands}{ and }
 % Editing macros
 \newcommand{\my}[1]{\footnote{\color{red}{\textbf{#1}}}}
 
@@ -29,24 +27,20 @@
 \newcommand{\com}[1]{}
 \newcommand{\resolved}[1]{}
 \definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+\newcommand{\isubsectionb}[1]{\subsection{#1}\label{ssec:#1}}
+\newcommand{\secref}[1]{Section~\ref{ssec:#1}}
+
+\usepackage{eacl2017}
+\eaclfinalcopy % Uncomment this line for the final submission
+%\def\eaclpaperid{***} %  Enter the acl Paper ID here
 
 
 \title{Story Cloze Task: UW NLP System}
 
-\com{
-\author{\hspace{2cm}Roy Schwartz$^{1,2}$ \And \hspace{2.5cm}Maarten Sap$^1$ \And \hspace{3cm}Ioannis Konstas$^1$ \And \\
-  $^1$Computer Science \& Engineering, University of Washington,
-  Seattle, WA 98195, USA \\
-  $^2$Allen Institute for Artificial Intelligence, Seattle, WA 98103, USA \\
-    {\tt \{roysch,msap,ikonstas,lzilles,yejin,nasmith\}@cs.washington.edu}  \\
-    \And \hspace{-2cm}Leila Zilles$^1$ \And \hspace{-2.5cm}Yejin Choi$^1$ \And \hspace{-2.5cm}Noah A.~Smith$^1$ \\
-  }
-  }
-  
 \author[1,2]{\bf Roy Schwartz}
 \author[1]{\bf Maarten Sap}
 \author[1]{\bf Ioannis Konstas}
-\author[1]{\bf Leila Zilles}
+\author[1]{\\ \bf Leila Zilles}
 \author[1]{\bf Yejin Choi}
 \author[1]{\bf Noah A.~Smith}
 \affil[1]{Computer Science \& Engineering, University of Washington, Seattle, WA 98195, USA}
@@ -56,7 +50,7 @@
 
 \begin{document}
 \maketitle
-\begin{abstract} % This is my real quick try at this lol
+\begin{abstract} 
 This paper describes University of Washington NLP's submission for the Linking Models of Lexical, Sentential and Discourse-level Semantics (LSDSem 2017) shared task---the \textit{Story Cloze Task}.
 Our system is a linear classifier with a variety of features, including both the scores of a neural language model and style features.
 We report  $75.2\%$ accuracy on the task. 
@@ -64,18 +58,14 @@ A further discussion of our results can be found in \newcite{Schwartz:2017}.
 \end{abstract}
 
 \section{Introduction}
-%\ms{note: I don't know if we're emphasizing ``story understanding'' too much, given that we're really not doing that?}
 As an effort to advance commonsense  understanding, \newcite{Mostafazadeh:2016} developed the \textit{story cloze task}, which is the focus of the LSDSem 2017 shared task. 
 In this task, systems are given two short, self-contained stories, which differ only in their last sentence: 
 one has a {\it right} (coherent) ending, and the other has a {\it wrong} (incoherent) ending.
 The task is to tell which is the {\it right} story.
 In addition to the task, the authors also introduced the {\it ROC story corpus}---a training corpus of five-sentence (coherent) stories. 
-%The goal of the task is to determine which of the endings is the correct one.
-%The goal of this dataset is to serve as a commonsense challenge for NLP and AI research. 
 \tabref{ROC-example} shows an example of a {\it coherent} story and an {\it incoherent} story from the story cloze task.
 
 
-% Last paragraph should be a quick description of our system.
 In this paper, we describe University of Washington NLP's submission for the shared task.
 Our system explores several types of features for the task.
 First, we train a neural language model \cite{mikolov2010recurrent} on the ROC story corpus. 
@@ -93,7 +83,7 @@ This is further discussed in \newcite{Schwartz:2017}.
 
 \begin{table}[!t]
 %\small
-\begin{tabular}{|p{3.5cm}|p{3.5cm}|} \hline
+\begin{tabular}{|p{3.5cm}|p{3.25cm}|} \hline
 {\bf Story Prefix} & {\bf Ending} \\ \hline
 \multirow{2}{*}{\parbox[b][7.5em][c]{3.5cm}{Kathy went shopping. She found a pair of great shoes. The shoes were \$300. She bought the shoes.}}	&{\color{blue}{She felt buyer's remorse after the purchase.}} \\ \cline{2-2}
 & {\color{red}{Kathy hated buying shoes.}} \\ \hline
@@ -102,49 +92,13 @@ This is further discussed in \newcite{Schwartz:2017}.
 Examples of stories from the story cloze task \cite{Mostafazadeh:2016}. 
 The left column shows that first four sentences of a story. 
 The right column shows two contrastive endings for the story:
- %of the same story: 
- a {\color{blue}{coherent}} ending (upper row) and a {\color{red}{incoherent}} one (bottom row).
+  a {\color{blue}{coherent}} ending (upper row) and a {\color{red}{incoherent}} one (bottom row).
 }
 %\end{center}
 \end{table}
-\com{
-\section{Task summary}
-% this section helps clarify some of the nomenclature?
 
-The \textit{Story Cloze Task} \cite{Mostafazadeh:2016}, selected as the 2017 LSD Sem Shared Task, aims to test commonsense story understanding. Towards that goal, two waves of short story collection were done.
-
-%\ms{Below is mostly copy-pasted from the paper, with a little of editing to remove our langConstraint angle.}
-\paragraph{ROC Stories.}
-The ROC Story Corpus consists of 49,255 five-sentence commonsense stories, collected on Amazon Mechanical Turk (AMT).\footnote{Recently, an additional 53K stories were released, which results in roughly 100K stories.}
-Workers were instructed to write a coherent self-contained story, which has a clear beginning and end. 
-To collect a broad spectrum of commonsense knowledge, there was no imposed subject for the stories,
-which resulted in a wide range of different topics.
-\paragraph{Story Cloze Task.}
-After compiling the story corpus, the {\it Story Cloze Task}---a task based on the corpus---was introduced.
-A subset of the stories was selected, and only the first four sentences of each story were presented to AMT workers.
-Workers were asked to write a pair of new story endings for each story context: a {\it right} one and a {\it wrong} one.
-Both endings are required to complete the story using one of the characters in the story context. 
-Additionally, the ending is required to be ``realistic and sensible'' \cite{Mostafazadeh:2016} when read out of context.
-
-The resulting stories, both {\it right} and {\it wrong}, were then individually rated for coherence and meaningfulness. 
-Only stories rated as simultaneously coherent with a {\it right} ending and neutral with a {\it wrong} ending were selected for the task. 
-
-Based on these new stories, the task becomes: given a pair of stories that differ only in their endings, how well can the system determine which ending is {\it right} and which is {\it wrong}?
-
-
-
-\subsection{Data}
-For the Shared task, Mostafazadeh, et al. ~(2016)\nocite{Mostafazadeh:2016} split the Story Cloze stories into a development and a test set, each containing $1,871$ stories.
-While the ROC Stories provide data to do unsupervised learning of how stories should end, our goal is to be able to determine whether an ending is the \textit{right} one or the \textit{wrong} one. To that extent, we use the development set to train a classifier using features of the individual endings. We split that development set (90/10) into training and development.
-The final size of our training/development/test sizes are 3,366/374/3,742 endings, respectively. 
-
-It is worth nothing that our classification task is a slightly different take on the {\it Story cloze task}. 
-Instead of classifying pairs of endings, one which is {\it right} and another which is {\it wrong}, we take the set of  {\it right} endings as positive samples and the set of {\it wrong} endings as our negative examples. 
-}
 
 \section{System Description}
-%% Explain that we have two sets of features, style and language.
-%% Maybe mention here that we're doing training on validation set ?
 We design a system that predicts, given a pair of story endings, which is the  \textit{right} one and which is the \textit{wrong} one.
 Our system applies a linear classifier guided by several types of features to solve the task.
 We describe the system in detail below.
@@ -157,14 +111,14 @@ If our classifier assigns different labels to each candidate, we keep them.
 If not, the label whose posterior probability is lower is reversed.
 We describe the classification features below.
 
-\subsection{Features}
+\isubsectionb{Features}
 We use two types of features, designed to capture different aspects of the problem. 
 We use \textit{neural language model} features to leverage corpus level word distributions, specifically longer term sequence probabilities.
 We use \textit{stylistic} features to capture differences in writing between {\it coherent} story endings and {\it incoherent} ones. 
 
 
 \paragraph{Language model features.}
-%% take the RLM paragraph from the paper
+
 We experiment with state-of-the-art text comprehension models,
 specifically an LSTM \cite{hochreiter1997long} recurrent neural
 network language model (RNNLM; \nocite{mikolov2010recurrent}Mikolov et
@@ -181,11 +135,11 @@ In addition, we also apply a third feature:
 
 The intuition is that a \emph{correct} ending should be unsurprising (to the model) given the four preceding sentences of the story (the numerator), controlling for the inherent surprise of the words in that ending (the denominator).\footnote{Note that taking the logarithm of
 the expression in Equation~\ref{eq:ratio} gives the pointwise mutual information between the story and the ending, under the language model.}
-%We use these three probabilities as classification features.
+
 
 \paragraph{Stylistic features.}
 We hypothesize that {\it right} and {\it wrong} endings might be distinguishable using style features.
-We adopt features that have been shown useful in the past in tasks such as detection of age \cite{Schler:2006,Rosenthal:2011,nguyen:2011:latech}, gender  \cite{Argamon:2003,Schler:2006,bamman2014gender}, and native language
+We adopt style features that have been shown useful in the past in tasks such as detection of age \cite{Schler:2006,Rosenthal:2011,nguyen:2011:latech}, gender  \cite{Argamon:2003,Schler:2006,bamman2014gender}, and native language
 \cite{Koppel:2005,Tsur:2007,Bergsma:2012}.
 
 We add the following classification features to capture style differences between the two endings. 
@@ -202,27 +156,28 @@ We use character 4-grams.
 
 
 \subsection{Experimental Setup}
+The story cloze task doesn't have a training corpus for the {\it right} and {\it wrong} endings.
+Therefore, we use the development set as our training set, holding out 10\% for development
+(3,366 training endings, 374 for development). We keep the story cloze test set as is (3,742 endings).
+
 We use  Python's sklearn logistic regression implementation with $L_2$
 regularization, performing grid search on the development set to
 tune a single hyperparameter---the regularization parameter.  
 
-We start by tokenizing the text using the nltk tokenizer.\footnote{\url{www.nltk.org/api/nltk.tokenize.html}} 
+For computing the RNN features, we start by tokenizing the text using the nltk tokenizer.\footnote{\url{www.nltk.org/api/nltk.tokenize.html}} 
 We then use TensorFlow\footnote{\url{www.tensorflow.org}} to train the RNNLM using a single-layer LSTM of hidden dimension 512.
 We use the ROC Stories for training, setting aside 10\% for validation of the language model.\footnote{We train on both the Spring 2016 and the Winter 2017 datasets, a total of roughly 100K stories.}
 We replace all words occurring less than 3 times by a special out-of-vocabulary character, yielding a vocabulary size of 21,582.
 Only during training, we apply a dropout rate of 60\% while running the LSTM over all 5 sentences of the stories. 
 Using Adam optimizer \cite{kingma2014adam} and a learning rate of
 $\eta=.001$, we train to minimize cross-entropy.
+The resulting RNN features (see \secref{Features}) are taken in log space.
 
-For computing the style features, the story cloze task doesn't have a training corpus for the {\it right} and {\it wrong} endings.
-Therefore, we use the development set as our training set, holding out 10\% for development
-(3,366 training endings, 374 for development). We keep the story cloze test set as is (3,742 endings).
-We add a \textsc{start} symbol at the beginning
+For  the style features, we add a \textsc{start} symbol at the beginning
 of each sentence.\footnote{Virtually all sentences end with a period
   or an exclamation mark, so we do not add a \textsc{stop} symbol.} 
  We keep $n$-gram (character or word) features that occur at least five times in the training set.
-All stylistic feature values are normalized to the range [0, 1] \resolved{\nascomment{the
-  range [0, 1] or the two values \{0, 1\}?}}
+All stylistic feature values are normalized to the range [0, 1].
 For the part-of-speech features, we tag all endings with the Spacy POS tagger.\footnote{\url{spacy.io/}}
 The total number of features used by our system is 7,651.
 
@@ -236,8 +191,6 @@ The total number of features used by our system is 7,651.
 {\bf Model} & {\bf Acc.} \\ \hline
 {DSSM} \cite{Mostafazadeh:2016} & 0.585 \\ 
 {LexVec} \cite{Salle:2016} & 0.599 \\ \hline\hline
-%{Niko (shared task)}	& 0.700\\ 
-%{tbmihaylov (shared task)} & 0.711\\ \hline\hline
 {RNNLM features}		& 0.677 \\ 
 {Stylistic features} & {0.724} \\ 
 {\bf Combined (Style + RNNLM)} & {\bf 0.752} \\ \hline\hline
@@ -259,7 +212,7 @@ The table also shows an analysis of the different features types used by our sys
 While our RNNLM features alone reach 67.7\%, the style features perform better---72.4\%. 
 This suggests that while this task is about story understanding, 
 there is some information contained in stylistic features, which are slightly less sensitive to content.
-As expected, the RNNLM features complement the stylistic ones, boosting performance by 7.5\% (over the RNNLM) and 2.8\% (over the style features). 
+As expected, the RNNLM features complement the stylistic ones, boosting performance by 7.5\% (over the RNNLM features) and 2.8\% (over the style features). 
 
 In an attempt to provide explanation to the strong performance of the stylistic feature, 
 we hypothesize that the different writing tasks---writing a {\it right} and a {\it wrong} ending---impose a different style on the authors, which is expressed in the different style adopted in each of the cases. 
@@ -272,9 +225,8 @@ Our system leveraged both neural language model features and  stylistic features
 
 \section*{Acknowledgments}
 The authors thank the shared task organizers and anonymous reviewers
-for feedback.\resolved{\nascomment{ anyone else}} This research was supported in
-part by the Allen Institute for Artificial Intelligence and in part by
-DARPA under the Communicating with Computers program.
+for feedback. This research was supported in
+part by DARPA under the Communicating with Computers program.
 
 \bibliography{eacl2017}
 \bibliographystyle{eacl2017}
