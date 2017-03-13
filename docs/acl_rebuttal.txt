@@ -1,0 +1,24 @@
+We thank all reviewers for their insightful comments.
+
+R1 - 
+a. this paper was originally submitted to a different track, but has probably found its way to discourse and pragmatics. Although the stylometry (which we build on here) and discourse literature vary substantially, running discourse analysis seems very relevant here. We will definitely consider it for future work. 
+
+b. We believe the target readers for this paper should be anyone interested in stylometry, in cognition and NLP, as well as also anyone designing novel NLP tasks, or working on existing machine reading tasks.
+
+R2 - Thank you for your comments. See general discussion.
+
+R3 - the numbers below relate to the question numbers in R3's review.
+
+(1) We did not sub-sample the ROC story corpus, but took the dataset as is, as well as the terminology from the original paper. Specifically, (a) From Mostafazadeh et al. (2016): 282 authors generated the story cloze task, with an 47.8 endings per author. (b) the "coherent" and "neutral" selection criteria referred to by R3 were done in the original paper, and (c) yes, we assume that the "original" and "right" endings were written by different authors (this was hinted at in the Mostafazadeh et al. paper).
+
+(2) Figure 1 is meant to give the reader a flavor of the characteristics of the data, so we hand picked a few of the interesting words and POS tags which are frequent, but not necessarily the most frequent ones. See additional discussion on style in the general response.
+
+(3) We believe the issues we point out to in this paper with respect to the ROC story corpus are general and should be taken into consideration when designing new NLP tasks or datasets. If accepted, we will clarify section 8.
+
+(4) Lines 209-217 discuss previous efforts that applied state-of-the-art models on the task and got very low results. This could hint that qualitatively better methods are required to successfully solve the task (lines 217-219). One of the key findings of this paper is that our simple model yields much better results on the task, which sheds important light on this dataset.
+
+GENERAL RESPONSE TO COMMENTS
+
+-- We realize the term "style" might be a bit vague. We generally treat style as choice of words that do not necessarily reflect content. These include the choice of function words, punctuation and language patterns, all well-known style markers in areas such as authorship, age and gender detection.
+
+-- The features reported in the paper are the only ones we experimented with. The choice of character 4-grams comes from their prominence in fields such as authorship attribution. We did try experimenting with character 5-grams as well, but didn't see any gain on our development set.
