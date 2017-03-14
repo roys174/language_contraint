@@ -8,14 +8,14 @@ R2 - Thanks for the feedback; please see general discussion.
 
 R3 - We did not sub-sample the ROC story corpus, but took the dataset as is, as well as the terminology from the original paper . Specifically, (a) From Mostafazadeh et al. (2016): 282 authors generated the story cloze task, with an 47.8 endings per author.  (b) The "coherent" and "neutral" selection criteria referred to by R3 were done in the original paper.  (c) Yes, we assume that the "original" and "right" endings were written by different authors (this was hinted at in the Mostafazadeh et al. paper).
 
-(2) Figure 1 is meant to give the reader a flavor of the characteristics of the data, so we handpicked a few of the interesting words and POS tags which are frequent, but not necessarily the most frequent ones.  See additional discussion on style in the general response.
+R3 - Figure 1 is meant to give the reader a flavor of the characteristics of the data, so we handpicked a few of the interesting words and POS tags which are frequent, but not necessarily the most frequent ones.  See additional discussion on style in the general response.
 
-(3) We believe the issues we point out to in this paper with respect to the ROC story corpus are general and should be taken into consideration when designing new NLP tasks or datasets.  If accepted, we will clarify section 8.
+R3 - We believe the issues we point out to in this paper with respect to the ROC story corpus are general and should be taken into consideration when designing new NLP tasks or datasets.  If accepted, we will clarify section 8.
 
-(4) Lines 209-217 discuss previous efforts that applied state-of-the-art models on the task and got very low results. This could hint that qualitatively better methods are required to successfully solve the task (lines 217-219). One of the key findings of this paper is that our simple model yields much better results on the task, which sheds important light on this dataset.
+R3 - Lines 209-217 discuss previous efforts that applied state-of-the-art models on the task and got very low results. This could hint that qualitatively better methods are required to successfully solve the task (lines 217-219). One of the key findings of this paper is that our simple model yields much better results on the task, which sheds important light on this dataset.
 
 GENERAL RESPONSE TO COMMENTS
 
-- We agree that the term "style" is vague.  Following work in authorship and age/gender detection, we generally treat style as word choices that do not necessarily reflect content, though this can be hard to disentangle. Well-known choices conventionally include the choice of function words, punctuation, and language patterns.
+- We agree that the term "style" is vague.  Following work in authorship and age/gender detection, we generally treat style as word choices that do not necessarily reflect content, though this can admittedly be hard to disentangle. Well-known choices conventionally include the choice of function words, punctuation, and language patterns.
 
--- The features reported in the paper are the only ones we experimented with, with the exception of character 5-grams, which didn't show a gain on development data and were discarded. The choice of character 4-grams comes from their use in authorship attribution and similar problems.
+- The features reported in the paper are the only ones we experimented with, with the exception of character 5-grams, which didn't show a gain on development data and were discarded. The choice of character 4-grams comes from their use in authorship attribution and similar problems.
