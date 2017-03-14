@@ -6,7 +6,7 @@ R1 - The paper targets designers of NLP tasks as well as those working on machin
 
 R2 - Thanks for the feedback; please see general discussion.
 
-R3 - We did not sub-sample the ROC story corpus, but took the dataset as is, as well as the terminology from the original paper . Specifically, (a) From Mostafazadeh et al. (2016): 282 authors generated the story cloze task, with an 47.8 endings per author.  (b) The "coherent" and "neutral" selection criteria referred to by R3 were done in the original paper.  (c) Yes, we assume that the "original" and "right" endings were written by different authors (this was hinted at in the Mostafazadeh et al. paper).
+R3 - We did not sub-sample the ROC story corpus, but took the dataset as is, as well as the terminology from the original paper. Specifically, (a) From Mostafazadeh et al. (2016): 282 authors generated the story cloze task, with 47.8 endings per author on average.  (b) The "coherent" and "neutral" selection criteria referred to by R3 were done in the original paper.  (c) Yes, we assume that the "original" and "right" endings were written by different authors (this was hinted at in the Mostafazadeh et al. paper).
 
 R3 - Figure 1 is meant to give the reader a flavor of the characteristics of the data, so we handpicked a few of the interesting words and POS tags which are frequent, but not necessarily the most frequent ones.  See additional discussion on style in the general response.
 
