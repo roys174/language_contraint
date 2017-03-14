@@ -19,3 +19,5 @@ GENERAL RESPONSE TO COMMENTS
 - We agree that the term "style" is vague.  Following work in authorship and age/gender detection, we generally treat style as word choices that do not necessarily reflect content, though this can admittedly be hard to disentangle. Well-known choices conventionally include the choice of function words, punctuation, and language patterns.
 
 - The features reported in the paper are the only ones we experimented with, with the exception of character 5-grams, which didn't show a gain on development data and were discarded. The choice of character 4-grams comes from their use in authorship attribution and similar problems.
+
+- Thanks for the clarification suggestions; we will use the additional page to address them.
