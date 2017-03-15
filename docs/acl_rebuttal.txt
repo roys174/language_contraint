@@ -1,14 +1,14 @@
 We thank all reviewers for their insightful comments.
 
-R1 - We agree that running discourse analysis would be an interesting direction for future work!  We were drawn to features from computational styolmetry because they are cheap and don't rely on tools like discourse parsers, which might not work well outside the domains of the RST and Penn Discourse treebanks.  (We actually aren't sure exactly how our paper found its way to the discourse and pragmatics track; please keep this in mind.)
+R1 - We agree that running discourse analysis would be an interesting direction for future work!  We were drawn to features from computational stylometry because they are cheap and don't rely on tools like discourse parsers, which might not work well outside the domains of the RST and Penn Discourse treebanks.  (We actually aren't sure exactly how our paper found its way to the discourse and pragmatics track; please keep this in mind.)
 
 R1 - The paper targets designers of NLP tasks as well as those working on machine reading tasks.  In addition, we think the findings will interest researchers of style/stylometry methods and at the junction of cognition and NLP.
 
 R2 - Thanks for the feedback; please see general discussion.
 
-R3 - We did not sub-sample the ROC story corpus, but took the dataset as is, as well as the terminology from the original paper. Specifically, (a) From Mostafazadeh et al. (2016): 282 authors generated the story cloze task, with 47.8 endings per author on average.  (b) The "coherent" and "neutral" selection criteria referred to by R3 were done in the original paper.  (c) Yes, we assume that the "original" and "right" endings were written by different authors (this was hinted at in the Mostafazadeh et al. paper).
+R3 - We did not sub-sample the ROC story corpus, but took the dataset as is, as well as the terminology from the original paper. Specifically, (a) From Mostafazadeh et al. (2016): 282 authors generated the story cloze task, with 47.8 endings per author on average.  (b) The "coherent" and "neutral" selection criteria referred to by R3 were introduced in the original paper.  (c) Yes, we assume that the "original" and "right" endings were written by different authors (this was hinted at in the Mostafazadeh et al. paper).
 
-R3 - Figure 1 is meant to give the reader a flavor of the characteristics of the data, so we handpicked a few of the interesting words and POS tags which are frequent, but not necessarily the most frequent ones.  See additional discussion on style in the general response.
+R3 - Figure 1 is meant to give the reader a flavor of the characteristics of the data, so we handpicked a few of the interesting words and POS tags which are frequent, but not necessarily the most frequent ones.  See additional discussion on style features in the general response.
 
 R3 - We believe the issues we point out to in this paper with respect to the ROC story corpus are general and should be taken into consideration when designing new NLP tasks or datasets.  If accepted, we will clarify section 8.
 
