@@ -1,0 +1,142 @@
+%
+% File acl2017.tex
+%
+%% Based on the style files for ACL-2015, with some improvements
+%%  taken from the NAACL-2016 style
+%% Based on the style files for ACL-2014, which were, in turn,
+%% based on ACL-2013, ACL-2012, ACL-2011, ACL-2010, ACL-IJCNLP-2009,
+%% EACL-2009, IJCNLP-2008...
+%% Based on the style files for EACL 2006 by 
+%%e.agirre@ehu.es or Sergi.Balari@uab.es
+%% and that of ACL 08 by Joakim Nivre and Noah Smith
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[hyperref]{emnlp2017}
+\usepackage{times}
+\usepackage{multirow}
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage{url}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pgfplots}
+\usepackage{tikz}
+
+\pgfplotsset{compat=1.11,
+    /pgfplots/ybar legend/.style={
+    /pgfplots/legend image code/.code={%
+       \draw[##1,/tikz/.cd,yshift=-0.25em]
+        (0cm,0cm) rectangle (3pt,0.8em);},
+   },
+}
+
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+% Define bar chart colors
+%
+\definecolor{bblue}{HTML}{4F81BD}
+\definecolor{rred}{HTML}{C0504D}
+\definecolor{ggreen}{HTML}{9BBB59}
+\definecolor{ppurple}{HTML}{9F4C7C}
+
+%\aclfinalcopy % Uncomment this line for the final submission
+%\def\aclpaperid{***} %  Enter the acl Paper ID here
+
+%\setlength\titlebox{5cm}
+% You can expand the titlebox if you need extra space
+% to show all the authors. Please do not make the titlebox
+% smaller than 5cm (the original size); we will check this
+% in the camera-ready version and ask you to change it back.
+
+\newcommand\BibTeX{B{\sc ib}\TeX}
+
+% Writing macros
+\newcommand{\secref}[1]{Section~\ref{ssec:#1}}
+\newcommand{\figref}[1]{Figure~\ref{#1}}
+\newcommand{\tabref}[1]{Table~\ref{#1}}
+\newcommand{\isection}[2]{\section{#1}\label{ssec:#2}}
+\newcommand{\isectionb}[1]{\section{#1}\label{ssec:#1}}
+\newcommand{\isubsection}[2]{\subsection{#1}\label{ssec:#2}}
+\newcommand{\isubsectionb}[1]{\subsection{#1}\label{ssec:#1}}
+\newcommand{\com}[1]{}
+\newcommand{\resolved}[1]{}
+\newcommand{\shortv}[1]{}
+
+% Editing macros
+\newcommand{\my}[1]{\footnote{\color{red}{\textbf{#1}}}}
+
+\newcommand{\ms}[1]{{\color{cyan}\{\textit{#1}\}$_{ms}$}}
+\newcommand{\roy}[1]{{\color{orange}\textsc{[#1 --rs]}}}
+\newcommand{\royb}[2]{{\color{red}{\sout{#1}}}{\color{green}{#2}}}
+\newcommand{\royc}[3]{\royb{#1}{#2}\roy{#3}}
+\newcommand{\yc}[1]{{\color{bblue}\{\textit{#1}\}$_{yc}$}}
+\newcommand{\nascomment}[1]{{\color{blue}\textsc{[#1 --nas]}}}
+\newcommand{\clinic}[1]{{\color{magenta}\textsc{[#1 --CLINIC]}}}
+
+\renewcommand{\roy}[1]{{\color{orange}[#1 --rs]}}
+
+%\renewcommand{\ms}[1]{}
+\renewcommand{\roy}[1]{#1}
+%\renewcommand{\roy}[1]{}
+\renewcommand{\nascomment}[1]{}
+\renewcommand{\yc}[1]{}
+%\renewcommand{\royb}[1]{}
+%\renewcommand{\royc}[1]{}
+
+
+\title{The Effect of Different Writing Tasks on Linguistic Style:\\ A Case Study of the ROC Story Cloze Task: Supplementary Material}
+
+\author{\hspace{2cm}Roy Schwartz$^{1,2}$ \And \hspace{2.5cm}Maarten Sap$^1$ \And \hspace{3cm}Ioannis Konstas$^1$ \And \\
+  $^1$Computer Science \& Engineering, University of Washington, WA 98195, USA \\
+  $^2$Allen Institute for Artificial Intelligence, WA 98103, USA \\
+    {\tt \{roysch,msap,ikonstas,lzilles,yejin,nasmith\}@cs.washington.edu}  \\
+    \And \hspace{-2cm}Leila Zilles$^1$ \And \hspace{-2.5cm}Yejin Choi$^1$ \And \hspace{-2.5cm}Noah A. Smith$^1$ \\
+  }
+  
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Experimental setup.}
+This section describes the experimental setup of both Experiments 1 and 2.
+
+In both experiments, we add a \textsc{start} symbol at the beginning
+of each sentence.\footnote{99\% of all sentences end with a period
+  or an exclamation mark, so we do not add a \textsc{stop} symbol.}
+For computing our features, we keep $n$-gram (character or word) features that occur at least five times in the training set.
+All feature values are normalized to $[0, 1]$.
+For the POS features, we tag all endings with the Spacy POS tagger.\footnote{\url{http://spacy.io/}}
+We use  Python's sklearn logistic regression implementation \cite{scikit-learn} with $L_2$
+regularization, performing grid search on the development set to
+tune a single hyperparameter---the regularization parameter.   \resolved{\nascomment{any other hyperparameters?  if
+  not, say this is the only one.  else explain what they are.}}
+
+For Exp.~1, as the story cloze task doesn't have a training corpus for the {\it
+  right} and {\it wrong} endings\com{ (see \secref{ROC_Story})}, we use the
+development set as our training set, holding out 10\% for development
+(3,366 training endings, 374 for development). 
+ We keep the story cloze test set as is (3,742 endings).
+
+For Exp.~2, as there are far more {\it original} instances than {\it new}
+instances, we randomly select five  {\it original} sets, each with the same number of
+instances  \resolved{\nascomment{(give the number in parentheses, for train/dev/test)} }as we have
+\emph{new} instances (3,366 training endings, 374 development endings, and 3,742 test endings).
+%We randomly sample 5 {\it original} sets and repeat the classification experiments.
+We report the average classification result.
+
+\section{Neural Language Model Training}
+This section describes the training details of our neural language model.
+
+We train the LM using a single-layer LSTM of hidden dimension 512.
+We use the ROC stories for training,\footnote{We use the extended, 100K stories corpus, released in winter 2017.} setting aside 10\% for validation of the language model.
+We replace all words occurring less than 3 times with a special
+out-of-vocabulary character, yielding a vocabulary size of  21,582.
+Only during training, we apply a dropout rate of 60\% while running the LSTM over all 5 sentences of the stories.
+We train the LM using the Adam optimizer \cite{kingma2014adam} and a learning rate of
+$\eta=.001$, while minimizing cross-entropy.
+
+\bibliography{acl2017}
+\bibliographystyle{emnlp_natbib}
+
+\end{document}
