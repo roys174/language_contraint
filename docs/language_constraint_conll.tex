@@ -101,7 +101,7 @@ We present a case study based on
 the  {\it story cloze task} \cite{Mostafazadeh:2016},
 where annotators were assigned similar writing tasks with different constraints: (1) writing an entire story, (2) adding a story ending for a given story context, and (3) adding an incoherent ending to a story.\resolved{\clinic{Many felt these 2 constraints looks like 3 constraints. clarify}}
 %We show that a linear classifier, which applies only simple style features, such as sentence length and character n-grams, 
-We show that a simple linear classifier informed with stylistic features is able to successfully distinguish among the three cases, without even looking at the story context.
+We show that a simple linear classifier informed by stylistic features is able to successfully distinguish among the three cases, without even looking at the story context.
 %\roy{In addition, our style-based classifier reaches only 2\% below state-of-the-art results on the story cloze challenge, equal or higher to other previous results.} 
 \roy{In addition, our style-based classifier's performance on the story cloze challenge is comparable to state-of-the-art results.} 
 %Furthermore, combining our model with an LSTM-based language model, which does look at the context, leads to additional gains.
@@ -120,7 +120,7 @@ It is influenced by personal factors such as age and gender \cite{Schler:2006},
 by personality traits such as agreeableness and openness  \cite{Ireland:2014b},
 as well as by mental states\resolved{\clinic{Avoid using ``cognitive"?}} such as sentiment \cite{Davidov:2010}, sarcasm \cite{Tsur:2010}, and deception \cite{Feng:2012}.  
 In this paper, we study the extent to which writing style is affected by the nature of the writing task the writer was asked to perform, since
-different tasks likely engage different cognitive processes \cite{Campbell:2003,Banerjee:2014}.\roy{\footnote{For the purpose of this paper, \emph{style} is defined as content-agnostic writing characteristics, such as the number of words in a sentence.}}
+different tasks likely engage different cognitive processes \cite{Campbell:2003,Banerjee:2014}.\roy{\footnote{For the purposes of this paper, \emph{style} is defined as content-agnostic writing characteristics, such as the number of words in a sentence.}}
 
 \begin{table}[!t]
 %\begin{tabular}{|p{4.8cm}|p{2.1cm}|} \hline
@@ -237,7 +237,7 @@ We describe the task below.
 
 \paragraph{ROC stories.}
 
-The ROC story corpus consists of 49,255 five-sentence commonsense
+The ROC story corpus consists of 49,255 five-sentence 
 stories, collected on Amazon Mechanical Turk (AMT).\footnote{Recently,
   an additional 53K stories were released, which results in roughly
   100K stories.}
@@ -466,10 +466,10 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
 
 \isectionb{Model}
 
-The goal of this paper is to determine the extent to which 
-%does constraining authors in their writing assignments lead to them adopting different writing styles. 
-different writing constraints lead the authors to adopt different writing styles. 
-In order to answer these questions, we use simple methods that have been shown to be very effective for recognizing style (see \secref{Related}).
+To what extent do
+ %does constraining authors in their writing assignments lead to them adopting different writing styles. 
+different writing constraints lead authors to adopt different writing styles?
+In order to answer this question, we first use simple methods that have been shown to be very effective for recognizing style (see \secref{Related}).
 We describe our model below.
 
 We train a logistic regression classifier to categorize an ending,
@@ -478,11 +478,11 @@ Each feature vector is computed using the words in one ending, without consideri
 We use the following style features.
 
 \begin{itemize}
-\item\textit{\textbf{Length}.} The number of words in the sentence.
-\item\textit{\textbf{Word $n$-grams.}} We use sequences of 1-5
+\item\textit{\textbf{Length}:} the number of words in the sentence.
+\item\textit{\textbf{Word $n$-grams:}} we use sequences of 1-5
   words. Following \citet{Tsur:2010} and \citet{Schwartz:2013}, we distinguish between high frequency and low frequency words. 
 Specifically, we replace content words (nouns, verbs, adjectives, and adverbs), which are often low frequency, with their part-of-speech tags.
-\item\textit{\textbf{Character $n$-grams.}} Character $n$-grams are one of the most useful features in identifying author style \cite{Stamatatos:2009}. 
+\item\textit{\textbf{Character $n$-grams:}} character $n$-grams are one of the most useful features in identifying author style \cite{Stamatatos:2009}. 
 We use character $4$-grams.\footnote{\roy{Experiments with $5$-grams on our development set reached similar performance.}}
 \end{itemize}
 
@@ -868,7 +868,7 @@ to VB & 20.1\%& VBG & 10.1\%\\ \hline
 \end{center}
 \caption{\label{exp1_features}
 The top 5 most heavily weighted features for predicting {\it right} vs.~{\it wrong} endings,
-along with their frequency in our story cloze training set.
+along with their frequencies in our story cloze training set.
 }
 \end{table}
 
@@ -957,7 +957,7 @@ Our findings suggest that careful attention must be paid to instructions given t
 Importantly, when writing the alternatives,  annotators were asked to be as brief as possible and avoid proper names, as well as  slang. 
 
 Applying our story cloze classifier to this dataset yields 53.2\% classification accuracy---higher than a random baseline, but substantially lower than our story cloze task results. 
-While this could be partially explained by the smaller data size of the COPA dataset (1,000 samples compared to 3,742 in the story cloze task), this indicates that simple instructions  can help alleviate the effects of writing style found in this paper.
+While this could be partially explained by the smaller data size of the COPA dataset (1,000 samples compared to 3,742 in the story cloze task), this indicates that simple instructions may help alleviate the effects of writing style found in this paper.
 
 Another way to avoid such effects is by instructing authors to write shorter text spans, such as the ones used in the Winograd schema \cite{Levesque:2011}.
 A different approach is to use naturally occurring text, as used in recent machine reading tasks (see \secref{Related}). 
