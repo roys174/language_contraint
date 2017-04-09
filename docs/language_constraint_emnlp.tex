@@ -61,6 +61,7 @@
 \newcommand{\com}[1]{}
 \newcommand{\resolved}[1]{}
 \newcommand{\shortv}[1]{}
+\newcommand{\supl}[1]{}
 
 % Editing macros
 \newcommand{\my}[1]{\footnote{\color{red}{\textbf{#1}}}}
@@ -106,7 +107,7 @@ where annotators were assigned similar writing tasks with different constraints:
 %We show that a linear classifier, which applies only simple style features, such as sentence length and character n-grams, 
 We show that a  linear classifier informed with stylistic features is able to successfully distinguish among the three cases, without even looking at the story context.
 %\roy{In addition, our style-based classifier reaches only 2\% below state-of-the-art results on the story cloze challenge, equal or higher to other previous results.} 
-\roy{In addition, our style-based classifier also performs on a par with state-of-the-art models on the story cloze task.} 
+\roy{In addition, our style-based classifier performs on a par with state-of-the-art models on the story cloze task.} 
 %Furthermore, combining our model with an LSTM-based language model, which does look at the context, leads to additional gains.
 Our results demonstrate that different task framings can dramatically affect the way people write.\resolved{\clinic{Similarly to previous comment: which results does this comment address?}}
 
@@ -123,15 +124,16 @@ It is influenced by personal factors such as age and gender \cite{Schler:2006},
 by personality traits such as agreeableness and openness  \cite{Ireland:2014b},
 as well as by mental states\resolved{\clinic{Avoid using ``cognitive"?}} like sentiment \cite{Davidov:2010}\shortv{, sarcasm \cite{Tsur:2010},} and deception \cite{Feng:2012}.  
 In this paper, we study the extent to which writing style is affected by the nature of the writing task the writer was asked to perform, as
-different tasks likely engage different cognitive processes \cite{Campbell:2003,Banerjee:2014}.
+different tasks likely engage different cognitive processes \cite{Campbell:2003,Banerjee:2014}.\roy{\footnote{For the purpose of this paper, \emph{style} is defined as content-agnostic writing characteristics, e.g., sentence length.}}
 
 \shortv{
 \begin{table}[!t]
+\small
 %\begin{tabular}{|p{4.8cm}|p{2.1cm}|} \hline
-\begin{tabular}{|p{4.5cm}|p{2.4cm}|} \hline
+\begin{tabular}{|p{4.6cm}|p{2.3cm}|} \hline
 {\bf Story Prefix} & {\bf Ending} \\ \hline
-My mother loves clocks that chime.	Her house is full of them.	She sets them each a little different so she can hear them chime.	It sounds like a bell tower during a wedding in her house all day.	& {\color{blue}{When I visit I stop them or I'd never be able to sleep at night.}} \\ \hline
-\multirow{2}{4.5cm}{Joe went to college for art. He graduated with a degree in painting. He couldn't find a job. He then responded to an ad in the paper.} & 	{\color{forestgreen}{Then he got hired.}} \\ \cline{2-2}
+John went for a walk.	He walked to the park.	There was a guy mowing the lawn.	He waved at John.		& {\color{blue}{John waved back.}} \\ \hline
+\multirow{2}{4.6cm}{Joe went to college for art. He graduated with a degree in painting. He couldn't find a job. He then responded to an ad in the paper.} & 	{\color{forestgreen}{Then he got hired.}} \\ \cline{2-2}
 & {\color{red}{Joe hated pizza.}} \\ \hline
 \end{tabular}
 \caption{\label{ROC-example}
@@ -145,14 +147,15 @@ let's consider just color-coding these three terms.  It's less distracting.}}
 %\end{center}
 \end{table}}
 
+
+
 We show that similar writing tasks with different constraints on the
 author can lead to measurable differences in her writing style.
 %We explore three  writing tasks, showing that they are distinguishable from one another using a linear classifier informed with stylistic features only. 
 %Our results hint that different writing tasks impose different cognitive load on the writer, which lead to the substantial style differences.
-As a case study, we present experiments based on 
-the \shortv{recently introduced ROC }story cloze task \cite{Mostafazadeh:2016}. 
-\roy{In this task, whose goal is to serve as a commonsense challenge for NLP \shortv{and AI }research, a system is presented with two short stories that differ only in their last sentence: one ending makes the entire story {\it coherent} while the other makes it {\it incoherent}. 
-The system then decides which is the coherent one.}
+As a case study, we present experiments based on the recently introduced commonsense challenge---the \shortv{ROC }story cloze task \cite{Mostafazadeh:2016}. 
+In this task, a system is presented with two short stories that differ only in their last sentence: one ending makes the entire story {\it coherent} while the other makes it {\it incoherent}. 
+The system then decides which is the coherent one.
 \shortv{In this task, \com{crowdsourced }authors were asked to write five-sentence self-contained stories, henceforth {\it original} stories.
 %Following, 
 Then, 
@@ -160,8 +163,8 @@ Then,
 each original story was given to a different author, 
 who was shown only the first four sentences as a story context, 
 and asked to write two contrasting story endings: a {\it right} (coherent) ending, and a {\it wrong} (incoherent) ending. 
-Framed as a story cloze task, the goal of this dataset is to serve as a commonsense challenge for NLP \shortv{and AI }research. }
-\shortv{\tabref{ROC-example} shows an example of an {original} story, a {coherent} story, and an {incoherent} story.}
+Framed as a story cloze task, the goal of this dataset is to serve as a commonsense challenge for NLP \shortv{and AI }research. 
+\tabref{ROC-example} shows an example of an {original} story, a {coherent} story, and an {incoherent} story.}
 
 \com{While originally designed to be a story understanding challenge, the annotation process triggers interesting questions 
 that may go beyond the original intent of the designers.
@@ -182,11 +185,6 @@ Using a simple classifier informed with stylistic features, we show that our cla
 Further, our classifier can also distinguish between the {\it original} endings and the new ({\it right}) endings with 68.5\% accuracy, again without looking at the story context. \clinic{Why do we care? (Luke)}
 }
 
-\com{We show that a linear classifier informed with stylistic features can distinguish among {\it original}, {\it right}, and {\it wrong}  endings to a large degree, even without looking at the story context.
-Our results allow us to make a few key observations.
-First, people adopt a different writing style when asked to write coherent vs.~incoherent story endings.
-Second,  people change their writing style when writing the entire story on their own compared to 
-writing only the final sentence for a given story context written by someone else.}
 
 %Our binary classification results range between 64.5\%--75.6\%, where chance performance is 50\%.
 
@@ -196,7 +194,7 @@ writing only the final sentence for a given story context written by someone els
 
 \shortv{While the story cloze task was originally designed to be a story understanding challenge, }
 Interestingly, the story cloze task annotation process introduced three variants of the same writing task: writing an ending to a short story (see \secref{ROC_Story}).
-In this paper, we show that a linear classifier informed by stylistic features can distinguish among the different variants to a large degree, even without looking at the story context\shortv{ (64.5--68.5\% binary classification results)}.
+In this paper, we show that a linear classifier informed by stylistic features can distinguish among the different variants to a large degree, even without looking at the rest of the story\shortv{ (64.5--68.5\% binary classification results)}.
 
 Our results allow us to make a few key observations.
 First, people adopt a different writing style when asked to write coherent vs.~incoherent story endings.
@@ -254,19 +252,40 @@ which resulted in a wide range of different topics.
 After compiling the story corpus, the {\it story cloze task}---a task based on the corpus---was introduced.
 A subset of the stories was selected, and only the first four sentences of each story were presented to AMT workers.
 Workers were asked to write a pair of new story endings for each story context: one {\it right} and one {\it wrong}\shortv{. Both endings were required to complete the story using one of the characters in the story context. Additionally,  }. 
-Importantly, both endings were required to be ``realistic and sensible'' \cite{Mostafazadeh:2016} when read out of context.
+Importantly, both endings were required to be ``realistic and sensible'' \cite{Mostafazadeh:2016} when read out of context (see \tabref{ROC-example}). 
+
+
+\begin{table}[!t]
+\small
+%\begin{tabular}{|p{4.8cm}|p{2.1cm}|} \hline
+\begin{tabular}{|c|c|} \hline
+{\bf Story Prefix} & {\bf Ending} \\ \hline
+\multirow{4}{*}{\parbox{4.6cm}{Joe went to college for art. He graduated with a degree in painting. He couldn't find a job. He then responded to an ad in the paper.}} & 	{\color{blue}{???}} \\ \cline{2-2}
+& 	{\color{forestgreen}{Then he got hired.}} \\ \cline{2-2}
+& {\color{red}{Joe hated pizza.}} \\ %\cline{2-2}
+&  \\ \hline
+\end{tabular}
+\caption{\label{ROC-example}
+Examples of stories from the story cloze task\shortv{ \cite{Mostafazadeh:2016}}. The table shows a story prefix with three contrastive endings:
+ %of the same story: 
+The {\color{blue}{original}} ending, a {\color{forestgreen}{coherent}} ending and a {\color{red}{incoherent}} one.\resolved{ \clinic{They said it would be great to have three endings to the same story. Unfortunately Nasrin et al.  didn't publish the original endings for the dev/test data. We could ask her, but not sure if this is worth it}}
+ \resolved{\nascomment{I like the colors a lot.  Instead of all the italicizing,
+let's consider just color-coding these three terms.  It's less distracting.}}
+}
+%\end{center}
+\end{table}
 
 \shortv{The resulting stories, both {\it right} and {\it wrong}, were then individually rated for coherence and meaningfulness by additional AMT workers.
 Only stories rated as simultaneously coherent with a {\it right} ending and neutral with a {\it wrong} ending were selected for the task. 
 It is worth noting that workers rated the stories as a whole, not only the endings.}
 
 Based on the new stories, \shortv{\citet{Mostafazadeh:2016} proposed }the {\it story cloze task} was proposed\shortv{. 
-The task is simple}:  given a pair of stories that differ only in their endings, the system decides which ending is {\it right} and which is {\it wrong}. 
+The task is simple}:  given a pair of stories that differ only in their endings, the system decides which \shortv{ending }is {\it right} and which is {\it wrong}. 
 %The authors published the ROC story corpus as the training data, and the task composed of development and test sets for which both {\it right} and {\it wrong} endings are found. 
 The \shortv{official }training data contains  the original stories (without alternative endings), while development and test data consist of the revised stories with alternative endings (for a \shortv{different }set of original stories not included in the training set).\resolved{\roy{added {\it not} here}}
 The task was suggested as \shortv{an extensive evaluation framework:
 %as a machine reading task, 
-as }a commonsense story understanding task\com{, 
+as }a commonsense\shortv{ story} understanding task\com{, 
 as the shared task for the  Linking Models of Lexical, Sentential and Discourse-level Semantics workshop (LSDSem 2017),} and as a testbed for vector-space evaluation \cite{mostafazadeh2016story}.
 
 Interestingly, \roy{until very recently, one year after the task was first introduced, the published benchmark on this task was still below 60\%.}\com{at the time of this submission, 10 months after the
@@ -305,8 +324,8 @@ of information (like style) is absurd.  Alternately, we could reframe
 this not as ``things weren't controlled for'' but instead stick to the
 facts here and just describe what they did without judgment.}}
 On top of that, the {\it original} endings, which serve as positive training samples, were generated differently from the {\it right} samples, which serve as the positive samples in the development and test sets. 
-While the former are part of a single coherent story written by the same author, the latter were generated by letting an author read four sentences, 
-and then asking her to generate a fifth {\it right} ending. 
+While the former are part of a \shortv{single }coherent story written by the same author, the latter were generated by asking an author to read four sentences, 
+and then \shortv{asking her to }generate a fifth {\it right} ending. 
 %This raises the question of whether these different writing setups impose different writing styles. 
 % We show that this is indeed the case. 
 
@@ -346,6 +365,7 @@ Next we show that these style differences are not anecdotal, but can
 be used to distinguish among the different types of story endings.
 
 \com{\begin{table*}[!t]
+\small
 \begin{center}
 \begin{tabular}{|p{2.5cm}|p{4cm}|p{4cm}|p{4cm}|} \hline
  & {\bf Original}& {\bf Right} & {\bf Wrong}\\ \hline
@@ -471,16 +491,15 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
 The goal of this paper is to determine the extent to which 
 %does constraining authors in their writing assignments lead to them adopting different writing styles. 
 different writing constraints lead the authors to adopt different writing styles. 
-In order to answer these questions, we use simple methods that have been shown to be very effective for recognizing style\shortv{ (see \secref{Related})}.
-We describe our model below.
+In order to answer these questions, we use simple methods that do not capture content, and have been shown to be\shortv{ very} effective for recognizing style\shortv{ (see \secref{Related})}.
+\shortv{We describe our model below.}
 
 We train a logistic regression classifier to categorize an ending,
 either as {\it right} vs.~{\it wrong} or as {\it original} vs.~new ({\it right}).
 Each feature vector is computed using the words in one ending, without considering earlier parts of the story. 
 We use the following style features: (a) \textit{\textbf{Length}.} The number of words in the sentence, 
 (b) \textit{\textbf{Word $n$-grams.}} Sequences of 1-5
-  words,\footnote{Following and \citet{Schwartz:2013}, we distinguish between high frequency and low frequency words. 
-Specifically, we replace content words (nouns, verbs, adjectives, and adverbs), which are often low frequency, with their POS tags.}
+  words,\footnote{In order to focus on style, we replace content words (nouns, verbs, adjectives, and adverbs) with their POS tags.}
 and (c) \textit{\textbf{Character $n$-grams.}} \shortv{Character $n$-grams are one of the most useful features in identifying author style \cite{Stamatatos:2009}. 
 We use character $4$-grams}\roy{Sequences of 4 characters}.\footnote{\roy{Character $4$-grams are very common features in style detection \cite{Stamatatos:2009}.}}
 
@@ -488,7 +507,7 @@ We use character $4$-grams}\roy{Sequences of 4 characters}.\footnote{\roy{Charac
 \isectionb{Experiments}
 We design two experiments to answer our research questions. 
 The first is an attempt to distinguish between {\it right} and {\it wrong} endings,
-the second  between {\it original} endings and new ({\it right}) endings.
+the second  between {\it original} endings and new ({\it right}) endings.\roy{\footnote{Experimental details are found in the supplementary file.}}
 \shortv{We describe both experiments below.}
 
 \paragraph{Experiment 1: right/wrong endings.}
@@ -530,6 +549,7 @@ We report the average classification result.
 \roy{\paragraph{Experiment 3: original/wrong endings.}
 For completeness, we measure the extent to which our classifier can discriminate between {\it original} and {\it wrong} endings. We replicate Experiment 2, this time replacing {\it right} endings with {\it wrong} ones.}}
 
+\supl{
 \paragraph{Experimental setup.}
 \shortv{In both experiments, we add a \textsc{start} symbol at the beginning
 of each sentence.\footnote{99\% of all sentences end with a period
@@ -540,18 +560,18 @@ For the POS features, we tag all endings with the Spacy POS tagger.\footnote{\ur
 We use  Python's sklearn logistic regression implementation \shortv{\cite{scikit-learn} }with $L_2$
 regularization, performing grid search on the development set to
 tune a single hyperparameter---the regularization parameter.   \resolved{\nascomment{any other hyperparameters?  if
-  not, say this is the only one.  else explain what they are.}}
+  not, say this is the only one.  else explain what they are.}}}
 
 
 \paragraph{Results.}
 \shortv{\tabref{results} shows our results.  }In both experiments,
-our model achieves performance well above what would be expected under
+our model performs well above what would be expected under
 chance (50\% by design)\roy{: 64.5\% accuracy for Experiment 1, and 68.5\% for Experiment 2.}
 Noting again that our model ignores the
 story context (the preceding four sentences), our model is unable to
 capture any notion of coherence.   This finding provides
 strong evidence that the authors' style was affected by the writing task they
-were given to perform.\com{  On our third task, which compared 
+performed.\com{  On our third task, which compared 
 \emph{original} vs.~\emph{wrong (new)} endings, even stronger
 differences were apparent to the model, allowing over 75\% accuracy.}
 
@@ -665,10 +685,11 @@ These numbers further support the claim that the styles of {\it right} and {\it 
 % No other information other than the name of the groups and their results is available.
 
 \begin{table}[!t]
+\small
 \begin{center}
 \begin{tabular}{|l|r|} \hline
 {\bf Model} & {\bf Acc.} \\ \hline
-{DSSM} \cite{Mostafazadeh:2016} & 0.595 \\ 
+{DSSM} \cite{Mostafazadeh:2016} & 0.585 \\ 
 {ukp} \cite{Bugert:2017} & 0.717\\ 
 {tbmihaylov} \cite{Mihaylov:2017} & 0.724\\ 
 {cogcomp}  & 0.744 \\ \hline\hline
@@ -695,28 +716,26 @@ human judgments come from?  those are not mentioned in our text anywhere!}
 
 \paragraph{Combination with a neural language model.}
 We investigate whether our model can benefit from state-of-the-art text comprehension models\shortv{, for which this task was designed}. 
-We experiment with an LSTM\shortv{-based} \cite{hochreiter1997long} recurrent neural network language model (RNNLM; \citealp{mikolov2010recurrent}). % on the ROC story corpus training data,
+We experiment with an LSTM\shortv{-based} \cite{hochreiter1997long} recurrent neural network language model (LM; \citealp{mikolov2010recurrent}). % on the ROC story corpus training data,
 %and use it to compute the probability of both {\it right} and {\it wrong} endings in the story cloze test set.
 Unlike the model in this paper\shortv{, which only considers the story endings}, this LM \shortv{follows the protocol suggested by the story cloze task designers, and }harnesses the \shortv{ROC Stories }story cloze training set, which consists of single-ending stories, 
 as well as the story context for each pair of endings. 
 We show that adding our features to this powerful \shortv{language model}LM
 gives improvements over our classifier as well as the \shortv{language
-model}LM.  \resolved{\nascomment{reworded.  more important that our features help
-  the language model, than the other way around!}}
-
-
+model}LM.\resolved{\nascomment{reworded.  more important that our features help
+  the language model, than the other way around!}}\footnote{The LM training details are in the supplementary file.}\supl{
 \shortv{We train the RNNLM using a single-layer LSTM of hidden dimension 512.}
 \shortv{We use the ROC stories for training,\footnote{We use the extended, 100K stories corpus (see \secref{ROC_Story}).} setting aside 10\% for validation of the language model.}\shortv{We replace all words occurring less than 3 times with a special
 out-of-vocabulary character, yielding a vocabulary size of  21,582.
 Only during training, we apply a dropout rate of 60\% while running the LSTM over all 5 sentences of the stories. }
 We train the RNNLM using the Adam optimizer \cite{kingma2014adam} and a learning rate of
-$\eta=.001$, while \shortv{train to }minimizing cross-entropy. % minibatches of $50$ stories.
+$\eta=.001$, while \shortv{train to }minimizing cross-entropy.} % minibatches of $50$ stories.
 % h=512, dropout rate of 60%, V=21582, 10% validation set
 To apply \shortv{the RNNLM}it to the classification problem, we select
-as \emph{right} the ending with the higher value of\footnote{The intuition is that a \emph{right} ending should be unsurprising (to
+as \emph{right} the ending with the higher value of\shortv{\footnote{The intuition is that a \emph{right} ending should be unsurprising (to
 the model)
 given the four preceding sentences of the story (the numerator), controlling for the
-inherent surprisingness of the words in that ending (the denominator).}
+inherent surprisingness of the words in that ending (the denominator).}}
 \begin{equation}
 \frac{p_\theta(\textrm{ending} \mid
   \textrm{story})}{p_\theta(\textrm{ending})} \label{eq:ratio}
@@ -742,12 +761,12 @@ in Equation~\ref{eq:ratio} achieves 67.7\%  (see
 information between the story and the ending, under the language
 model.\nascomment{added this to replace the hedging that was here before}\resolved{\roy{We actually also use the RNNLM features in log space. Add that in the next paragraph.}}}}
 
-We combine our linear model with the RNNLM by adding three features to
+We combine our linear model with the \shortv{RNN}LM by adding three features to
 our classifier: the numerator, denominator, and ratio in
 Equation~\ref{eq:ratio}, all in log space. % $p_\theta(ending|story),p_\theta(ending)$ and $\frac{p_\theta(ending|story)}{p_\theta(ending)}$.
 We retrain our linear  model with the new feature set, and gain 2.8\%
-absolute, reaching 75.2\%\com{ (15.3\% better than the published state-of-the-art\com{ and 4.1\% better than the best unpublished} result)}\roy, a new-state-of-the-art result\shortv{  for the task}.\resolved{\roy{As now the codalab shared task table contains our numbers, I removed the references to these works, and left only the footnote earlier which says that there are higher, unpublished numbers.}}
-These results indicate that context-ignorant style features can be used to obtain high
+absolute. Our final result---75.2\%\com{ (15.3\% better than the published state-of-the-art\com{ and 4.1\% better than the best unpublished} result)}---is a new-state-of-the-art\shortv{  for the task}.\resolved{\roy{As now the codalab shared task table contains our numbers, I removed the references to these works, and left only the footnote earlier which says that there are higher, unpublished numbers.}}
+This result indicates that context-ignorant style features can be used to obtain high
 accuracy on the task, adding value even when context and a large
 training dataset are used.  \resolved{\nascomment{check reframing here}}
 
@@ -922,13 +941,19 @@ same author, partly in order to avoid author-specific style effects.}
  differences can be found between the training and the test set, as well as between the positive and negative labels. 
  
 Our findings suggest that careful attention must be paid to instructions given to authors, especially in unnatural tasks such as writing a {\it wrong} ending. 
-One way to avoid such problems is by instructing authors to write shorter text spans, such as the ones used in the Winograd schema \cite{Levesque:2011}.
+\roy{The COPA dataset \cite{Roemmele:2011} was also designed to test commonsense knowledge, by presenting systems with premises like {\it I put my plate in the sink.} and then letting it decide between two alternatives, e.g.: (a) {\it I finished eating.} and (b) {\it I skipped dinner.}}
+Importantly, in this task,  annotators were asked to be as brief as possible and avoid proper names, as well as  slang. 
+
+Applying our story cloze classifier to this dataset yields 53.2\% classification accuracy---higher than a random baseline, but substantially lower than our story cloze task results. 
+While this could be partially explained by the smaller data size of the COPA dataset (1,000 samples compared to 3,742 in the story cloze task), this indicates that simple instructions  can help alleviate the effects of writing style found in this paper.
+\shortv{One way to avoid such problems is by instructing authors to write shorter text spans, such as the ones used in the Winograd schema \cite{Levesque:2011}.
+
 A different approach is to use naturally occurring text, as used in recent machine reading tasks \cite{hermann2015teaching}\shortv{ (see \secref{Related})}. 
 %However,  these approaches have their shortcomings, and do not capture the same signal as intended by the author of the story cloze task.
 One way to avoid inherent writing biases is to 
 have annotators rate sentences from naturally occurring text by parameters
 such as coherence (or, very differently, the level of surprise),
-rather than asking them to generate  text.
+rather than asking them to generate  text.}
 
 
 \com{
