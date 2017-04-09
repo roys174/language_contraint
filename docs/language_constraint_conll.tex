@@ -56,6 +56,7 @@
 \newcommand{\tabref}[1]{Table~\ref{#1}}
 \newcommand{\isection}[2]{\section{#1}\label{ssec:#2}}
 \newcommand{\isectionb}[1]{\section{#1}\label{ssec:#1}}
+\newcommand{\isubsectionb}[1]{\subsection{#1}\label{ssec:#1}}
 \newcommand{\com}[1]{}
 \newcommand{\resolved}[1]{}
 % Editing macros
@@ -72,7 +73,7 @@
 \renewcommand{\roy}[1]{{\color{orange}[#1 --rs]}}
 
 %\renewcommand{\ms}[1]{}
-%\renewcommand{\roy}[1]{#1}
+\renewcommand{\roy}[1]{#1}
 %\renewcommand{\roy}[1]{}
 \renewcommand{\nascomment}[1]{}
 \renewcommand{\yc}[1]{}
@@ -119,7 +120,7 @@ It is influenced by personal factors such as age and gender \cite{Schler:2006},
 by personality traits such as agreeableness and openness  \cite{Ireland:2014b},
 as well as by mental states\resolved{\clinic{Avoid using ``cognitive"?}} such as sentiment \cite{Davidov:2010}, sarcasm \cite{Tsur:2010}, and deception \cite{Feng:2012}.  
 In this paper, we study the extent to which writing style is affected by the nature of the writing task the writer was asked to perform, since
-different tasks likely engage different cognitive processes \cite{Campbell:2003,Banerjee:2014}.
+different tasks likely engage different cognitive processes \cite{Campbell:2003,Banerjee:2014}.\roy{\footnote{For the purpose of this paper, \emph{style} is defined as content-agnostic writing characteristics, such as the number of words in a sentence.}}
 
 \begin{table}[!t]
 %\begin{tabular}{|p{4.8cm}|p{2.1cm}|} \hline
@@ -543,7 +544,7 @@ tune a single hyperparameter---the regularization parameter.   \resolved{\nascom
   not, say this is the only one.  else explain what they are.}}
 
 
-\paragraph{Results.}
+\isubsectionb{Results}
 \tabref{results} shows our results.  In all experiments,
 our model achieves performance well above what would be expected under
 chance (50\% by design).  Noting again that our model ignores the
@@ -775,7 +776,7 @@ We combine our linear model with the RNNLM by adding three features to
 our classifier: the numerator, denominator, and ratio in
 Equation~\ref{eq:ratio}, all in log space. % $p_\theta(ending|story),p_\theta(ending)$ and $\frac{p_\theta(ending|story)}{p_\theta(ending)}$.
 We retrain our linear  model with the new feature set, and gain 2.8\%
-absolute, reaching 75.2\%\com{ (15.3\% better than the published state-of-the-art\com{ and 4.1\% better than the best unpublished} result)}\roy, a new-state-of-the-art result for the task.\resolved{\roy{As now the codalab shared task table contains our numbers, I removed the references to these works, and left only the footnote earlier which says that there are higher, unpublished numbers.}}
+absolute, reaching 75.2\%\com{ (15.3\% better than the published state-of-the-art\com{ and 4.1\% better than the best unpublished} result)}\roy{, a new-state-of-the-art result for the task.}\resolved{\roy{As now the codalab shared task table contains our numbers, I removed the references to these works, and left only the footnote earlier which says that there are higher, unpublished numbers.}}
 These results indicate that context-ignorant style features can be used to obtain high
 accuracy on the task, adding value even when context and a large
 training dataset are used.  \resolved{\nascomment{check reframing here}}
@@ -952,11 +953,16 @@ same author, partly in order to avoid author-specific style effects.
  differences can be found between the training and the test set, as well as between the positive and negative labels. 
  
 Our findings suggest that careful attention must be paid to instructions given to authors, especially in unnatural tasks such as writing a {\it wrong} ending. 
-One way to avoid such problems is by instructing authors to write shorter text spans, such as the ones used in the Winograd schema \cite{Levesque:2011}.
+\roy{The COPA dataset \cite{Roemmele:2011}, which was also designed to test commonsense knowledge, explicitly addressed potential style differences in their instructions. In this task,  systems are presented with premises like {\it I put my plate in the sink.} and then letting it decide between two alternatives, e.g.: (a) {\it I finished eating.} and (b) {\it I skipped dinner.}}
+Importantly, when writing the alternatives,  annotators were asked to be as brief as possible and avoid proper names, as well as  slang. 
+
+Applying our story cloze classifier to this dataset yields 53.2\% classification accuracy---higher than a random baseline, but substantially lower than our story cloze task results. 
+While this could be partially explained by the smaller data size of the COPA dataset (1,000 samples compared to 3,742 in the story cloze task), this indicates that simple instructions  can help alleviate the effects of writing style found in this paper.
+
+Another way to avoid such effects is by instructing authors to write shorter text spans, such as the ones used in the Winograd schema \cite{Levesque:2011}.
 A different approach is to use naturally occurring text, as used in recent machine reading tasks (see \secref{Related}). 
 %However,  these approaches have their shortcomings, and do not capture the same signal as intended by the author of the story cloze task.
-One way to avoid the inherent biases people have when writing is to 
-have them rate sentences from naturally occurring text by parameters
+Finally, a third approach is to have people rate sentences from naturally occurring text by parameters
 such as coherence (or, very differently, the level of surprise),
 rather than asking them to generate new text.
 
