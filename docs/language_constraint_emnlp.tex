@@ -267,12 +267,16 @@ Importantly, both endings were required to be ``realistic and sensible'' \cite{M
 {l>{\setlength\hsize{0.67\hsize}}X%
 >{\setlength\hsize{1.33\hsize}}X}
 {\bf Story Prefix} & {\bf Ending} \\ \hline
-\multirow{4}{*}{\parbox{4.75cm}{%Joe went to college for art. He graduated with a degree in painting. He couldn't find a job. He then responded to an ad in the paper.
-\vspace{.1cm}Betsy comes home late one night and wants to eat something simple.	She notices that she has spaghetti and sauce in the house.	She quickly cooks and eats a pot of spaghetti.	After eating, she falls asleep on the couch.}} & \vspace{-0.3cm}	{\color{blue}{{\it \tiny $<$waiting for examples from  Nasrin$>$}}} \\ \cline{2-2}
-& 	{\color{forestgreen}{\vspace{-0.1cm}She was full and happy.     %Then he got hired.
+\multirow{4}{*}{\parbox{3.05cm}{\vspace{.05cm}John liked a girl at his work.	He tried to get her attention by acting silly.	She told him to grow up. John confesses he was trying to make her like him more.}} & \vspace{-0.2cm}	{\color{blue}{{She feels flattered and asks John on a date.}}} 	 \\\cline{2-2}
+
+%Travis needed some fast cash.	He thought about it and decided that selling his car was a good idea.	Travis listed his car for sale in the local paper.	After only a couple weeks he found somebody very interested.}}& \vspace{-0.2cm}	{\color{blue}{{\it This person came and test drove the car and bought it on the spot.}}} \\\cline{2-2}
+%Joe went to college for art. He graduated with a degree in painting. He couldn't find a job. He then responded to an ad in the paper.
+%\vspace{.3cm}Betsy comes home late one night and wants to eat something simple.	She notices that she has spaghetti and sauce in the house.	She quickly cooks and eats a pot of spaghetti.	After eating, she falls asleep on the couch.}} & \vspace{-0.3cm}	{\color{blue}{{\it $<$waiting for examples from  Nasrin$>$}}} \\ \cline{2-2}
+& 	{\color{forestgreen}{\vspace{-0.1cm}The girl found this charming, and gave him a second chance.% He sold the car and solved his money problems.%She was full and happy.     %Then he got hired.
 }} \\ \cline{2-2}
-& {\color{red}{%Joe hated pizza.
-\vspace{-0.1cm}Betsy likes{\color{white}{0}}{\color{white}{0}}{\color{white}{0}}{\color{white}{0}} cheeseburgers.}} \\\hline %\cline{2-2}
+& {\color{red}{%Joe hated pizza.\vspace{-0.1cm}Betsy likes{\color{white}{0}}{\color{white}{0}}{\color{white}{0}}{\color{white}{0}} cheeseburgers.
+\vspace{-0.1cm}John was happy about being rejected.%Travis gave it to the man for free.
+}} \\\hline %\cline{2-2}
 %&  \\ \hline
 \end{tabularx}
 \caption{\label{ROC-example}
@@ -775,7 +779,7 @@ Only during training, we apply a dropout rate of 60\% while running the LSTM ove
 We train the RNNLM using the Adam optimizer \cite{kingma2014adam} and a learning rate of
 $\eta=.001$, while minimizing cross-entropy.} % minibatches of $50$ stories.
 % h=512, dropout rate of 60%, V=21582, 10% validation set
-To apply it to the classification problem, we select
+To apply this LM to the classification problem, we select
 as \emph{right} the ending with the higher value of\shortv{\footnote{The intuition is that a \emph{right} ending should be unsurprising (to
 the model)
 given the four preceding sentences of the story (the numerator), controlling for the
