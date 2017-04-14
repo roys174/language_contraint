@@ -41,7 +41,7 @@
 \definecolor{ppurple}{HTML}{9F4C7C}
 
 %\aclfinalcopy % Uncomment this line for the final submission
-%\def\aclpaperid{***} %  Enter the acl Paper ID here
+\def\aclpaperid{818} %  Enter the acl Paper ID here
 
 %\setlength\titlebox{5cm}
 % You can expand the titlebox if you need extra space
@@ -107,13 +107,10 @@ A writer's style depends not just on personal traits but also on her intent and 
 In this paper, we show how variants of the same writing task can lead to measurable differences in writing style.
 We present a case study based on 
 the  {\it story cloze task} \cite{Mostafazadeh:2016},
-where annotators were assigned similar writing tasks with different constraints: (1) writing an entire story, (2) adding a story ending for a given story context, and (3) adding an incoherent ending to a story.\resolved{\clinic{Many felt these 2 constraints looks like 3 constraints. clarify}}
-%We show that a linear classifier, which applies only simple style features, such as sentence length and character n-grams, 
+where annotators were assigned similar writing tasks with different constraints: (1) writing an entire story, (2) adding a story ending for a given story context, and (3) adding an incoherent ending to a story.
 We show that a  linear classifier informed by stylistic features is able to successfully distinguish among the three cases, without even looking at the story context.
-%\roy{In addition, our style-based classifier reaches only 2\% below state-of-the-art results on the story cloze challenge, equal or higher to other previous results.} 
-\roy{In addition, our style-based classifier performs on a par with state-of-the-art models on the story cloze task.} 
-%Furthermore, combining our model with an LSTM-based language model, which does look at the context, leads to additional gains.
-Our results demonstrate that different task framings can dramatically affect the way people write.\resolved{\clinic{Similarly to previous comment: which results does this comment address?}}
+In addition, our style-based classifier performs on a par with state-of-the-art models on the story cloze task.
+Our results demonstrate that different task framings can dramatically affect the way people write.
 
 
 \resolved{They also provide important lessons for designing new NLP

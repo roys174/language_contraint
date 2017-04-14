@@ -16,6 +16,7 @@
 \usepackage{multirow}
 \usepackage{latexsym}
 \usepackage{xcolor}
+\usepackage{tabularx}
 \usepackage[normalem]{ulem}
 \usepackage{url}
 \usepackage{caption}
@@ -122,6 +123,7 @@ as well as by mental states\resolved{\clinic{Avoid using ``cognitive"?}} such as
 In this paper, we study the extent to which writing style is affected by the nature of the writing task the writer was asked to perform, since
 different tasks likely engage different cognitive processes \cite{Campbell:2003,Banerjee:2014}.\roy{\footnote{For the purposes of this paper, \emph{style} is defined as content-agnostic writing characteristics, such as the number of words in a sentence.}}
 
+\com{
 \begin{table}[!t]
 %\begin{tabular}{|p{4.8cm}|p{2.1cm}|} \hline
 \begin{tabular}{|p{4.5cm}|p{2.4cm}|} \hline
@@ -139,7 +141,39 @@ The second and third rows show revised stories with two contrastive endings:
 let's consider just color-coding these three terms.  It's less distracting.}}
 }
 %\end{center}
+\end{table}}
+
+\begin{table}[!t]
+%\small
+%\begin{tabular}{|p{4.8cm}|p{2.1cm}|} \hline
+%\begin{tabular}{|p{4.8cm}|p{1.9cm}|} \hline
+\begin{tabularx}{\linewidth}%
+{l>{\setlength\hsize{0.67\hsize}}X%
+>{\setlength\hsize{1.33\hsize}}X}
+{\bf Story Prefix} & {\bf Ending} \\ \hline
+\multirow{4}{*}{\parbox{3.5cm}{\vspace{.1cm}John liked a girl at his work.	He tried to get her attention by acting silly.	She told him to grow up. John confesses he was trying to make her like him more.}} & \vspace{-0.2cm}	{\color{blue}{{She feels flattered and asks John on a date.}}} 	 \\\cline{2-2}
+
+%Travis needed some fast cash.	He thought about it and decided that selling his car was a good idea.	Travis listed his car for sale in the local paper.	After only a couple weeks he found somebody very interested.}}& \vspace{-0.2cm}	{\color{blue}{{\it This person came and test drove the car and bought it on the spot.}}} \\\cline{2-2}
+%Joe went to college for art. He graduated with a degree in painting. He couldn't find a job. He then responded to an ad in the paper.
+%\vspace{.3cm}Betsy comes home late one night and wants to eat something simple.	She notices that she has spaghetti and sauce in the house.	She quickly cooks and eats a pot of spaghetti.	After eating, she falls asleep on the couch.}} & \vspace{-0.3cm}	{\color{blue}{{\it $<$waiting for examples from  Nasrin$>$}}} \\ \cline{2-2}
+& 	{\color{forestgreen}{\vspace{-0.1cm}The girl found this charming, and gave him a second chance.% He sold the car and solved his money problems.%She was full and happy.     %Then he got hired.
+}} \\ \cline{2-2}
+& {\color{red}{%Joe hated pizza.\vspace{-0.1cm}Betsy likes{\color{white}{0}}{\color{white}{0}}{\color{white}{0}}{\color{white}{0}} cheeseburgers.
+\vspace{-0.1cm}John was happy about being rejected.%Travis gave it to the man for free.
+}} \\\hline %\cline{2-2}
+%&  \\ \hline
+\end{tabularx}
+\caption{\label{ROC-example}
+Examples of stories from the story cloze task. The table shows a story prefix with three contrastive endings:
+ %of the same story: 
+The {\color{blue}{original}} ending, a {\color{forestgreen}{coherent}} ending and a {\color{red}{incoherent}} one.\resolved{ \clinic{They said it would be great to have three endings to the same story. Unfortunately Nasrin et al.  didn't publish the original endings for the dev/test data. We could ask her, but not sure if this is worth it}}
+ \resolved{\nascomment{I like the colors a lot.  Instead of all the italicizing,
+let's consider just color-coding these three terms.  It's less distracting.}}
+}
+%\end{center}
 \end{table}
+
+
 
 We show that similar writing tasks with different constraints on the
 author can lead to measurable differences in her writing style.
