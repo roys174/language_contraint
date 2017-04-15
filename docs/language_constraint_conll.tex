@@ -20,9 +20,10 @@
 \usepackage[normalem]{ulem}
 \usepackage{url}
 \usepackage{caption}
-\usepackage{subcaption}
+%\usepackage{subcaption}
 \usepackage{pgfplots}
 \usepackage{tikz}
+\usepackage{subfig}% http://ctan.org/pkg/subfig
 
 \pgfplotsset{compat=1.11,
     /pgfplots/ybar legend/.style={
@@ -88,7 +89,7 @@
   $^1$Computer Science \& Engineering, University of Washington, WA 98195, USA \\
   $^2$Allen Institute for Artificial Intelligence, WA 98103, USA \\
     {\tt \{roysch,msap,ikonstas,lzilles,yejin,nasmith\}@cs.washington.edu}  \\
-    \And \hspace{-2cm}Leila Zilles$^1$ \And \hspace{-2.5cm}Yejin Choi$^1$ \And \hspace{-2.5cm}Noah A. Smith$^1$ \\
+    \And \hspace{-2cm}Li Zilles$^1$ \And \hspace{-2.5cm}Yejin Choi$^1$ \And \hspace{-2.5cm}Noah A. Smith$^1$ \\
   }
   
 \date{}
@@ -284,7 +285,7 @@ After compiling the story corpus, the {\it story cloze task}---a task based on t
 A subset of the stories was selected, and only the first four sentences of each story were presented to AMT workers.
 Workers were asked to write a pair of new story endings for each story context: one {\it right} and one {\it wrong}.
 Both endings were required to complete the story using one of the characters in the story context. 
-Additionally,  the ending is required to be ``realistic and sensible'' \cite{Mostafazadeh:2016} when read out of context.
+Additionally,  the endings were required to be ``realistic and sensible'' \cite{Mostafazadeh:2016} when read out of context.
 
 The resulting stories, both {\it right} and {\it wrong}, were then individually rated for coherence and meaningfulness by additional AMT workers.
 Only stories rated as simultaneously coherent with a {\it right} ending and neutral with a {\it wrong} ending were selected for the task. 
@@ -299,23 +300,15 @@ The task was suggested as an extensive evaluation framework:
 as a commonsense story understanding task\com{, 
 as the shared task for the  Linking Models of Lexical, Sentential and Discourse-level Semantics workshop (LSDSem 2017),} and as a testbed for vector-space evaluation \cite{mostafazadeh2016story}.
 
-Interestingly, \roy{until very recently, one year after the task was first introduced, the published benchmark on this task was still below 60\%}\com{at the time of this submission, 10 months after the
-task was first introduced, the published benchmark on this task is still below 60\% \cite{Salle:2016}}.\footnote{The LSDSem 2017 shared
-  task website
-  (\url{https://competitions.codalab.org/competitions/15333}) does
-  report higher results% (71.1\%)
-\resolved{\roy{Tricky. Which number should we report here? leave empty?}
-\nascomment{leave empty for now}}, which
-are still unpublished along with the underlying methodology.}
+Interestingly, \roy{until very recently, one year after the task was first introduced, the published benchmark on this task was still below 60\%}.
 This comes in contrast to other recent similar machine reading tasks such as CNN/DailyMail \cite{hermann2015teaching}, SNLI \cite{bowman2015large}, LAMBADA \cite{Paperno:2016} and SQuAD \cite{rajpurkar2016squad}, for which results improved dramatically over a similar or much shorter periods of time. This suggests that this task is challenging and that high performance is hard to achieve.
-\roy{In this paper, we show that this is not necessarily the case, by demonstrating that a simple linear classifier informed with style features reaches near state-of-the-art results on the task---72.4\%.}
- \resolved{\yc{SQuAD was officially published in Nov 2016. by the time the official EMNLP talk was presented, the leaderboard performance (still unpublished) was  30\% beyond the best results in the paper. Given that, the statement of this paragraph seems a bit of overkill...?} \nascomment{it sounds like Yejin is saying that on squad, there was an even faster acceleration?  or that we should change ``similar period of time'' to ``similar or shorter period of time''?}}
 
 In addition, \citet{Mostafazadeh:2016} made substantial efforts to ensure the quality of this dataset. 
 First, each pair of endings was written by the same author, which
 ensured that style differences between authors could not be used to solve the task. 
 Furthermore, Mostafazadeh et al.~implemented nine baselines for the task, using surface level features as well as narrative-informed ones, and showed that each of them reached roughly chance-level.
 These results suggest that real understanding of text is required in order to solve the task.
+\roy{In this paper, we show that this is not necessarily the case, by demonstrating that a simple linear classifier informed with style features reaches near state-of-the-art results on the task---72.4\%.}
 
 \paragraph{Different writing tasks in the story cloze task.}
 Several key design decisions make the task an interesting testbed for the purpose of this study.\resolved{\clinic{Which purpose?}}
@@ -393,18 +386,20 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
 
 \begin{figure*}[t!]
 \begin{small}
-\begin{subfigure}{.5\textwidth}\center
+\subfloat[POS tags]{
+%\begin{subfigure}{.5\textwidth}\center
 \begin{tikzpicture}
     \begin{axis}[
         width  = 0.4*\textwidth,
         height = 4cm,
       %  major x tick style = transparent,
         ybar=\pgflinewidth,
-        x=2.5cm,
+        x=1.25cm,
        bar width=5pt,
         ymajorgrids = true,
         ylabel = {Frequency in Corpus (\%)},
-        symbolic x coords={{\it original}, {\it right}, {\it wrong}},
+%        symbolic x coords={{\it original}, {\it right}, {\it wrong}},
+        symbolic x coords={NN, VBD, PRP, DT, NNP},
         xtick = data,
         scaled y ticks = false,
         %enlarge x limits=0.25,
@@ -417,7 +412,15 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
                 column sep=1ex
         }
     ]
-        \addplot[style={bblue,fill=bblue,mark=none}]
+    \addplot[style={blue,fill=blue,mark=none}]
+            coordinates {(NN, 15.3) (VBD, 13.4) (PRP, 10.1) (DT, 9.1) (NNP, 4.7)};
+
+        \addplot[style={forestgreen,fill=forestgreen,mark=none}]
+            coordinates {(NN, 15.7) (VBD, 15.8) (PRP, 9.7) (DT, 9.7) (NNP, 8.3)};
+
+        \addplot[style={red,fill=red,mark=none}]
+            coordinates {(NN, 16.3) (VBD, 15.1) (PRP, 7.4) (DT, 9.4) (NNP, 9.5)};
+\com{        \addplot[style={bblue,fill=bblue,mark=none}]
             coordinates {({\it original}, 15.3) ({\it right}, 15.7) ({\it wrong}, 16.3)};
             
 
@@ -431,25 +434,31 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
             coordinates {({\it original}, 9.1) ({\it right}, 9.7) ({\it wrong}, 9.4)};
 
         \addplot[style={gray,fill=gray,mark=none}]
-            coordinates {({\it original}, 4.7) ({\it right}, 8.3) ({\it wrong}, 9.5)};
+            coordinates {({\it original}, 4.7) ({\it right}, 8.3) ({\it wrong}, 9.5)};}
 
-        \legend{NN, VBD, PRP, DT, NNP}
+%        \legend{NN, VBD, PRP, DT, NNP}
+	\legend{{\it original}, {\it right}, {\it wrong}}
     \end{axis}
 \end{tikzpicture}
-\caption{\label{roc_pos_distribution}POS tags}
-\end{subfigure}
-\begin{subfigure}{.5\textwidth}\center
+%\caption{
+\label{roc_pos_distribution}
+%}
+%\end{subfigure}
+}
+\qquad\qquad\qquad
+\subfloat[Words]{%\begin{subfigure}{.5\textwidth}\center
 \begin{tikzpicture}
     \begin{axis}[
         width  = 0.4*\textwidth,
         height = 4cm,
       %  major x tick style = transparent,
         ybar=\pgflinewidth,
-        x=2.5cm,
+        x=1.25cm,
        bar width=5pt,
         ymajorgrids = true,
 %        ylabel = {Frequency in Corpus (\%)},
-        symbolic x coords={{\it original}, {\it right}, {\it wrong}},
+    %    symbolic x coords={{\it original}, {\it right}, {\it wrong}},
+    symbolic x coords={to, and, I, hates, !},
         xtick = data,
         scaled y ticks = false,
         %enlarge x limits=0.25,
@@ -462,6 +471,17 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
                 column sep=1ex
         }
     ]
+ 
+   \addplot[style={blue,fill=blue,mark=none}]
+            coordinates {(to, 3) (and, 2.5) (I, 1) (hates, 0) (!, 0.9)};
+
+        \addplot[style={forestgreen,fill=forestgreen,mark=none}]
+            coordinates {(to, 3.3) (and, 1.8) (I, 1.2) (hates, 0) (!, 0.2)};
+
+        \addplot[style={red,fill=red,mark=none}]
+            coordinates {(to, 3.5) (and, 1.3) (I, 1.4) (hates, 0.6) (!, 0.1)};
+   
+    \com{
         \addplot[style={bblue,fill=bblue,mark=none}]
             coordinates {({\it original}, 3) ({\it right}, 3.3) ({\it wrong}, 3.5)};
 
@@ -476,12 +496,17 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
 
         \addplot[style={gray,fill=gray,mark=none}]
             coordinates {({\it original}, 0.9) ({\it right}, 0.2) ({\it wrong}, 0.1)};
+}
+%        \legend{to, and, I, hates, !}
+        	\legend{{\it original}, {\it right}, {\it wrong}}
 
-        \legend{to, and, I, hates, !}
     \end{axis}
 \end{tikzpicture}
-\caption{\label{roc_word_distribution}Words}
-\end{subfigure}
+%\caption{
+\label{roc_word_distribution}
+%Words}
+%\end{subfigure}
+}
 \end{small}
 \caption{The distribution of five frequent POS tags
   (\ref{roc_pos_distribution}) and words (\ref{roc_word_distribution})
@@ -524,7 +549,8 @@ We use character $4$-grams.\footnote{\roy{Experiments with $5$-grams on our deve
 We design two experiments to answer our research questions. 
 The first is an attempt to distinguish between {\it right} and {\it wrong} endings,
 the second  between {\it original} endings and new ({\it right}) endings.
-We describe both experiments below.
+For completeness, we also run a third experiment, which compares between {\it original} and {\it wrong} endings. 
+We describe all experiments below.
 
 \paragraph{Experiment 1: right/wrong endings.}
 The goal of this experiment is to measure the extent to which  style features capture differences between the {\it right} and {\it wrong} endings.
@@ -550,7 +576,7 @@ we be more clear?}.}
 \paragraph{Experiment 2: original/new endings.}
 
 Here the goal is to measure whether writing the ending as part of a
-story imposes different style compared to writing a new ({\it right}) ending to an existing story.
+story imposes different style compared to writing a {\it new} ({\it right}) ending to an existing story.
 We use the endings of the ROC stories as our {\it original} samples and {\it right} endings from the story cloze task   \resolved{\nascomment{if you're using the test examples as
   training data, what are you using for test? and development?  I would have thought
   you'd follow the same pattern as above ... }}as {\it new} samples.
@@ -559,7 +585,7 @@ instances, we randomly select five  {\it original} sets, each with the same numb
 instances  \resolved{\nascomment{(give the number in parentheses, for train/dev/test)} }as we have
 \emph{new} instances (3,366 training endings, 374 development endings, and 3,742 test endings).
 %We randomly sample 5 {\it original} sets and repeat the classification experiments.
-We report the average classification result.
+We train five classifiers with each of the {\it original} training sets, and report the average classification result.
 
 \roy{\paragraph{Experiment 3: original/wrong endings.}
 For completeness, we measure the extent to which our classifier can discriminate between {\it original} and {\it wrong} endings. We replicate Experiment 2, this time replacing {\it right} endings with {\it wrong} ones.}
@@ -675,7 +701,7 @@ endings. \nascomment{this is overkill.  I suggest replacing it with a
 In all cases, our setup implies a 50\% random baseline.}
 \end{table}
 
-\subsection{Story cloze task.}
+\subsection{Story cloze task}
 The results of Experiment 1 indicate that {\it right} and {\it wrong} endings are characterized by different styles.
 In order to further estimate the quality of our classification results, we tackle the story cloze task using our classifier.
 This classification task is more constrained than Experiment 1, as two
@@ -731,7 +757,7 @@ human judgments come from?  those are not mentioned in our text anywhere!}
 \begin{center}
 \begin{tabular}{|l|r|} \hline
 {\bf Model} & {\bf Acc.} \\ \hline
-{DSSM} \cite{Mostafazadeh:2016} & 0.595 \\ 
+{DSSM} \cite{Mostafazadeh:2016} & 0.585 \\ 
 {ukp} \cite{Mihaylov:2017} & 0.711\\ 
 {tbmihaylov} \cite{Mihaylov:2017} & 0.724\\ 
 {cogcomp}  & 0.744 \\ \hline\hline
@@ -770,8 +796,8 @@ model.  \resolved{\nascomment{reworded.  more important that our features help
 
 We train the RNNLM using a single-layer LSTM of hidden dimension 512.
 We use the ROC stories for training,\footnote{We use the extended, 100K stories corpus (see \secref{ROC_Story}).} setting aside 10\% for validation of the language model. 
-We replace all words occurring less than 3 times with a special
-out-of-vocabulary character, yielding a vocabulary size of  21,582.
+We replace all words occurring less than 3 times with an 
+out-of-vocabulary token, yielding a vocabulary size of  21,582.
 Only during training, we apply a dropout rate of 60\% while running the LSTM over all 5 sentences of the stories. 
 Using the Adam optimizer \cite{kingma2014adam} and a learning rate of
 $\eta=.001$, we train to minimize cross-entropy. % minibatches of $50$ stories.
@@ -883,29 +909,41 @@ These baselines measured the relative sentiment between the ending and the previ
 The performance of both these baselines was roughly chance-level, which seems to suggest that this is not entirely the case.
 \resolved{\yc{Is it really because there's no statistical tendency in the original stories to have happy endings, as opposed to the alternative possibility --- the sentiment classifier used by Monstafazadeh 2016 didn't quite nail down the optimal feature encodings?}} \roy{this is definitely an option, and that's partly why I used hedging (``seems to suggest''). Tones it down a bit more.}}
 
-\begin{table}[!t]
-\begin{center}
-\begin{tabular}{|c|c||c|c|} \hline
-\textit{\textbf{Right}} & Freq. & \textit{\textbf{Wrong}}& Freq. \\ \hline
-`ed .' & {\color{white}{0}}6.5\%& \textsc{start} NNP & 54.8\%\\ \hline
-`and ' & 13.6\%& NN . & 47.5\% \\ \hline
-JJ & 45.8\% & NN NN . & {\color{white}{0}}5.1\%\\ \hline
-to VB & 20.1\%& VBG & 10.1\%\\ \hline
-`d th' & 10.9\%& \textsc{start} NNP VBD & 41.9\%\\ \hline
-%`ally' & 3.3\% & `hate' & {\color{white}{0}}1.9\% \\ \hline
-%VBD the NN .& 2.2\% & ` hat' & {\color{white}{0}}2.0\% \\ \hline
-%\textsc{start} RB & 3.1\% & \textsc{start} NNP & 54.8\% \\ \hline
-%`ved ' &4.1\%&  `ated' & {\color{white}{0}}3.0\%\\ \hline
-%` tim' &2.6\%&  NN . & 47.5\%\\ \hline
+\begin{figure*}
+%\small
+\centering
+\subfloat[Experiment 1]{
+\begin{tabular}{|c|c|c||c|c|c|} \hline
+\textit{\textbf{Right}} & Weight & Freq. &   \textit{\textbf{Wrong}}& Weight & Freq.  \\ \hline
+`ed .' & 0.17 & {\color{white}{0}}6.5\%&  \textsc{start} NNP & 0.21& 54.8\%  \\ \hline
+`and ' &  0.15 & 13.6\%  & NN . & 0.17 & 47.5\%  \\ \hline
+JJ & 0.14 & 45.8\%  & NN NN . & 0.15 &  {\color{white}{0}}5.1\%  \\ \hline
+to VB & 0.13 & 20.1\%& VBG & 0.11 & 10.1\%\\ \hline
+`d th' & 0.12 & 10.9\%& \textsc{start} NNP VBD & 0.11 & 41.9\%\\ \hline
+\end{tabular}
+\label{exp1_features}
+}
+\quad
+\subfloat[Experiment 2]{
+\begin{tabular}{|c|c|c||c|c|c|} \hline
+\textit{\textbf{Right}} & Weight & Freq. &   \textit{\textbf{Wrong}}& Weight & Freq.  \\ \hline
+{\it length} & 0.81&  {\color{white}{.}}100.0\% & `.' & 0.74&93.0\%\\ \hline
+`!' & 0.46&{\color{white}{00}}6.1\%& \textsc{start} NNP  & 0.40&39.2\% \\ \hline
+NN & 0.35&{\color{white}{0}}78.9\% & \textsc{start} NNP VBD &0.23&29.0\% \\ \hline
+RB & 0.34&{\color{white}{0}}44.7\%& NN . & 0.20&42.3\% \\ \hline
+`,' & 0.32&{\color{white}{0}}12.7\%&  the NN . & 0.20&10.6\% \\ \hline
 
 \end{tabular}
-\end{center}
-\caption{\label{exp1_features}
-The top 5 most heavily weighted features for predicting {\it right} vs.~{\it wrong} endings,
-along with their frequencies in our story cloze training set.
+\label{exp2_features}
 }
-\end{table}
+\caption{
+The top 5 most heavily weighted features for predicting {\it right} vs.~{\it wrong} endings (\ref{exp1_features}) and  {\it original} vs.~new ({\it right}) endings (\ref{exp2_features}). 
+{\it length} is the sentence length feature (see \secref{Model}).
+}
+%\end{table}
 
+%\end{subfigure}
+\end{figure*}
 
 
 \paragraph{Experiment 2.}
@@ -925,30 +963,10 @@ which in turn are more likely to do so than original endings.
 This partially explains why distinguishing between {\it original} and {\it wrong} endings is an easier task compared to the other pairs (\secref{Results}).
 
 
-\setlength\tabcolsep{.15cm}
-\begin{table}[!t]
-\begin{center}
-\begin{tabular}{|p{1.25cm}|c||p{2.9cm}|c|} \hline
-\textit{\textbf{Original}} & Freq. & \textit{\textbf{New}}& Freq. \\ \hline
-{\it length} & {\color{white}{.}}100.0\% & `.' & 93.0\%\\ \hline
-`!' & {\color{white}{00}}6.1\%& \textsc{start} NNP  & 39.2\% \\ \hline
-NN & {\color{white}{00}}78.9\% & \textsc{start} NNP VBD &29.0\% \\ \hline
-RB & {\color{white}{0}}44.7\%& NN . & 42.3\% \\ \hline
-`,' & {\color{white}{0}}12.7\%&  the NN . & 10.6\% \\ \hline
-
-\end{tabular}
-\end{center}
-\caption{\label{exp2_features}
-The top 5 most heavily weighted features for predicting {\it original} vs.~new ({\it right}) endings.
-{\it length} is the sentence length feature (see \secref{Model}).
-}
-\end{table}
-
-
 \isectionb{Discussion}
 
 \paragraph{The effect of writing tasks on mental states.}
-In this paper we have shown that giving a writer different writing tasks affects her writing style in easily detected ways.
+In this paper we have shown that different writing tasks affect a writer's writing style in easily detected ways.
 Our results indicate that when authors are asked to write the last
 sentence of a five-sentence story, they will use different style to
 write a {\it right} ending compared to a {\it wrong} ending. We have
@@ -974,7 +992,7 @@ tasks, mental states, and variation in writing style.
 This connection hints that the link discovered in this paper, between
 different writing tasks and resulting variation in writing style,
 involves differences in mental state. 
-Further investigation is required in order to further validate this hypothesis.
+Additional investigation is required in order to further validate this hypothesis.
 
 
 \paragraph{Design of NLP tasks.}
@@ -984,19 +1002,18 @@ as topic diversity and temporal and causal relation diversity,  were controlled 
 The authors also made sure each pair of endings was written by the
 same author, partly in order to avoid author-specific style effects.
  Nonetheless, despite these efforts, several significant style
- differences can be found between the training and the test set, as well as between the positive and negative labels. 
+ differences can be found between the story cloze training and test set, as well as between the positive and negative labels. 
  
 Our findings suggest that careful attention must be paid to instructions given to authors, especially in unnatural tasks such as writing a {\it wrong} ending. 
-\roy{The COPA dataset \cite{Roemmele:2011}, which was also designed to test commonsense knowledge, explicitly addressed potential style differences in their instructions. In this task,  systems are presented with premises like {\it I put my plate in the sink.} and then letting it decide between two alternatives, e.g.: (a) {\it I finished eating.} and (b) {\it I skipped dinner.}}
+\roy{The COPA dataset \cite{Roemmele:2011}, which was also designed to test commonsense knowledge, explicitly addressed potential style differences in their instructions. In this task,  systems are presented with premises like {\it I put my plate in the sink}, and then decide between two alternatives, e.g.: (a) {\it I finished eating.} and (b) {\it I skipped dinner.}}
 Importantly, when writing the alternatives,  annotators were asked to be as brief as possible and avoid proper names, as well as  slang. 
 
 Applying our story cloze classifier to this dataset yields 53.2\% classification accuracy---higher than a random baseline, but substantially lower than our story cloze task results. 
 While this could be partially explained by the smaller data size of the COPA dataset (1,000 samples compared to 3,742 in the story cloze task), this indicates that simple instructions may help alleviate the effects of writing style found in this paper.
 
-Another way to avoid such effects is by instructing authors to write shorter text spans, such as the ones used in the Winograd schema \cite{Levesque:2011}.
-A different approach is to use naturally occurring text, as used in recent machine reading tasks (see \secref{Related}). 
+Another way to avoid such effects is to use naturally occurring text, as used in recent machine reading tasks (see \secref{Related}). 
 %However,  these approaches have their shortcomings, and do not capture the same signal as intended by the author of the story cloze task.
-Finally, a third approach is to have people rate sentences from naturally occurring text by parameters
+Finally, a different approach is to have people rate sentences from naturally occurring text by parameters
 such as coherence (or, very differently, the level of surprise),
 rather than asking them to generate new text.
 

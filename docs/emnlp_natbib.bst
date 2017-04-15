@@ -1,4 +1,4 @@
-%% Output of docstrip was hand-edited to handle create doi links.
+I%% Output of docstrip was hand-edited to handle create doi links.
 %% This file creates bib entries with \href commands in the title.
 %% You must use the hyperref package, or define \href to do nothing.
 %% Dan Gildea (gildea) 2016/10/30
