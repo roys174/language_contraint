@@ -234,9 +234,8 @@ writing only the final sentence for a given story context written by someone els
 
 
 In order to further validate our method, we also directly tackle the
-story cloze task\nascomment{cite the challenge?  a reader may
-  not realize that there is a shared task on this}\resolved{\roy{Maybe ``challenge'' was not the right term here. We basically mean the story cloze task. The shared task was the original task w/o any modification, so I am not referring to it specifically here}}. 
- Adapting our classifier to the task, we obtain 72.4\% accuracy, \com{a
+story cloze task. 
+Adapting our classifier to the task, we obtain 72.4\% accuracy, \com{a
  12.5\% increase over the previously reported state-of-the-art  \cite{Salle:2016}}\roy{only 2\% below state-of-the-art results}.
 We also show that the style differences captured by our model can be combined with neural language models to make a better use of the story context. 
 Our final model that combines context with stylistic features achieves \roy{new state-of-the-art results---}
@@ -274,7 +273,7 @@ We describe the task below.
 
 The ROC story corpus consists of 49,255 five-sentence 
 stories, collected on Amazon Mechanical Turk (AMT).\footnote{Recently,
-  an additional 53K stories were released, which results in roughly
+  additional 53K stories were released, which results in roughly
   100K stories.}
 Workers were instructed to write a coherent self-contained story, which has a clear beginning and end. 
 To collect a broad spectrum of commonsense knowledge, there was no imposed subject for the stories,
@@ -348,7 +347,7 @@ Our analysis  reveals several style differences between different groups.
 First, {\it original} endings are on average longer (11 words per
 sentence) than {\it right} endings (8.75 words), which are in turn
 slightly longer than {\it wrong} ones (8.47 words). 
-Previous work has shown that sentence length is also indicative of whether a text was deceptive \cite{yancheva2013automatic,qin2004exploratory}. 
+The latter finding is consistent with previous work, which has shown that sentence length is also indicative of whether a text was deceptive \cite{yancheva2013automatic,qin2004exploratory}. 
 Although writing {\it wrong} sentences is not the same as lying, it is not entirely surprising to observe similar trends in both tasks.
 %Furthermore, \citet{Buller:1996} suggests lying increases one's cognitive load, which in turn could affect sentence length.
 %\yc{Is there psycholinguistic literature that we can cite that may have shown that cognitive burden causes writers to write shorter sentences...?}
@@ -404,13 +403,13 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
         scaled y ticks = false,
         %enlarge x limits=0.25,
         ymin=3,
-        legend cell align=left,
-        legend style={
-        		legend columns=-1,
-                at={(1,1.05)},
-                anchor=south east,
-                column sep=1ex
-        }
+%        legend cell align=left,
+%        legend style={
+%        		legend columns=-1,
+%                at={(1,1.05)},
+%                anchor=south east,
+%                column sep=1ex
+%        }
     ]
     \addplot[style={blue,fill=blue,mark=none}]
             coordinates {(NN, 15.3) (VBD, 13.4) (PRP, 10.1) (DT, 9.1) (NNP, 4.7)};
@@ -437,7 +436,7 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
             coordinates {({\it original}, 4.7) ({\it right}, 8.3) ({\it wrong}, 9.5)};}
 
 %        \legend{NN, VBD, PRP, DT, NNP}
-	\legend{{\it original}, {\it right}, {\it wrong}}
+%	\legend{{\it original}, {\it right}, {\it wrong}}
     \end{axis}
 \end{tikzpicture}
 %\caption{
@@ -463,13 +462,13 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
         scaled y ticks = false,
         %enlarge x limits=0.25,
         ymin=0,
-        legend cell align=left,
-        legend style={
-        		legend columns=-1,
-                at={(1,1.05)},
-                anchor=south east,
-                column sep=1ex
-        }
+%        legend cell align=left,
+%        legend style={
+%        		legend columns=-1,
+%                at={(1,1.05)},
+%                anchor=south east,
+%                column sep=1ex
+%        }
     ]
  
    \addplot[style={blue,fill=blue,mark=none}]
@@ -498,7 +497,7 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
             coordinates {({\it original}, 0.9) ({\it right}, 0.2) ({\it wrong}, 0.1)};
 }
 %        \legend{to, and, I, hates, !}
-        	\legend{{\it original}, {\it right}, {\it wrong}}
+%        	\legend{{\it original}, {\it right}, {\it wrong}}
 
     \end{axis}
 \end{tikzpicture}
@@ -510,8 +509,8 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
 \end{small}
 \caption{The distribution of five frequent POS tags
   (\ref{roc_pos_distribution}) and words (\ref{roc_word_distribution})
-  across \emph{original} endings (story cloze training set), and
-  \emph{right} and \emph{wrong} endings (from the story cloze task).}
+  across {\color{blue}{\emph{original}}} endings (story cloze training set), and
+  {\color{forestgreen}{\emph{right}}} and {\color{red}{\emph{wrong}}} endings (from the story cloze task).}
 
 \end{figure*}
 
@@ -532,7 +531,7 @@ In order to answer this question, we first use simple methods that have been sho
 We describe our model below.
 
 We train a logistic regression classifier to categorize an ending,
-either as {\it right} vs.~{\it wrong} or as {\it original} vs.~new ({\it right}).
+either as {\it right} vs.~{\it wrong} or as {\it original} vs.~{\it new} ({\it right}).
 Each feature vector is computed using the words in one ending, without considering earlier parts of the story. 
 We use the following style features.
 
@@ -548,7 +547,7 @@ We use character $4$-grams.\footnote{\roy{Experiments with $5$-grams on our deve
 \isectionb{Experiments}
 We design two experiments to answer our research questions. 
 The first is an attempt to distinguish between {\it right} and {\it wrong} endings,
-the second  between {\it original} endings and new ({\it right}) endings.
+the second  between {\it original} endings and {\it new} ({\it right}) endings.
 For completeness, we also run a third experiment, which compares between {\it original} and {\it wrong} endings. 
 We describe all experiments below.
 
@@ -585,7 +584,7 @@ instances, we randomly select five  {\it original} sets, each with the same numb
 instances  \resolved{\nascomment{(give the number in parentheses, for train/dev/test)} }as we have
 \emph{new} instances (3,366 training endings, 374 development endings, and 3,742 test endings).
 %We randomly sample 5 {\it original} sets and repeat the classification experiments.
-We train five classifiers with each of the {\it original} training sets, and report the average classification result.
+We train five classifiers, one with each of the {\it original} training sets, and report the average classification result.
 
 \roy{\paragraph{Experiment 3: original/wrong endings.}
 For completeness, we measure the extent to which our classifier can discriminate between {\it original} and {\it wrong} endings. We replicate Experiment 2, this time replacing {\it right} endings with {\it wrong} ones.}
@@ -659,12 +658,12 @@ differences were apparent to the model, allowing over 75\% accuracy.}
         scaled y ticks = false,
         %enlarge x limits=0.25,
         ymin=0.4,
-        legend cell align=left,
-        legend style={
-                at={(1,1.05)},
-                anchor=south east,
-                column sep=1ex
-        }
+%        legend cell align=left,
+%        legend style={
+%                at={(1,1.05)},
+%                anchor=south east,
+%                column sep=1ex
+%        }
     ]
         \addplot[style={bblue,fill=bblue,mark=none}]
             coordinates {({\it Correct/Wrong}, 0.5) ({\it Original/New}, 0.5) ({\it Original/Wrong},.5)};
@@ -689,7 +688,7 @@ endings. \nascomment{this is overkill.  I suggest replacing it with a
 
 \begin{table}[!t]
 \begin{center}
-\begin{tabular}{|l|r|} \hline
+\begin{tabular}{|l|c|} \hline
 {\bf Experiment} & {\bf Accuracy} \\ \hline
 {\sl right vs. wrong} & 0.645 \\ \hline
 {\sl original vs. right} & 0.685 \\ \hline
@@ -859,7 +858,7 @@ These findings are in line with previous work that used character $n$-grams alon
 
 \begin{table}[!t]
 \begin{center}
-\begin{tabular}{|c|c|} \hline
+\begin{tabular}{|l|c|} \hline
 {\bf Feature Type} & {\bf Accuracy}\\ \hline
 Word $n$-grams & 0.612 \\ \hline
 Character $n$-grams & 0.639 \\ \hline
@@ -893,10 +892,10 @@ First, authors tend to structure their sentences differently when writing {coher
 For instance, {incoherent} endings are more likely to start with a proper noun and end with a common noun, 
 while coherent endings have a greater tendency to end with a past tense verb.
 
-Second, {\it right} endings will make wider use of coordination structures, as well as adjectives.
+Second, {\it right} endings make wider use of coordination structures, as well as adjectives.
 The latter might indicate that writing coherent stories inspires the authors to write more descriptive text compared to incoherent ones, 
 as is the case in truthful vs.~deceptive text \cite{ott2011finding}.
-Finally, we notice a few syntactic differences: {\it right} endings will more often use infinite verb structure, while {\it wrong} endings prefer gerunds (VBG). 
+Finally, we notice a few syntactic differences: {\it right} endings more often use infinite verb structure, while {\it wrong} endings prefer gerunds (VBG). 
 
 
 \com{More interestingly, the different writing tasks seem to impose a specific sentiment on the writer. 
@@ -937,7 +936,7 @@ RB & 0.34&{\color{white}{0}}44.7\%& NN . & 0.20&42.3\% \\ \hline
 \label{exp2_features}
 }
 \caption{
-The top 5 most heavily weighted features for predicting {\it right} vs.~{\it wrong} endings (\ref{exp1_features}) and  {\it original} vs.~new ({\it right}) endings (\ref{exp2_features}). 
+The top 5 most heavily weighted features for predicting {\it right} vs.~{\it wrong} endings (\ref{exp1_features}) and  {\it original} vs.~{\it new} ({\it right}) endings (\ref{exp2_features}). 
 {\it length} is the sentence length feature (see \secref{Model}).
 }
 %\end{table}
@@ -957,7 +956,7 @@ indication for an  {\it original} ending.
 This suggests that authors are more likely to show or evoke enthusiasm when writing their own text compared to ending an existing text.
 
 Finally, when comparing the two groups of salient features from both experiments, we find an interesting trend.
-Several features, such as ``\textsc{start} NNP'' and  ``NN .'', which indicate {\it wrong} sentences in Experiment 1, are used to predict new (i.e., {\it right}) endings in Experiment 2. 
+Several features, such as ``\textsc{start} NNP'' and  ``NN .'', which indicate {\it wrong} sentences in Experiment 1, are used to predict {\it new} (i.e., {\it right}) endings in Experiment 2. 
 This indicates that, for instance, incoherent endings have a stronger tendency to begin with a proper noun compared to coherent endings, 
 which in turn are more likely to do so than original endings. 
 This partially explains why distinguishing between {\it original} and {\it wrong} endings is an easier task compared to the other pairs (\secref{Results}).
@@ -1010,11 +1009,8 @@ Importantly, when writing the alternatives,  annotators were asked to be as brie
 
 Applying our story cloze classifier to this dataset yields 53.2\% classification accuracy---higher than a random baseline, but substantially lower than our story cloze task results. 
 While this could be partially explained by the smaller data size of the COPA dataset (1,000 samples compared to 3,742 in the story cloze task), this indicates that simple instructions may help alleviate the effects of writing style found in this paper.
-
-Another way to avoid such effects is to use naturally occurring text, as used in recent machine reading tasks (see \secref{Related}). 
-%However,  these approaches have their shortcomings, and do not capture the same signal as intended by the author of the story cloze task.
-Finally, a different approach is to have people rate sentences from naturally occurring text by parameters
-such as coherence (or, very differently, the level of surprise),
+Another way to avoid such effects is to have people rate naturally occurring sentences  by parameters
+such as coherence (or, conversely, the level of surprise),
 rather than asking them to generate new text.
 
 
