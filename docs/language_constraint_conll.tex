@@ -23,6 +23,7 @@
 %\usepackage{subcaption}
 \usepackage{pgfplots}
 \usepackage{tikz}
+\usetikzlibrary{patterns}
 \usepackage{subfig}% http://ctan.org/pkg/subfig
 
 \pgfplotsset{compat=1.11,
@@ -237,7 +238,7 @@ writing only the final sentence for a given story context written by someone els
 In order to further validate our method, we also directly tackle the
 story cloze task. 
 Adapting our classifier to the task, we obtain 72.4\% accuracy, \com{a
- 12.5\% increase over the previously reported state-of-the-art  \cite{Salle:2016}}\roy{only 2\% below state-of-the-art results}.
+ 12.5\% increase over the previously reported state-of-the-art  \cite{Salle:2016}}\roy{only 2\% below state of the art results}.
 We also show that the style differences captured by our model can be combined with neural language models to make a better use of the story context. 
 Our final model that combines context with stylistic features achieves
 \roy{a new state of the art---}75.2\%---an additional 2.8\% gain\com{, 15.3\% better than the best
@@ -252,7 +253,7 @@ First, findings from our study can potentially shed light on
 how different kinds of cognitive load influence the style of written language. 
 Second, our results indicate that when designing new NLP tasks, special attention needs to be payed to the instructions given to authors.
 %both in terms of the potential impact of even the smallest details, and the need to carefully run baseline models.
-Third, we establish a new state-of-the-art result on the commonsense story cloze challenge. 
+Third, we establish a new state of the art result on the commonsense story cloze challenge. 
 
 \com{
 The remainder of this paper is organized as follows. In \secref{ROC_Story} we describe the story cloze task.
@@ -308,7 +309,7 @@ First, each pair of endings was written by the same author, which
 ensured that style differences between authors could not be used to solve the task. 
 Furthermore, Mostafazadeh et al.~implemented nine baselines for the task, using surface level features as well as narrative-informed ones, and showed that each of them reached roughly chance-level.
 These results suggest that real understanding of text is required in order to solve the task.
-\roy{In this paper, we show that this is not necessarily the case, by demonstrating that a simple linear classifier informed with style features reaches near state-of-the-art results on the task---72.4\%.}
+\roy{In this paper, we show that this is not necessarily the case, by demonstrating that a simple linear classifier informed with style features reaches near state of the art results on the task---72.4\%.}
 
 \paragraph{Different writing tasks in the story cloze task.}
 Several key design decisions make the task an interesting testbed for the purpose of this study.\resolved{\clinic{Which purpose?}}
@@ -412,10 +413,10 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
 %                column sep=1ex
 %        }
     ]
-    \addplot[style={blue,fill=blue,mark=none}]
+    \addplot[style={blue,fill=blue,pattern=horizontal lines, pattern color=blue,mark=none}]
             coordinates {(NN, 15.3) (VBD, 13.4) (PRP, 10.1) (DT, 9.1) (NNP, 4.7)};
 
-        \addplot[style={forestgreen,fill=forestgreen,mark=none}]
+        \addplot[style={forestgreen,fill=forestgreen,pattern=north west lines, pattern color=forestgreen,mark=none}]
             coordinates {(NN, 15.7) (VBD, 15.8) (PRP, 9.7) (DT, 9.7) (NNP, 8.3)};
 
         \addplot[style={red,fill=red,mark=none}]
@@ -424,7 +425,7 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
             coordinates {({\it original}, 15.3) ({\it right}, 15.7) ({\it wrong}, 16.3)};
             
 
-        \addplot[style={rred,fill=rred,mark=none}]
+        \addplot[pattern=dots,style={rred,fill=rred,mark=none}]
             coordinates {({\it original}, 13.4) ({\it right}, 15.8) ({\it wrong}, 15.1)};
 
         \addplot[style={ggreen,fill=ggreen,mark=none}]
@@ -472,10 +473,10 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
 %        }
     ]
  
-   \addplot[style={blue,fill=blue,mark=none}]
+   \addplot[style={blue,fill=blue,pattern=horizontal lines, pattern color=blue,mark=none}]
             coordinates {(to, 3) (and, 2.5) (I, 1) (hates, 0) (!, 0.9)};
 
-        \addplot[style={forestgreen,fill=forestgreen,mark=none}]
+        \addplot[style={forestgreen,fill=forestgreen,pattern=north west lines, pattern color=forestgreen,mark=none}]
             coordinates {(to, 3.3) (and, 1.8) (I, 1.2) (hates, 0) (!, 0.2)};
 
         \addplot[style={red,fill=red,mark=none}]
@@ -510,8 +511,8 @@ Most Frequent Words  (\%) & the:4.5\%, to:3.3\%, and:2.7\%, was:2.6\%, a:2.2\% &
 \end{small}
 \caption{The distribution of five frequent POS tags
   (\ref{roc_pos_distribution}) and words (\ref{roc_word_distribution})
-  across {\color{blue}{\emph{original}}} endings (story cloze training set), and
-  {\color{forestgreen}{\emph{right}}} and {\color{red}{\emph{wrong}}} endings (from the story cloze task).}
+  across {\color{blue}{\emph{original}}} endings (horizontal lines) from the story cloze training set, and
+  {\color{forestgreen}{\emph{right}}} (diagonal lines) and {\color{red}{\emph{wrong}}} (solid lines) endings, both from the story cloze task.}
 
 \end{figure*}
 
@@ -712,7 +713,7 @@ if it assigns different labels to the two given endings, we keep
 them.  Otherwise, the label whose posterior probability is lower is reversed.
 
 \tabref{cloze_results} shows our results on the story cloze test
-set. Our classifier obtains 72.4\% accuracy, \roy{only 2\% lower than state-of-the-art results, and equal or higher to all other published results}\com{12.5\% (absolute) higher than the
+set. Our classifier obtains 72.4\% accuracy, \roy{only 2\% lower than state of the art results, and equal or higher to all other published results}\com{12.5\% (absolute) higher than the
 published state-of-the-art result on the task \cite{Salle:2016}}\resolved{\nascomment{cite that here}}.
 Importantly, unlike previous approaches, our classifier does not require the story corpus training data, and in fact doesn't even consider the first four sentences of the story in question.
 These numbers further support the claim that the styles of {\it right} and {\it wrong} endings are indeed very different.
@@ -783,7 +784,7 @@ human judgments come from?  those are not mentioned in our text anywhere!}
 
 
 \paragraph{Combination with a neural language model.}
-We investigate whether our model can benefit from state-of-the-art text comprehension models, for which this task was designed. 
+We investigate whether our model can benefit from state of the art text comprehension models, for which this task was designed. 
 Specifically, we experiment with an LSTM-based \cite{hochreiter1997long} recurrent neural network language model (RNNLM; \citealp{mikolov2010recurrent}). % on the ROC story corpus training data,
 %and use it to compute the probability of both {\it right} and {\it wrong} endings in the story cloze test set.
 Unlike the model in this paper, which only considers the story endings, this language model follows the protocol suggested by the story cloze task designers, and harnesses their ROC Stories training set, which consists of single-ending stories, 
@@ -836,7 +837,7 @@ We combine our linear model with the RNNLM by adding three features to
 our classifier: the numerator, denominator, and ratio in
 Equation~\ref{eq:ratio}, all in log space. % $p_\theta(ending|story),p_\theta(ending)$ and $\frac{p_\theta(ending|story)}{p_\theta(ending)}$.
 We retrain our linear  model with the new feature set, and gain 2.8\%
-absolute, reaching 75.2\%\com{ (15.3\% better than the published state-of-the-art\com{ and 4.1\% better than the best unpublished} result)}\roy{, a new-state-of-the-art result for the task.}\resolved{\roy{As now the codalab shared task table contains our numbers, I removed the references to these works, and left only the footnote earlier which says that there are higher, unpublished numbers.}}
+absolute, reaching 75.2\%\com{ (15.3\% better than the published state of the art\com{ and 4.1\% better than the best unpublished} result)}\roy{, a new state of the art result for the task.}\resolved{\roy{As now the codalab shared task table contains our numbers, I removed the references to these works, and left only the footnote earlier which says that there are higher, unpublished numbers.}}
 These results indicate that context-ignorant style features can be used to obtain high
 accuracy on the task, adding value even when context and a large
 training dataset are used.  \resolved{\nascomment{check reframing here}}
@@ -1093,7 +1094,7 @@ We experimented with the story cloze task, which introduces two interesting comp
 In both cases, a simple linear model reveals measurable differences in writing styles, %that different styles are imposed.
 %The different styles allow our style detection 
 which in turn allows our final 
-model to achieve state-of-the-art results on the story cloze task.
+model to achieve state of the art results on the story cloze task.
 
 The findings presented in this paper have  cognitive implications, as
 they motivate further research on the effects that a writing
