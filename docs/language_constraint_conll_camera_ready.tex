@@ -11,6 +11,7 @@
 %% and that of ACL 08 by Joakim Nivre and Noah Smith
 
 \documentclass[11pt,a4paper]{article}
+\usepackage{authblk}
 \usepackage[hyperref]{acl2017}
 \usepackage{times}
 \usepackage{multirow}
@@ -83,14 +84,25 @@
 
 
 \title{The Effect of Different Writing Tasks on Linguistic Style:\\ A Case Study of the ROC Story Cloze Task}
+\author[1,2]{\bf Roy Schwartz}
+\author[1]{\bf Maarten Sap}
+\author[1]{\bf Ioannis Konstas}
+\author[1]{\\ \bf Li Zilles}
+\author[1]{\bf Yejin Choi}
+\author[1]{\bf Noah A.~Smith}
+\affil[1]{Paul G.~Allen School of Computer Science \& Engineering,\protect\\University of Washington, Seattle, WA, USA}
+\affil[2]{Allen Institute for Artificial Intelligence, Seattle, WA, USA}
+\affil[  ]{\tt \{roysch,msap,ikonstas,lzilles,yejin,nasmith\}@cs.washington.edu}
+%\date{}
+\renewcommand\Authands{ and }
 
-\author{\hspace{2cm}Roy Schwartz$^{1,2}$ \And \hspace{2.5cm}Maarten Sap$^1$ \And \hspace{3cm}Ioannis Konstas$^1$ \And \\
-  $^1$Paul G. Allen School of Computer Science \& Engineering,
-  University of Washington, Seattle, WA, USA \\
-  $^2$Allen Institute for Artificial Intelligence, Seattle, WA, USA\\
-    {\tt \{roysch,msap,ikonstas,lzilles,yejin,nasmith\}@cs.washington.edu}  \\
-    \And \hspace{-2cm}Li Zilles$^1$ \And \hspace{-2.5cm}Yejin Choi$^1$ \And \hspace{-2.5cm}Noah A.~Smith$^1$ \\
-  }
+%\author{\hspace{2cm}Roy Schwartz$^{1,2}$ \And \hspace{2.75cm}Maarten Sap$^1$ \And \hspace{3.5cm}Ioannis Konstas$^1$ \And \\
+%  $^1$Paul G. Allen School of Computer Science \& Engineering,
+%  University of Washington, Seattle, WA, USA \\
+%  $^2$Allen Institute for Artificial Intelligence, Seattle, WA, USA\\
+%    {\tt \{roysch,msap,ikonstas,lzilles,yejin,nasmith\}@cs.washington.edu}  \\
+%    \And \hspace{-2.25cm}Li Zilles$^1$ \And \hspace{-3cm}Yejin Choi$^1$ \And \hspace{-3cm}Noah A.~Smith$^1$ \\
+%  }
   
 \date{}
 
@@ -103,8 +115,7 @@ We present a case study based on
 the  {\it story cloze task} \cite{Mostafazadeh:2016},
 where annotators were assigned similar writing tasks with different constraints: (1) writing an entire story, (2) adding a story ending for a given story context, and (3) adding an incoherent ending to a story.
 We show that a simple linear classifier informed by stylistic features is able to successfully distinguish among the three cases, without even looking at the story context.
-In addition, %our style-based classifier's performance on the story cloze challenge is comparable \nascomment{why isn't this stronger?} to the state of the art.
-combining our stylistic features with language model predictions reaches state of the art performance on the story cloze challenge.
+In addition, combining our stylistic features with language model predictions reaches state of the art performance on the story cloze challenge.
 Our results demonstrate that different task framings can dramatically affect the way people write.\footnote{This paper extends our LSDSem 2017 shared task submission \cite{Schwartz:2017b}.}
 
 
@@ -124,18 +135,17 @@ different tasks likely engage different cognitive processes \cite{Campbell:2003,
 {l>{\setlength\hsize{0.67\hsize}}X
 >{\setlength\hsize{1.33\hsize}}X}
 {\bf Story Prefix} & {\bf Ending} \\ \hline
-\multirow{4}{*}{\parbox{3.5cm}{\vspace{.1cm}John liked a girl at his work.	He tried to get her attention by acting silly.	She told him to grow up. John confesses he was trying to make her like him more.}} & \vspace{-0.2cm}	{\color{blue}{{She feels flattered and asks John on a date.}}} 	 \\\cline{2-2}
+\multirow{4}{*}{\parbox{3.5cm}{\vspace{.1cm}John liked a girl at his work.	He tried to get her attention by acting silly.	She told him to grow up. John confesses he was trying to make her like him more.}} & \vspace{-0.2cm}	{\color{blue}{{\bf She feels flattered and asks John on a date.}}} 	 \\\cline{2-2}
 
-& 	{\color{forestgreen}{\vspace{-0.1cm}The girl found this charming, and gave him a second chance.
+& 	{\color{forestgreen}{\vspace{-0.3cm} \it The girl found this charming, and gave him a second chance.\vspace{-0.4cm}
 }} \\ \cline{2-2}
 & {\color{red}{
-\vspace{-0.1cm}John was happy about being rejected.
+\vspace{-0.3cm}\uline{John was happy about being rejected.}
 }} \\\hline 
 \end{tabularx}
 \caption{\label{ROC-example}
-%\yc{I think ACL formatting guideline requires that we make color coding accessible to people who are color blinds. Also in general, it's better not to rely only on color differences in encoding different types of annotations in text.}
 Examples of stories from the story cloze task. The table shows a story prefix with three contrastive endings:
-The {\color{blue}{original}} ending, a {\color{forestgreen}{coherent}} ending and a {\color{red}{incoherent}} one.
+The {\color{blue}{\bf original}} ending, a {\color{forestgreen}{\it coherent}} ending and a {\color{red}{\uline{incoherent}}} one.
 }
 \end{table}
 
@@ -217,7 +227,6 @@ The task was suggested as an extensive evaluation framework:
 as a commonsense story understanding task, 
 as the shared task for the  Linking Models of Lexical, Sentential and Discourse-level Semantics workshop (LSDSem 2017, \citealp{LSDSem:2017}), and as a testbed for vector-space evaluation \cite{mostafazadeh2016story}.
 
-%\nascomment{should this be updated given the shared task, and Gimpel's results?} 
 Interestingly, only very recently, one year after the task was first introduced, the published benchmark on this task surpassed 60\%.
 This comes in contrast to other recent similar machine reading tasks such as CNN/DailyMail \cite{hermann2015teaching}, SNLI \cite{bowman2015large}, LAMBADA \cite{Paperno:2016} and SQuAD \cite{rajpurkar2016squad}, for which results improved dramatically over similar or much shorter periods of time. This suggests that this task is challenging and that high performance is hard to achieve.
 
@@ -731,7 +740,7 @@ prompt has on an author's mental state, and also her concrete response.
 They also provide valuable lessons for designing new NLP datasets.
 
 \section{Acknowledgments}
-The authors thank Chenhao Tan and several anonymous reviewers for helpful feedback. %\nascomment{anyone else?  who read drafts?} 
+The authors thank Chenhao Tan, Luke Zettlemoyer, Rik Koncel-Kedziorski, Rowan Zellers, Yangfeng Ji and several anonymous reviewers for helpful feedback.
 This research was supported in part by Darpa CwC program through ARO (W911NF-15-1-0543), Samsung GRO, NSF IIS-1524371, and gifts from Google and Facebook.
 
 
